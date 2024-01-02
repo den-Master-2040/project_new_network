@@ -1,0 +1,16 @@
+debug/async.o
+debug/bundled_fmtlib_format.o
+debug/cfg.o
+debug/color_sinks.o
+debug/file_sinks.o
+debug/spdlog.o
+debug/stdout_sinks.o
+debug/async.o
+debug/bundled_fmtlib_format.o
+debug/cfg.o
+debug/color_sinks.o
+debug/file_sinks.o
+debug/main.o
+debug/server.o
+debug/spdlog.o
+debug/stdout_sinks.o
