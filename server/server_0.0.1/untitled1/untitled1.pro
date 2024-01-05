@@ -23,7 +23,8 @@ SOURCES += \
         main.cpp \
         server.cpp \
         spdlog.cpp \
-        stdout_sinks.cpp
+        stdout_sinks.cpp \
+        user.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -134,7 +135,8 @@ HEADERS += \
     spdlog/spdlog.h \
     spdlog/stopwatch.h \
     spdlog/tweakme.h \
-    spdlog/version.h
+    spdlog/version.h \
+    user.h
 
 DISTFILES += \
     spdlog/fmt/bundled/fmt.license.rst

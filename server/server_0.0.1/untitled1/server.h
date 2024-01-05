@@ -2,6 +2,8 @@
 #define SERVER_H
 #include <QTcpServer>
 #include <QTcpSocket>
+#include "user.h"
+#include "QTimer"
 class Server : public QTcpServer
 {
 
@@ -9,13 +11,16 @@ public:
     Server();
     Server(QString ipAddress_ = "89.179.126.139", int port_ = 2525);
     QTcpSocket *socket;
+    user *client;
     QByteArray Data;
     void SendToClient(QString message);
     bool start();
     void Requared(QString message, QTcpSocket *socket_sender);
     void SendToSocket(QString message,QTcpSocket *socket_sender);
+
 private:
     QVector <QTcpSocket*> Sockets;
+    QVector <user*> users;
     //QVector <QPair<QTcpSocket, qintptr>> mysocketDescriptor;
     QString ipAddress;
     int port;

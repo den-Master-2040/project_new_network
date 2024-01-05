@@ -1,7 +1,7 @@
 #include "server.h"
 #include "QDataStream"
-#define SPDLOG_COMPILED_LIB 0
-#include "spdlog/spdlog.h"
+//#include "spdlog/spdlog.h"
+//#include "user.h"
 Server::Server()
 {
     spdlog::set_level(spdlog::level::trace);
@@ -27,18 +27,48 @@ Server::Server(QString ipAddress_, int port_)
     spdlog::info(info.toStdString());
 }
 
+bool Server::start()
+{
+    QString info = "Try to listen. Server ip: " + ipAddress + ", port: " + QString::number(port);
+    spdlog::info(info.toStdString());
+    //Try to listen..
+    if(this->listen(QHostAddress(ipAddress), port))
+    {
+        spdlog::info("Server start successfully!");
+        return 0;
+    }
+    else
+    {
+        //надо бы прикратить работу приложения после этого..
+        spdlog::error("Can't start to listen server! Probably incorrect IP address or port is occupied by another process");
+        spdlog::critical("Server start faild!");
+        return -1;
+    }
+
+}
 
 void Server::incomingConnection(qintptr socketDescriptor)
 {
     socket = new QTcpSocket();
     socket->setSocketDescriptor(socketDescriptor);
-    connect(socket, &QTcpSocket::readyRead, this, &Server::SlotReadyRead);
+
+    client = new user();
+    client->setSocket(socket);
+    client->socketDescriptor = socketDescriptor;
+
+    users.push_back(client);
+
+
     connect(socket, &QTcpSocket::disconnected, socket, &QTcpSocket::deleteLater);
-    connect(socket, &QTcpSocket::disconnected, this,&Server::Disconnected);
+
+
 
     //QTcpSocket *Lsocket = new QTcpSocket(socket);
-    Sockets.push_back(socket);
+    //Sockets.push_back(socket);
     //mysocketDescriptor.push_back(QPair<QTcpSocket, qintptr>(*socket,socketDescriptor));
+
+
+
     spdlog::info("Client connected {0}",socketDescriptor);
     SendToSocket("Y" + QString::number(socketDescriptor), socket); //Y - your descriptor
 }
@@ -101,24 +131,7 @@ void Server::SendToSocket(QString message, QTcpSocket *socket_sender)
 }
 
 
-bool Server::start()
-{
-    QString info = "Try to listen. Server ip: " + ipAddress + ", port: " + QString::number(port);
-    spdlog::info(info.toStdString());
-    //Try to listen..
-    if(this->listen(QHostAddress(ipAddress), port))
-    {
-        spdlog::info("Server start successfully!");
 
-    }
-    else
-    {
-        //надо бы прикратить работу приложения после этого..
-        spdlog::error("Can't start to listen server! Probably incorrect IP address or port is occupied by another process");
-        spdlog::critical("Server start faild!");
-
-    }
-}
 
 void Server::Requared(QString message, QTcpSocket *socket_sender)
 {
