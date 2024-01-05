@@ -36,6 +36,7 @@ public:
     QTextBrowser *textBrowser;
     QLineEdit *lineEdit;
     QPushButton *pushButton_2;
+    QLabel *label_3;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -88,6 +89,15 @@ public:
 
         gridLayout->addWidget(pushButton_2, 6, 1, 1, 1);
 
+        label_3 = new QLabel(centralwidget);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
+        label_3->setStyleSheet(QString::fromUtf8("QLabel{\n"
+"	background-color: rgb(170, 0, 0);\n"
+"\n"
+"}"));
+
+        gridLayout->addWidget(label_3, 0, 1, 1, 1);
+
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -111,6 +121,7 @@ public:
         label_2->setText(QCoreApplication::translate("MainWindow", "port", nullptr));
         lineEdit_3->setText(QCoreApplication::translate("MainWindow", "2323", nullptr));
         pushButton_2->setText(QCoreApplication::translate("MainWindow", "->", nullptr));
+        label_3->setText(QString());
     } // retranslateUi
 
 };

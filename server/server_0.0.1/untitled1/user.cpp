@@ -30,6 +30,21 @@ int user::isALife()
     return socket->state() == QTcpSocket::ConnectedState;
 }
 
+void user::getDataDestinaition()
+{
+    //TODO:
+    //должно возвращаться :
+    /*
+     * Количество:
+     * - сыгранных игр
+     * - Побед
+     * - Поражений
+     * - Ничьих
+     * Итоговый рейтинг
+     * История матчей? (именно с кем был прошлый матч - игрок, время)
+    */
+}
+
 void user::slotReadyRead()
 {
     QDataStream in(socket);

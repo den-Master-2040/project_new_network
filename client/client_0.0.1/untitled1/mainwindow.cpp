@@ -9,12 +9,20 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     socket = new QTcpSocket(this);
     t_ping = new QTimer(this);
+    t_result_ping = new QTimer(this);
     connect(t_ping, &QTimer::timeout, this, &MainWindow::ping_to_server);
+    connect(t_result_ping, &QTimer::timeout, [this](){
+        if(socket->state() != QTcpSocket::UnconnectedState)
+            ui->label_3->setStyleSheet("QLabel{\n	background-color: rgb(255, 255, 0);\n\n}");
+        else
+            ui->label_3->setStyleSheet("QLabel{\n	background-color: rgb(170, 0, 0);\n\n}");
+    });
     connect(socket, &QTcpSocket::readyRead, this, &MainWindow::slotReadyRead);
     //connect(socket, &QTcpSocket::disconnected, socket, &QTcpSocket::deleteLater);
     qDebug() << "Constructor!";
 
-    t_ping->start(500);
+    t_ping->start(1000);
+
 }
 
 MainWindow::~MainWindow()
@@ -50,11 +58,13 @@ void MainWindow::on_connect_clicked()
 
     socket->connectToHost(ui->lineEdit_2->text(), 2323);
     SendToServer("Login, my login=" + login + " my token=" + token + " ");
-
+    t_result_ping->start(600);
 }
 
 void MainWindow::slotReadyRead()
 {
+    //ui->label_3->setStyleSheet("QLabel{\n	background-color: rgb(255, 255, 0);\n\n}");
+    //t_result_ping->start(600);
     QDataStream in(socket);
     in.setVersion(QDataStream::Qt_5_9);
     if(in.status() == QDataStream::Ok)

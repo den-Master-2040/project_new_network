@@ -20,6 +20,8 @@ public:
     QString login = "DEN_CHIK_master";
     QString token = "1qaz";
     QTimer *t_ping = nullptr;
+    QTimer *t_result_ping = nullptr;
+
 private slots:
     void on_connect_clicked();
     void slotReadyRead();
