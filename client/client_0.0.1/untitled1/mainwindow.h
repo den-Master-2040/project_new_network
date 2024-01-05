@@ -16,17 +16,21 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void SendToServer(QString str);
+    void RequaredRecvMessage(QString message);
+    QString login = "DEN_CHIK_master";
+    QString token = "1qaz";
+    QTimer *t_ping = nullptr;
 private slots:
     void on_connect_clicked();
     void slotReadyRead();
     void on_pushButton_2_clicked();
 
     void on_lineEdit_returnPressed();
-    QString login = "DEN_CHIK_master";
-    QString token = "1qaz";
+    void ping_to_server();
 private:
     Ui::MainWindow *ui;
     QTcpSocket *socket;
     QByteArray Data;
+    int mysocketDescriptor = -1; // дескриптор который присвоил нам сервер
 };
 #endif // MAINWINDOW_H

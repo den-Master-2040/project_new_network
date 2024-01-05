@@ -12,6 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QGridLayout>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
@@ -27,10 +28,14 @@ class Ui_MainWindow
 public:
     QWidget *centralwidget;
     QGridLayout *gridLayout;
-    QPushButton *pushButton_2;
-    QLineEdit *lineEdit;
-    QTextBrowser *textBrowser;
     QPushButton *connect;
+    QLabel *label;
+    QLineEdit *lineEdit_2;
+    QLabel *label_2;
+    QLineEdit *lineEdit_3;
+    QTextBrowser *textBrowser;
+    QLineEdit *lineEdit;
+    QPushButton *pushButton_2;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -43,25 +48,45 @@ public:
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         gridLayout = new QGridLayout(centralwidget);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
-        pushButton_2 = new QPushButton(centralwidget);
-        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+        connect = new QPushButton(centralwidget);
+        connect->setObjectName(QString::fromUtf8("connect"));
 
-        gridLayout->addWidget(pushButton_2, 4, 1, 1, 1);
+        gridLayout->addWidget(connect, 0, 0, 1, 1);
 
-        lineEdit = new QLineEdit(centralwidget);
-        lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
+        label = new QLabel(centralwidget);
+        label->setObjectName(QString::fromUtf8("label"));
 
-        gridLayout->addWidget(lineEdit, 4, 0, 1, 1);
+        gridLayout->addWidget(label, 1, 0, 1, 1);
+
+        lineEdit_2 = new QLineEdit(centralwidget);
+        lineEdit_2->setObjectName(QString::fromUtf8("lineEdit_2"));
+
+        gridLayout->addWidget(lineEdit_2, 2, 0, 1, 1);
+
+        label_2 = new QLabel(centralwidget);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+
+        gridLayout->addWidget(label_2, 3, 0, 1, 1);
+
+        lineEdit_3 = new QLineEdit(centralwidget);
+        lineEdit_3->setObjectName(QString::fromUtf8("lineEdit_3"));
+
+        gridLayout->addWidget(lineEdit_3, 4, 0, 1, 1);
 
         textBrowser = new QTextBrowser(centralwidget);
         textBrowser->setObjectName(QString::fromUtf8("textBrowser"));
 
-        gridLayout->addWidget(textBrowser, 3, 0, 1, 2);
+        gridLayout->addWidget(textBrowser, 5, 0, 1, 1);
 
-        connect = new QPushButton(centralwidget);
-        connect->setObjectName(QString::fromUtf8("connect"));
+        lineEdit = new QLineEdit(centralwidget);
+        lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
 
-        gridLayout->addWidget(connect, 2, 0, 1, 2);
+        gridLayout->addWidget(lineEdit, 6, 0, 1, 1);
+
+        pushButton_2 = new QPushButton(centralwidget);
+        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+
+        gridLayout->addWidget(pushButton_2, 6, 1, 1, 1);
 
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
@@ -80,8 +105,12 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("MainWindow", "->", nullptr));
         connect->setText(QCoreApplication::translate("MainWindow", "Connect", nullptr));
+        label->setText(QCoreApplication::translate("MainWindow", "ip", nullptr));
+        lineEdit_2->setText(QCoreApplication::translate("MainWindow", "192.168.1.65", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindow", "port", nullptr));
+        lineEdit_3->setText(QCoreApplication::translate("MainWindow", "2323", nullptr));
+        pushButton_2->setText(QCoreApplication::translate("MainWindow", "->", nullptr));
     } // retranslateUi
 
 };
