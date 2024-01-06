@@ -60,7 +60,7 @@ void Server::incomingConnection(qintptr socketDescriptor)
 
 
     connect(socket, &QTcpSocket::disconnected, socket, &QTcpSocket::deleteLater);
-
+    connect(client, &user::signalDisconnect, this, &Server::Disconnected);
 
 
     //QTcpSocket *Lsocket = new QTcpSocket(socket);
@@ -83,28 +83,32 @@ void Server::SlotReadyRead()
         //qDebug() << "Read message for QDataStream...";
         QString str;
         in >> str;
-        qDebug() << "Sended " << socket->socketDescriptor()<< " : " << str;
+        //qDebug() << "Sended " << socket->socketDescriptor()<< " : " << str;
         Requared(str, socket);
         //SendToClient(str);
     }
     else
     {
-        qDebug() << "fail to read message for QDataStream!";
+        //qDebug() << "fail to read message for QDataStream!";
     }
 
 }
 
 void Server::Disconnected()
 {
-    for(int i = 0; i <Sockets.size();i++)
+
+    //socket = (QTcpSocket*)sender();
+    client = (user*)sender();
+
+    int i = 0;
+    for(; i < users.size(); i++)
     {
-        if(Sockets[i] == socket)
-            qDebug() << "Disconnected////..." << Sockets[i]->socketDescriptor();
+        if(client == users[i])
+            break;
     }
-    socket = (QTcpSocket*)sender();
-    //qintptr descriprot;
-    //for(int i = 0; i < Sockets
-    //qDebug() << "Disconnected..." << socket->socketDescriptor();
+    users.remove(i);
+
+    spdlog::info("Client {0} disconnected ", client->login.toStdString());
 }
 
 void Server::SendToClient(QString message)
@@ -129,8 +133,6 @@ void Server::SendToSocket(QString message, QTcpSocket *socket_sender)
     out << message;
     socket_sender->write(Data);
 }
-
-
 
 
 void Server::Requared(QString message, QTcpSocket *socket_sender)

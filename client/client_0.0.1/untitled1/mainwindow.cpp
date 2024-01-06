@@ -8,9 +8,9 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     socket = new QTcpSocket(this);
-    t_ping = new QTimer(this);
+
     t_result_ping = new QTimer(this);
-    connect(t_ping, &QTimer::timeout, this, &MainWindow::ping_to_server);
+
     connect(t_result_ping, &QTimer::timeout, [this](){
         if(socket->state() != QTcpSocket::UnconnectedState)
             ui->label_3->setStyleSheet("QLabel{\n	background-color: rgb(255, 255, 0);\n\n}");
@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
     //connect(socket, &QTcpSocket::disconnected, socket, &QTcpSocket::deleteLater);
     qDebug() << "Constructor!";
 
-    t_ping->start(1000);
+
 
 }
 
@@ -97,5 +97,5 @@ void MainWindow::on_lineEdit_returnPressed()
 
 void MainWindow::ping_to_server()
 {
-    SendToServer("ping");
+    //SendToServer("ping");
 }

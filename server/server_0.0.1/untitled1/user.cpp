@@ -26,8 +26,19 @@ void user::sendMessage(QString message)
 
 int user::isALife()
 {
-    qDebug() << "user " << login << " state " << QString::number(socket->state() == QTcpSocket::ConnectedState);
-    return socket->state() == QTcpSocket::ConnectedState;
+    //qDebug() << "user " << login << " state " << QString::number(socket->state() == QTcpSocket::ConnectedState);
+    if(socket->state() == QTcpSocket::ConnectedState)
+    {
+        //сокет работает нормально
+        return 1;
+    }
+    else
+    {
+        //сокет умер или не подключен!
+        emit signalDisconnect();
+        t_ping->stop();
+        return -1;
+    }
 }
 
 void user::getDataDestinaition()
@@ -54,7 +65,7 @@ void user::slotReadyRead()
         //qDebug() << "Read message for QDataStream...";
         QString str;
         in >> str;
-        qDebug() << "Sended " << socket->socketDescriptor()<< " : " << str;
+        //qDebug() << "Sended " << socket->socketDescriptor()<< " : " << str;
         switch (str.at(0).unicode()) {
 
             case 'p':
@@ -62,7 +73,39 @@ void user::slotReadyRead()
                 sendMessage("1");
                 break;
             }
+            case 'L':
+            {
+                //logining
+                int start_login = str.toStdString().find("login") + 6;
+                QString login;
 
+                for(int i = start_login; i < str.size(); i++)
+                {
+                    if(str[i] != ' ')
+                    {
+                        login += str[i];
+                    }
+                    else break;
+                }
+                this->login = login;
+                //типо проверка логина
+
+                //ищем токен
+                int start_token = str.toStdString().find("token") + 6;
+                QString token;
+                for(int i = start_token; i < str.size(); i++)
+                {
+                    if(str[i] != ' ')
+                    {
+                        token += str[i];
+                    }
+                    else break;
+                }
+                this->token = token;
+                spdlog::info("Connect user! user login {0}, token {1}", login.toStdString(), token.toStdString());
+                break;
+
+            }
         }
         //SendToClient(str);
     }
