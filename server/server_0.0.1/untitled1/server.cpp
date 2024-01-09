@@ -61,7 +61,8 @@ void Server::incomingConnection(qintptr socketDescriptor)
 
     connect(socket, &QTcpSocket::disconnected, socket, &QTcpSocket::deleteLater);
     connect(client, &user::signalDisconnect, this, &Server::Disconnected);
-
+    connect(client, &user::signalCreateGroup,this ,&Server::CreateGroup);
+    connect(client, &user::signalGetDataGroup, this, &Server::SendDataGroup);
 
     //QTcpSocket *Lsocket = new QTcpSocket(socket);
     //Sockets.push_back(socket);
@@ -70,7 +71,9 @@ void Server::incomingConnection(qintptr socketDescriptor)
 
 
     spdlog::info("Client connected {0}",socketDescriptor);
-    SendToSocket("Y" + QString::number(socketDescriptor), socket); //Y - your descriptor
+    //SendToSocket("Y" + QString::number(socketDescriptor), socket); //Y - your descriptor
+    for(int i = 0; i < users.size(); i++)
+        SendToSocket("IS" + QString::number(users.size()), users.at(i)->socket); //количество человек на сервере, рассылаем всем
 }
 
 void Server::SlotReadyRead()
@@ -109,6 +112,32 @@ void Server::Disconnected()
     users.remove(i);
 
     spdlog::info("Client {0} disconnected ", client->login.toStdString());
+    for(int i = 0; i < users.size(); i++)
+        SendToSocket("IS" + QString::number(users.size()), users.at(i)->socket); //количество человек на сервере, рассылаем всем
+}
+
+void Server::CreateGroup()
+{
+    client = (user*)sender();
+    group *gr = new group();
+    gr->name = client->name_group;
+    gr->password = client->pass_group;
+    groups.push_back(gr);
+    gr->insertUser(client);
+    spdlog::info("Client {0} create group!", client->login.toStdString());
+    SendToSocket("Ok", client->socket);
+}
+
+void Server::SendDataGroup()
+{
+    client = (user*)sender();
+
+    QString dataGroup = "DG"; //Data Groups
+    for(int i = 0; i < groups.size();i++)
+    {
+        if(groups.at(0)->secondUser == nullptr) //собираем только группы тех, где один игрок
+            dataGroup += QString::number(i)+ ' ' + groups.at(i)->name + ' ' + groups.at(i)->firstUser->login + ' ';
+    }
 }
 
 void Server::SendToClient(QString message)
@@ -177,6 +206,36 @@ void Server::Requared(QString message, QTcpSocket *socket_sender)
         case 'I':
         {
             spdlog::info("User disconnect");
+        }
+        case 'C':
+        {
+            //logining
+            int start_name_group = 2;
+            QString name_group;
+            int i = start_name_group;
+            for(; i < message.size(); i++)
+            {
+                if(message[i] != ' ')
+                {
+                    name_group += message[i];
+                }
+                else break;
+            }
+            //типо проверка логина
+
+            //ищем токен
+            int start_pass = i+1;
+            QString pass;
+            for( i = start_pass; i < message.size(); i++)
+            {
+                if(message[i] != ' ')
+                {
+                    pass += message[i];
+                }
+                else break;
+            }
+            spdlog::info("Create group! name group {0}, pass {1}", name_group.toStdString(), pass.toStdString());
+            break;
         }
     }
 }

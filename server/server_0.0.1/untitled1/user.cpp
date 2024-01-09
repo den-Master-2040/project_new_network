@@ -17,11 +17,22 @@ void user::setSocket(QTcpSocket *socket_)
 
 void user::sendMessage(QString message)
 {
+
+    /*Data.clear();
+    QDataStream out (&Data, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_5_9);
+    out << message;
+    socket->write(Data);*/
+    msg.clear();
+    msg = message;
+    emit signalsendMessage();
+
     Data.clear();
     QDataStream out (&Data, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_5_9);
     out << message;
     socket->write(Data);
+
 }
 
 int user::isALife()
@@ -65,17 +76,25 @@ void user::slotReadyRead()
         //qDebug() << "Read message for QDataStream...";
         QString str;
         in >> str;
+        //qDebug() << str;
         //qDebug() << "Sended " << socket->socketDescriptor()<< " : " << str;
         switch (str.at(0).unicode()) {
 
             case 'p':
             {
+
+                //ping
+
                 sendMessage("1");
                 break;
             }
             case 'L':
             {
+
+                //logining (authorithation)
+
                 //logining
+
                 int start_login = str.toStdString().find("login") + 6;
                 QString login;
 
@@ -106,7 +125,43 @@ void user::slotReadyRead()
                 break;
 
             }
+            case 'C':
+            {
+
+                //Create group
+
+                int start_name_group = 2;
+                QString name_group;
+
+                int i = start_name_group;
+                for(; i < str.size(); i++)
+                {
+                    if(str[i] != ' ')
+                    {
+                        name_group += str[i];
+                    }
+                    else break;
+                }
+
+                //ищем токен
+                int start_pass = i+1;
+                QString pass;
+                for(i = start_pass; i < str.size(); i++)
+                {
+                    if(str[i] != ' ')
+                    {
+                        pass += str[i];
+                    }
+                    else break;
+                }
+                this->name_group = name_group;
+                this->pass_group = pass;
+                emit signalCreateGroup();
+
+                break;
+
+            }
         }
-        //SendToClient(str);
+
     }
 }

@@ -4,6 +4,7 @@
 #include <QTcpSocket>
 #include "user.h"
 #include "QTimer"
+#include "group.h"
 class Server : public QTcpServer
 {
 
@@ -21,6 +22,7 @@ public:
 private:
     QVector <QTcpSocket*> Sockets;
     QVector <user*> users;
+    QVector <group*> groups;
     //QVector <QPair<QTcpSocket, qintptr>> mysocketDescriptor;
     QString ipAddress;
     int port;
@@ -28,6 +30,7 @@ public slots:
     void incomingConnection(qintptr socketDescriptor) override;
     void SlotReadyRead();
     void Disconnected();
+    void CreateGroup();
 };
 
 #endif // SERVER_H

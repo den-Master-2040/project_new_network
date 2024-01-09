@@ -17,14 +17,22 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     chess_engine.cpp \
+    form_create_group.cpp \
+    form_game.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    network_client.cpp
 
 HEADERS += \
     chess_engine.h \
-    mainwindow.h
+    form_create_group.h \
+    form_game.h \
+    mainwindow.h \
+    network_client.h
 
 FORMS += \
+    form_create_group.ui \
+    form_game.ui \
     mainwindow.ui
 
 # Default rules for deployment.

@@ -20,6 +20,7 @@ SOURCES += \
         cfg.cpp \
         color_sinks.cpp \
         file_sinks.cpp \
+        group.cpp \
         main.cpp \
         server.cpp \
         spdlog.cpp \
@@ -32,6 +33,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
+    group.h \
     server.h \
     spdlog/async.h \
     spdlog/async_logger-inl.h \

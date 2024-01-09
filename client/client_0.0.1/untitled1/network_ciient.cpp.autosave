@@ -1,0 +1,53 @@
+#include "network_ciient.h"
+#include <QDataStream>
+network_ciient::network_ciient(QObject *parent) : QObject(parent)
+{
+    socket = new QTcpSocket(this);
+    t_result_ping = new QTimer(this);
+    
+    //connect(t_result_ping, &QTimer::timeout, [this](){
+    //if(socket->state() != QTcpSocket::UnconnectedState)
+    //ui->label_3->setStyleSheet("QLabel{\n	background-color: rgb(255, 255, 0);\n\n}");
+    //else
+    //ui->label_3->setStyleSheet("QLabel{\n	background-color: rgb(170, 0, 0);\n\n}");
+    //});
+    connect(socket, &QTcpSocket::readyRead, this, &MainWindow::slotReadyRead);
+}
+
+void network_ciient::SendToServer(QString str)
+{
+    Data.clear();
+    QDataStream out (&Data, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_5_9);
+    out << str;
+    
+    qDebug() << socket->state();
+    socket->write(Data);
+    qDebug() << socket->state();
+}
+
+void network_ciient::RequaredRecvMessage(QString message)
+{
+    if(message.size() > 0)
+    switch (message.at(0).unicode()) {
+    case 'Y':
+    {
+        message.remove(0,1);
+        mysocketDescriptor = message.toInt();
+    }
+    case 'O':
+    {
+        if(message.at(1) == 'k')
+        {
+            //ui->stackedWidgetGroup->setCurrentIndex(1);
+        }
+        break;
+    }
+    default:break;
+    }
+}
+
+void network_ciient::slotReadyRead()
+{
+    
+}

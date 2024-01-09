@@ -19,6 +19,12 @@ public:
     QTcpSocket *socket;
     QByteArray Data; //для отправки сообщений
 
+    //информация только создания для групп
+    QString msg;
+    QString name_group;
+    QString pass_group;
+    bool group_created = false;
+
     //объекты
     QTimer *t_ping = nullptr;
 
@@ -33,6 +39,10 @@ public:
 signals:
     void signalDisconnect();
     void signalEnable();
+
+    void signalsendMessage();
+    void signalCreateGroup();
+
 public slots:
     void slotReadyRead();
 };
