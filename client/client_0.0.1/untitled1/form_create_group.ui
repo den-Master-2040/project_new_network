@@ -38,7 +38,27 @@
      <property name="font">
       <font>
        <pointsize>11</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
       </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+
+background-color:qlineargradient(spread:pad, x1:0.494, y1:0.846136, x2:0.494382, y2:1, stop:0 rgba(69, 69, 69, 255), stop:1 rgba(149, 149, 149, 255));
+color:white;
+font: &quot;Arial&quot;;
+border-radius: 2px;
+}
+QPushButton::pressed{
+
+background-color:qlineargradient(spread:pad, x1:0.426, y1:0.800682, x2:0.427, y2:1, stop:0 rgba(37, 37, 37, 255), stop:1 rgba(87, 87, 87, 255));
+color:white;
+font: &quot;Arial&quot;;
+border-radius: 2px;
+};
+</string>
      </property>
      <property name="text">
       <string>Выход
@@ -57,7 +77,16 @@
      <property name="font">
       <font>
        <pointsize>14</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
       </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(77, 77, 77);
+color:white;
+font: &quot;Arial&quot;;
+border-radius: 2px;</string>
      </property>
      <property name="text">
       <string>Название группы...</string>
@@ -75,7 +104,16 @@
      <property name="font">
       <font>
        <pointsize>14</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
       </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(77, 77, 77);
+color:white;
+font: &quot;Arial&quot;;
+border-radius: 2px;</string>
      </property>
      <property name="text">
       <string>Пароль</string>
@@ -98,6 +136,9 @@
      <property name="acceptDrops">
       <bool>false</bool>
      </property>
+     <property name="styleSheet">
+      <string notr="true">color:white;</string>
+     </property>
      <property name="text">
       <string>есть</string>
      </property>
@@ -119,6 +160,9 @@
        <pointsize>20</pointsize>
       </font>
      </property>
+     <property name="styleSheet">
+      <string notr="true">color:white;</string>
+     </property>
      <property name="text">
       <string>Создание группы</string>
      </property>
@@ -138,7 +182,27 @@
      <property name="font">
       <font>
        <pointsize>11</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
       </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+
+background-color:qlineargradient(spread:pad, x1:0.494, y1:0.846136, x2:0.494382, y2:1, stop:0 rgba(69, 69, 69, 255), stop:1 rgba(149, 149, 149, 255));
+color:white;
+font: &quot;Arial&quot;;
+border-radius: 2px;
+}
+QPushButton::pressed{
+
+background-color:qlineargradient(spread:pad, x1:0.426, y1:0.800682, x2:0.427, y2:1, stop:0 rgba(37, 37, 37, 255), stop:1 rgba(87, 87, 87, 255));
+color:white;
+font: &quot;Arial&quot;;
+border-radius: 2px;
+};
+</string>
      </property>
      <property name="text">
       <string>Создать</string>
@@ -160,21 +224,14 @@
        <pointsize>22</pointsize>
       </font>
      </property>
+     <property name="styleSheet">
+      <string notr="true">color:white;</string>
+     </property>
      <property name="text">
       <string>Группа</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QTextEdit" name="textEdit">
-     <property name="geometry">
-      <rect>
-       <x>420</x>
-       <y>140</y>
-       <width>311</width>
-       <height>291</height>
-      </rect>
      </property>
     </widget>
     <widget class="QLineEdit" name="lineEdit_3">
@@ -186,6 +243,12 @@
        <height>31</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(77, 77, 77);
+color:white;
+font: &quot;Arial&quot;;
+border-radius: 2px;</string>
+     </property>
     </widget>
     <widget class="QPushButton" name="pushButton">
      <property name="geometry">
@@ -195,6 +258,12 @@
        <width>80</width>
        <height>31</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:qlineargradient(spread:pad, x1:0.494, y1:0.846136, x2:0.494382, y2:1, stop:0 rgba(69, 69, 69, 255), stop:1 rgba(149, 149, 149, 255));
+color:white;
+font: &quot;Arial&quot;;
+border-radius: 2px;</string>
      </property>
      <property name="text">
       <string>-&gt;</string>
@@ -212,7 +281,16 @@
      <property name="font">
       <font>
        <pointsize>14</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
       </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(77, 77, 77);
+color:white;
+font: &quot;Arial&quot;;
+border-radius: 2px;</string>
      </property>
      <property name="title">
       <string>Игроки</string>
@@ -229,6 +307,9 @@
       <property name="font">
        <font>
         <pointsize>14</pointsize>
+        <weight>50</weight>
+        <italic>false</italic>
+        <bold>false</bold>
        </font>
       </property>
       <property name="text">
@@ -263,6 +344,9 @@
       <property name="font">
        <font>
         <pointsize>14</pointsize>
+        <weight>50</weight>
+        <italic>false</italic>
+        <bold>false</bold>
        </font>
       </property>
       <property name="text">
@@ -298,7 +382,16 @@
      <property name="font">
       <font>
        <pointsize>14</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
       </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:qlineargradient(spread:pad, x1:0.494, y1:0.846136, x2:0.494382, y2:1, stop:0 rgba(69, 69, 69, 255), stop:1 rgba(149, 149, 149, 255));
+color:white;
+font: &quot;Arial&quot;;
+border-radius: 2px;</string>
      </property>
      <property name="text">
       <string>Начать</string>
@@ -316,10 +409,40 @@
      <property name="font">
       <font>
        <pointsize>14</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
       </font>
+     </property>
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:rgb(99, 99, 99);background-color:qlineargradient(spread:pad, x1:0.494, y1:0.846136, x2:0.494382, y2:1, stop:0 rgba(69, 69, 69, 255), stop:1 rgba(149, 149, 149, 255));
+color:white;
+font: &quot;Arial&quot;;
+border-radius: 2px;color:white;
+font: &quot;Arial&quot;;
+border-radius: 2px;</string>
      </property>
      <property name="text">
       <string>выход</string>
+     </property>
+    </widget>
+    <widget class="QTextBrowser" name="textBrowser">
+     <property name="geometry">
+      <rect>
+       <x>420</x>
+       <y>140</y>
+       <width>311</width>
+       <height>291</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(77, 77, 77);
+color:white;
+font: &quot;Arial&quot;;
+border-radius: 2px;</string>
      </property>
     </widget>
    </widget>

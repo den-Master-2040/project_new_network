@@ -15,6 +15,9 @@ public:
     explicit form_create_group(QWidget *parent = nullptr, network_client * nt = nullptr);
     ~form_create_group();
 
+    void nextPage();
+    QString nameFirstUser;
+    QString nameSecondUser;
 private slots:
 
     void SendToServer(QString str);
@@ -26,6 +29,10 @@ private slots:
     void on_radioButton_clicked();
 
     void on_pushButton_2_clicked();
+    void on_pushButton_4_clicked();
+
+    void on_pushButton_clicked();
+
 signals:
     void signalExit();
 

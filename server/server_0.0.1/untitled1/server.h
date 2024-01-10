@@ -31,6 +31,8 @@ public slots:
     void SlotReadyRead();
     void Disconnected();
     void CreateGroup();
+    void SendDataGroup();
+    void ConnectToGroup();
 };
 
 #endif // SERVER_H

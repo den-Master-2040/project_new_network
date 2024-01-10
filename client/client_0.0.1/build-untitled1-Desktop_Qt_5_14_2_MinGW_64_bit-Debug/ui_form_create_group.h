@@ -17,7 +17,7 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
 #include <QtWidgets/QStackedWidget>
-#include <QtWidgets/QTextEdit>
+#include <QtWidgets/QTextBrowser>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -35,7 +35,6 @@ public:
     QPushButton *pb_create_group;
     QWidget *page_2;
     QLabel *label_2;
-    QTextEdit *textEdit;
     QLineEdit *lineEdit_3;
     QPushButton *pushButton;
     QGroupBox *groupBox;
@@ -45,6 +44,7 @@ public:
     QLabel *label_6;
     QPushButton *pushButton_3;
     QPushButton *pushButton_4;
+    QTextBrowser *textBrowser;
 
     void setupUi(QWidget *form_create_group)
     {
@@ -61,57 +61,115 @@ public:
         pushButton_2->setGeometry(QRect(20, 510, 151, 61));
         QFont font;
         font.setPointSize(11);
+        font.setBold(false);
+        font.setItalic(false);
+        font.setWeight(50);
         pushButton_2->setFont(font);
+        pushButton_2->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"\n"
+"background-color:qlineargradient(spread:pad, x1:0.494, y1:0.846136, x2:0.494382, y2:1, stop:0 rgba(69, 69, 69, 255), stop:1 rgba(149, 149, 149, 255));\n"
+"color:white;\n"
+"font: \"Arial\";\n"
+"border-radius: 2px;\n"
+"}\n"
+"QPushButton::pressed{\n"
+"\n"
+"background-color:qlineargradient(spread:pad, x1:0.426, y1:0.800682, x2:0.427, y2:1, stop:0 rgba(37, 37, 37, 255), stop:1 rgba(87, 87, 87, 255));\n"
+"color:white;\n"
+"font: \"Arial\";\n"
+"border-radius: 2px;\n"
+"};\n"
+""));
         lineEdit = new QLineEdit(page);
         lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
         lineEdit->setGeometry(QRect(50, 160, 211, 81));
         QFont font1;
         font1.setPointSize(14);
+        font1.setBold(false);
+        font1.setItalic(false);
+        font1.setWeight(50);
         lineEdit->setFont(font1);
+        lineEdit->setStyleSheet(QString::fromUtf8("background-color: rgb(77, 77, 77);\n"
+"color:white;\n"
+"font: \"Arial\";\n"
+"border-radius: 2px;"));
         lineEdit_2 = new QLineEdit(page);
         lineEdit_2->setObjectName(QString::fromUtf8("lineEdit_2"));
         lineEdit_2->setGeometry(QRect(50, 270, 211, 81));
         lineEdit_2->setFont(font1);
+        lineEdit_2->setStyleSheet(QString::fromUtf8("background-color: rgb(77, 77, 77);\n"
+"color:white;\n"
+"font: \"Arial\";\n"
+"border-radius: 2px;"));
         radioButton = new QRadioButton(page);
         radioButton->setObjectName(QString::fromUtf8("radioButton"));
         radioButton->setGeometry(QRect(290, 300, 84, 19));
-        radioButton->setFont(font1);
+        QFont font2;
+        font2.setPointSize(14);
+        radioButton->setFont(font2);
         radioButton->setAcceptDrops(false);
+        radioButton->setStyleSheet(QString::fromUtf8("color:white;"));
         radioButton->setChecked(true);
         label = new QLabel(page);
         label->setObjectName(QString::fromUtf8("label"));
         label->setGeometry(QRect(0, 30, 771, 61));
-        QFont font2;
-        font2.setPointSize(20);
-        label->setFont(font2);
+        QFont font3;
+        font3.setPointSize(20);
+        label->setFont(font3);
+        label->setStyleSheet(QString::fromUtf8("color:white;"));
         label->setAlignment(Qt::AlignCenter);
         pb_create_group = new QPushButton(page);
         pb_create_group->setObjectName(QString::fromUtf8("pb_create_group"));
         pb_create_group->setGeometry(QRect(590, 510, 151, 61));
         pb_create_group->setFont(font);
+        pb_create_group->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"\n"
+"background-color:qlineargradient(spread:pad, x1:0.494, y1:0.846136, x2:0.494382, y2:1, stop:0 rgba(69, 69, 69, 255), stop:1 rgba(149, 149, 149, 255));\n"
+"color:white;\n"
+"font: \"Arial\";\n"
+"border-radius: 2px;\n"
+"}\n"
+"QPushButton::pressed{\n"
+"\n"
+"background-color:qlineargradient(spread:pad, x1:0.426, y1:0.800682, x2:0.427, y2:1, stop:0 rgba(37, 37, 37, 255), stop:1 rgba(87, 87, 87, 255));\n"
+"color:white;\n"
+"font: \"Arial\";\n"
+"border-radius: 2px;\n"
+"};\n"
+""));
         stackedWidgetGroup->addWidget(page);
         page_2 = new QWidget();
         page_2->setObjectName(QString::fromUtf8("page_2"));
         label_2 = new QLabel(page_2);
         label_2->setObjectName(QString::fromUtf8("label_2"));
         label_2->setGeometry(QRect(-4, 40, 781, 61));
-        QFont font3;
-        font3.setPointSize(22);
-        label_2->setFont(font3);
+        QFont font4;
+        font4.setPointSize(22);
+        label_2->setFont(font4);
+        label_2->setStyleSheet(QString::fromUtf8("color:white;"));
         label_2->setAlignment(Qt::AlignCenter);
-        textEdit = new QTextEdit(page_2);
-        textEdit->setObjectName(QString::fromUtf8("textEdit"));
-        textEdit->setGeometry(QRect(420, 140, 311, 291));
         lineEdit_3 = new QLineEdit(page_2);
         lineEdit_3->setObjectName(QString::fromUtf8("lineEdit_3"));
         lineEdit_3->setGeometry(QRect(420, 440, 221, 31));
+        lineEdit_3->setStyleSheet(QString::fromUtf8("background-color: rgb(77, 77, 77);\n"
+"color:white;\n"
+"font: \"Arial\";\n"
+"border-radius: 2px;"));
         pushButton = new QPushButton(page_2);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
         pushButton->setGeometry(QRect(650, 440, 80, 31));
+        pushButton->setStyleSheet(QString::fromUtf8("background-color:qlineargradient(spread:pad, x1:0.494, y1:0.846136, x2:0.494382, y2:1, stop:0 rgba(69, 69, 69, 255), stop:1 rgba(149, 149, 149, 255));\n"
+"color:white;\n"
+"font: \"Arial\";\n"
+"border-radius: 2px;"));
         groupBox = new QGroupBox(page_2);
         groupBox->setObjectName(QString::fromUtf8("groupBox"));
         groupBox->setGeometry(QRect(10, 110, 371, 361));
         groupBox->setFont(font1);
+        groupBox->setStyleSheet(QString::fromUtf8("background-color: rgb(77, 77, 77);\n"
+"color:white;\n"
+"font: \"Arial\";\n"
+"border-radius: 2px;"));
         label_3 = new QLabel(groupBox);
         label_3->setObjectName(QString::fromUtf8("label_3"));
         label_3->setGeometry(QRect(100, 60, 261, 51));
@@ -132,10 +190,28 @@ public:
         pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
         pushButton_3->setGeometry(QRect(610, 510, 151, 71));
         pushButton_3->setFont(font1);
+        pushButton_3->setStyleSheet(QString::fromUtf8("background-color:qlineargradient(spread:pad, x1:0.494, y1:0.846136, x2:0.494382, y2:1, stop:0 rgba(69, 69, 69, 255), stop:1 rgba(149, 149, 149, 255));\n"
+"color:white;\n"
+"font: \"Arial\";\n"
+"border-radius: 2px;"));
         pushButton_4 = new QPushButton(page_2);
         pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
         pushButton_4->setGeometry(QRect(10, 510, 151, 71));
         pushButton_4->setFont(font1);
+        pushButton_4->setAutoFillBackground(true);
+        pushButton_4->setStyleSheet(QString::fromUtf8("background-color:rgb(99, 99, 99);background-color:qlineargradient(spread:pad, x1:0.494, y1:0.846136, x2:0.494382, y2:1, stop:0 rgba(69, 69, 69, 255), stop:1 rgba(149, 149, 149, 255));\n"
+"color:white;\n"
+"font: \"Arial\";\n"
+"border-radius: 2px;color:white;\n"
+"font: \"Arial\";\n"
+"border-radius: 2px;"));
+        textBrowser = new QTextBrowser(page_2);
+        textBrowser->setObjectName(QString::fromUtf8("textBrowser"));
+        textBrowser->setGeometry(QRect(420, 140, 311, 291));
+        textBrowser->setStyleSheet(QString::fromUtf8("background-color: rgb(77, 77, 77);\n"
+"color:white;\n"
+"font: \"Arial\";\n"
+"border-radius: 2px;"));
         stackedWidgetGroup->addWidget(page_2);
 
         retranslateUi(form_create_group);

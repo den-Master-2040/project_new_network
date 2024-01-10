@@ -6,6 +6,7 @@
 #include <QtCore>
 #include "QTcpSocket"
 #include "QTimer"
+//#include "group.h"
 class user : public QObject
 {
     Q_OBJECT
@@ -23,8 +24,11 @@ public:
     QString msg;
     QString name_group;
     QString pass_group;
-    bool group_created = false;
 
+    QString sendedMsgToAnotherUser;
+
+    bool group_created = false;
+    int group = -1;
     //объекты
     QTimer *t_ping = nullptr;
 
@@ -42,6 +46,9 @@ signals:
 
     void signalsendMessage();
     void signalCreateGroup();
+    void signalGetDataGroup();
+    void signalConnectToGroup();
+    void signalExitGroup();
 
 public slots:
     void slotReadyRead();

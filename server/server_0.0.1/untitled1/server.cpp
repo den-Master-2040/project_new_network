@@ -8,7 +8,7 @@ Server::Server()
     spdlog::trace("Constructor Server()");
 
     //Please, set Ip address and port!
-    ipAddress = "89.179.126.139";
+    ipAddress = "127.0.0.1";
     port = 2323;
     QString info = "Server default ip: " + ipAddress + ", port: " + QString::number(port);
     spdlog::info(info.toStdString());
@@ -63,6 +63,7 @@ void Server::incomingConnection(qintptr socketDescriptor)
     connect(client, &user::signalDisconnect, this, &Server::Disconnected);
     connect(client, &user::signalCreateGroup,this ,&Server::CreateGroup);
     connect(client, &user::signalGetDataGroup, this, &Server::SendDataGroup);
+    connect(client, &user::signalConnectToGroup, this, &Server::ConnectToGroup);
 
     //QTcpSocket *Lsocket = new QTcpSocket(socket);
     //Sockets.push_back(socket);
@@ -109,6 +110,7 @@ void Server::Disconnected()
         if(client == users[i])
             break;
     }
+    delete users[i];
     users.remove(i);
 
     spdlog::info("Client {0} disconnected ", client->login.toStdString());
@@ -123,6 +125,12 @@ void Server::CreateGroup()
     gr->name = client->name_group;
     gr->password = client->pass_group;
     groups.push_back(gr);
+    connect(gr, &group::signalDestroy, [this,gr](){
+        groups.removeOne(gr);
+        gr->~group();
+    });
+
+
     gr->insertUser(client);
     spdlog::info("Client {0} create group!", client->login.toStdString());
     SendToSocket("Ok", client->socket);
@@ -132,12 +140,30 @@ void Server::SendDataGroup()
 {
     client = (user*)sender();
 
-    QString dataGroup = "DG"; //Data Groups
+    QString dataGroup = "Dg"; //Data Groups
+
+    if(groups.size() == 0)
+        SendToSocket(dataGroup,client->socket);
+
     for(int i = 0; i < groups.size();i++)
     {
         if(groups.at(0)->secondUser == nullptr) //собираем только группы тех, где один игрок
-            dataGroup += QString::number(i)+ ' ' + groups.at(i)->name + ' ' + groups.at(i)->firstUser->login + ' ';
+            dataGroup += 'I' + QString::number(i)+ ' ' + 'G' +groups.at(i)->name + ' ' + 'U' +groups.at(i)->firstUser->login + ' ';
     }
+    SendToSocket(dataGroup,client->socket);
+    //
+}
+
+void Server::ConnectToGroup()
+{
+    client = (user*)sender();
+
+    groups.at(client->group)->insertUser(client);
+    user *secondUser = groups.at(client->group)->secondUser;
+    SendToSocket("CU " + secondUser->login,groups.at(client->group)->firstUser->socket);
+
+    SendToSocket("CU " + groups.at(client->group)->firstUser->login,secondUser->socket);
+    spdlog::info("Client {0} connected to group ", client->login.toStdString());
 }
 
 void Server::SendToClient(QString message)

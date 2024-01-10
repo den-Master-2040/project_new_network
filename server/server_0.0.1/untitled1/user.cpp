@@ -77,7 +77,7 @@ void user::slotReadyRead()
         QString str;
         in >> str;
         //qDebug() << str;
-        //qDebug() << "Sended " << socket->socketDescriptor()<< " : " << str;
+        qDebug() << "Sended " << socket->socketDescriptor()<< " : " << str;
         switch (str.at(0).unicode()) {
 
             case 'p':
@@ -161,7 +161,53 @@ void user::slotReadyRead()
                 break;
 
             }
-        }
+            case 'G':
+            {
+                if(str.at(1) == 'G')
+                    emit signalGetDataGroup();
+                break;
+            }
+            case 'O':
+            {
+                if(str.at(1) == 'K')
+                if(str.at(2) == 'C')
+                {
+                    QString idGroup;
+                    for(int i = 4; i < str.size(); i++)
+                    {
+                        if(str[i] != ' ')
+                            idGroup += str.at(i);
+                    }
+                    group = idGroup.toInt();
+
+                    emit signalConnectToGroup();
+                }
+                break;
+            }
+            case 'T':
+            {
+                //str.remove(0,1);
+                sendedMsgToAnotherUser = str;
+                emit signalsendMessage();
+                break;
+            }
+            case 'N':
+            {
+
+                QString new_login = "";
+
+                str.remove(0,2);
+                new_login = str;
+                spdlog::info("Rename user! username old {0} new {1}", login.toStdString(), new_login.toStdString());
+                this->login = new_login;
+
+            }
+            case 'D':
+            {
+                if(str.at(1) == 'G')
+                    emit signalExitGroup();
+            }
+            }
 
     }
 }

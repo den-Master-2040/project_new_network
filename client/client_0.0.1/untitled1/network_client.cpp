@@ -56,6 +56,81 @@ void network_client::RequaredRecvMessage(QString message)
             }
             break;
         }
+        case 'D':
+        {
+            if(message.size() > 2){
+            if(message.at(1) == 'g')
+            {
+                group lg;
+
+                for(int i = 0; i < message.size(); i++)
+                {
+
+
+                    if(message.at(i) == 'I')
+                    {
+                        QString index;
+                        for(i++;message.at(i) != ' '; i++)
+                            index+=message.at(i);
+
+                        lg.id = index.toInt();
+                        i++;
+                    }
+
+                    if(message.at(i) == 'G')
+                    {
+                        QString name_group;
+                        for(i++;message.at(i) != ' '; i++)
+                            name_group+=message.at(i);
+
+                        lg.name = name_group;
+                        i++;
+                    }
+
+                    if(message.at(i) == 'U')
+                    {
+                        QString user_login;
+                        for(i++;message.at(i) != ' '; i++)
+                            user_login+=message.at(i);
+
+                        lg.name_first_user = user_login;
+
+                    }
+                    if(lg.id != -1 && lg.name != "" && lg.name_first_user != "")
+                    {
+                        groups.push_back(lg);
+                        lg.id = -1;
+                        lg.name = "";
+                        lg.name_first_user = "";
+                    }
+                }
+                emit signalendDataGroup();
+
+            }
+            } else emit signalendDataGroup();
+            break;
+        }
+        case 'C':
+        {
+            if(message.at(1) == 'U')
+            {
+                QString lsu;
+                for(int i = 3; i < message.size(); i++)
+                    lsu += message.at(i);
+
+                login_secondUser = lsu;
+                qDebug() << "login_secondUser: " << login_secondUser;
+                emit signalSecondLogin();
+            }
+            break;
+        }
+        case 'T':
+        {
+            message.remove(0, 1);
+            messageToUser = message;
+            emit signalRecvMessageFromAnotherUser();
+            break;
+        }
         default:break;
     }
 }

@@ -723,7 +723,9 @@ debug/form_create_group.o: ../untitled1/form_create_group.cpp ../untitled1/form_
 		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/QTimer \
 		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qtimer.h \
 		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qbasictimer.h \
-		ui_form_create_group.h
+		ui_form_create_group.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/QTime \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qdatetime.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\form_create_group.o ..\untitled1\form_create_group.cpp
 
 debug/form_game.o: ../untitled1/form_game.cpp ../untitled1/form_game.h \
