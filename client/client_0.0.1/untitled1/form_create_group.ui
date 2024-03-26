@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="page">
     <widget class="QPushButton" name="pushButton_2">
@@ -415,7 +415,7 @@ border-radius: 2px;</string>
       </font>
      </property>
      <property name="autoFillBackground">
-      <bool>true</bool>
+      <bool>false</bool>
      </property>
      <property name="styleSheet">
       <string notr="true">background-color:rgb(99, 99, 99);background-color:qlineargradient(spread:pad, x1:0.494, y1:0.846136, x2:0.494382, y2:1, stop:0 rgba(69, 69, 69, 255), stop:1 rgba(149, 149, 149, 255));

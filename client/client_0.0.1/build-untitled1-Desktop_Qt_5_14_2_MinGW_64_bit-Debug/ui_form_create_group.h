@@ -198,7 +198,7 @@ public:
         pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
         pushButton_4->setGeometry(QRect(10, 510, 151, 71));
         pushButton_4->setFont(font1);
-        pushButton_4->setAutoFillBackground(true);
+        pushButton_4->setAutoFillBackground(false);
         pushButton_4->setStyleSheet(QString::fromUtf8("background-color:rgb(99, 99, 99);background-color:qlineargradient(spread:pad, x1:0.494, y1:0.846136, x2:0.494382, y2:1, stop:0 rgba(69, 69, 69, 255), stop:1 rgba(149, 149, 149, 255));\n"
 "color:white;\n"
 "font: \"Arial\";\n"
@@ -216,7 +216,7 @@ public:
 
         retranslateUi(form_create_group);
 
-        stackedWidgetGroup->setCurrentIndex(0);
+        stackedWidgetGroup->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(form_create_group);

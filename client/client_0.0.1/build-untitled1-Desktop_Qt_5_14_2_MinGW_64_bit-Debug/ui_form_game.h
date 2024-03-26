@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QWidget>
 
@@ -20,15 +21,20 @@ class Ui_form_game
 {
 public:
     QPushButton *pushButton;
+    QLabel *label;
 
     void setupUi(QWidget *form_game)
     {
         if (form_game->objectName().isEmpty())
             form_game->setObjectName(QString::fromUtf8("form_game"));
-        form_game->resize(1164, 636);
+        form_game->resize(771, 611);
         pushButton = new QPushButton(form_game);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(1070, 580, 80, 21));
+        pushButton->setGeometry(QRect(9, 570, 111, 41));
+        label = new QLabel(form_game);
+        label->setObjectName(QString::fromUtf8("label"));
+        label->setGeometry(QRect(600, 30, 161, 31));
+        label->setAlignment(Qt::AlignCenter);
 
         retranslateUi(form_game);
 
@@ -39,6 +45,7 @@ public:
     {
         form_game->setWindowTitle(QCoreApplication::translate("form_game", "Form", nullptr));
         pushButton->setText(QCoreApplication::translate("form_game", "PushButton", nullptr));
+        label->setText(QCoreApplication::translate("form_game", "TextLabel", nullptr));
     } // retranslateUi
 
 };

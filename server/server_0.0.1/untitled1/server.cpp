@@ -60,7 +60,26 @@ void Server::incomingConnection(qintptr socketDescriptor)
 
 
     connect(socket, &QTcpSocket::disconnected, socket, &QTcpSocket::deleteLater);
-    connect(client, &user::signalDisconnect, this, &Server::Disconnected);
+
+    connect(client, &user::signalDisconnect, [this](){
+
+
+        QString lg = client->login;
+
+
+
+        users.removeAll(client);
+        delete client;
+
+        if(users.size() > 0)
+        for(int i = 0; i < users.size(); i++)
+        {
+            if(users.at(i)->socket->state() == QTcpSocket::ConnectedState)
+                SendToSocket("IS" + QString::number(users.size()), users.at(i)->socket); //количество человек на сервере, рассылаем всем
+
+        }
+        spdlog::info("Client {0} disconnected ", lg.toStdString());
+    });
     connect(client, &user::signalCreateGroup,this ,&Server::CreateGroup);
     connect(client, &user::signalGetDataGroup, this, &Server::SendDataGroup);
     connect(client, &user::signalConnectToGroup, this, &Server::ConnectToGroup);
@@ -101,21 +120,17 @@ void Server::SlotReadyRead()
 void Server::Disconnected()
 {
 
-    //socket = (QTcpSocket*)sender();
+    /*ocket = (QTcpSocket*)sender();
     client = (user*)sender();
 
-    int i = 0;
-    for(; i < users.size(); i++)
-    {
-        if(client == users[i])
-            break;
-    }
-    delete users[i];
-    users.remove(i);
+
+    //delete users[i];
 
     spdlog::info("Client {0} disconnected ", client->login.toStdString());
     for(int i = 0; i < users.size(); i++)
-        SendToSocket("IS" + QString::number(users.size()), users.at(i)->socket); //количество человек на сервере, рассылаем всем
+        SendToSocket("IS" + QString::number(users.size()), users.at(i)->socket); //количество человек на сервере, рассылаем всем*/
+
+
 }
 
 void Server::CreateGroup()
@@ -186,6 +201,8 @@ void Server::SendToSocket(QString message, QTcpSocket *socket_sender)
     QDataStream out (&Data, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_5_9);
     out << message;
+    if(socket_sender != nullptr)
+        if(socket_sender->state() == QTcpSocket::ConnectedState)
     socket_sender->write(Data);
 }
 

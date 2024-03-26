@@ -10,9 +10,10 @@ void user::setSocket(QTcpSocket *socket_)
 {
     socket = socket_;
     connect(socket, &QTcpSocket::readyRead, this, &user::slotReadyRead);
-    t_ping = new QTimer(this);
-    connect(t_ping, &QTimer::timeout, this ,&user::isALife);
-    t_ping->start(500);
+    //t_ping = new QTimer(this);
+    //connect(t_ping, &QTimer::timeout, this ,&user::isALife);
+    //t_ping->start(500);
+    connect(socket, &QTcpSocket::disconnected, this, &user::isALife);
 }
 
 void user::sendMessage(QString message)
@@ -36,20 +37,9 @@ void user::sendMessage(QString message)
 }
 
 int user::isALife()
-{
-    //qDebug() << "user " << login << " state " << QString::number(socket->state() == QTcpSocket::ConnectedState);
-    if(socket->state() == QTcpSocket::ConnectedState)
-    {
-        //сокет работает нормально
-        return 1;
-    }
-    else
-    {
-        //сокет умер или не подключен!
-        emit signalDisconnect();
-        t_ping->stop();
-        return -1;
-    }
+{    
+   emit signalDisconnect();
+   return -1;
 }
 
 void user::getDataDestinaition()

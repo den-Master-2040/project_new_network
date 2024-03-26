@@ -8,7 +8,9 @@ form_create_group::form_create_group(QWidget *parent, network_client *nt) :
     ui(new Ui::form_create_group)
 {
     ui->setupUi(this);
+
     network_obj = nt;
+
     connect(network_obj, &network_client::signalOkToCreateGroup, this, &form_create_group::slotOkToCreateGroup);
     connect(network_obj, &network_client::signalSecondLogin, [this](){
         qDebug()<<"signalSecondLogin";
@@ -23,6 +25,11 @@ form_create_group::form_create_group(QWidget *parent, network_client *nt) :
 
     ui->label_5->setVisible(false);
     ui->label_6->setVisible(false);
+    fmg = new form_game(this);
+    ui->stackedWidgetGroup->addWidget(fmg);
+    connect(fmg, &form_game::signalExit, [this](){
+        ui->stackedWidgetGroup->setCurrentIndex(1);
+    });
 }
 
 form_create_group::~form_create_group()
@@ -109,6 +116,8 @@ void form_create_group::on_pushButton_4_clicked()
 {
     ui->stackedWidgetGroup->setCurrentIndex(0);
     network_obj->SendToServer("DG");
+    ui->textBrowser->clear();
+    ui->lineEdit_3->clear();
 }
 
 void form_create_group::on_pushButton_clicked()
@@ -116,4 +125,10 @@ void form_create_group::on_pushButton_clicked()
     network_obj->SendToServer('T' + ui->lineEdit_3->text());
     ui->textBrowser->append('[' + QTime::currentTime().toString("HH:mm:ss") + "] " + network_obj->login + " : " + ui->lineEdit_3->text());
     ui->lineEdit_3->clear();
+}
+
+void form_create_group::on_pushButton_3_clicked()
+{
+    ui->stackedWidgetGroup->setCurrentWidget(fmg);
+    formsStack.push(fmg);
 }

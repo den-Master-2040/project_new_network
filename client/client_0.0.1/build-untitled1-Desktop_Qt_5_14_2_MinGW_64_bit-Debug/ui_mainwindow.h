@@ -68,7 +68,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(790, 660);
+        MainWindow->resize(790, 689);
         MainWindow->setStyleSheet(QString::fromUtf8("background-color:rgb(43, 43, 43);"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));

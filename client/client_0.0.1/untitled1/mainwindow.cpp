@@ -28,7 +28,7 @@ MainWindow::MainWindow(QWidget *parent,network_client *nt)
     //connect(socket, &QTcpSocket::disconnected, socket, &QTcpSocket::deleteLater);
     qDebug() << "Constructor!";
     mainStackedWidget = new QStackedWidget();
-    //fmg = new form_game(this);
+
     fcg = new form_create_group(this, nt);
     connect(fcg,&form_create_group::signalExit, this, &MainWindow::returnMainpaige );
 
@@ -105,12 +105,7 @@ void MainWindow::viewDataGroup()
     }
     ui->stackedWidget->setCurrentIndex(2);
 
-    ui->scrollArea->takeWidget();
-    QWidget *widget = new QWidget();
-    QSize size = ui->scrollArea->size();
-    widget->setMinimumSize(size.width(),size.height());
-    widget->setLayout(ui->gridLayout_2);
-    ui->scrollArea->setWidget(widget);
+    ui->scrollAreaWidgetContents->repaint();
     for(int i = 0; i < network_obj->groups.size(); i++)
     {
         ui->label_5->setVisible(false);
@@ -151,12 +146,26 @@ void MainWindow::viewDataGroup()
 
         ui->gridLayout_2->addWidget(pb, i+1, 3, 1, 1);
 
-        connect(pb, &QPushButton::clicked,[this,i](){
+        connect(pb, &QPushButton::clicked,[this,i,name_group,size_player,id,pb](){
             //fcg->nameSecondUser = network_obj->groups.at(i).name_first_user;//пихаем логин первого юзера из сети
             fcg->nameFirstUser = network_obj->login;//пихаем свой логин
             fcg->nextPage();
             on_bt_create_group_clicked();
             network_obj->SendToServer("OKC " + QString::number(network_obj->groups.at(i).id)); //get gpoup
+
+            //delete name_group;
+            //delete size_player;
+            //delete id;
+            //delete pb;
+            qDebug() << "Delete!";
+        });
+
+        connect(ui->pushButton_4, &QPushButton::clicked, [name_group,size_player,id,pb](){
+            //delete name_group;
+            //delete size_player;
+            //delete id;
+            //delete pb;
+            qDebug() << "Delete!";
         });
 
     }

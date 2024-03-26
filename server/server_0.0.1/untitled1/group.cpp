@@ -49,12 +49,12 @@ void group::Disconnected()
     if(firstUser == lus)
     {
         //delete firstUser;
-        firstUser = lus = NULL;
+        firstUser = NULL;
     }
     else
     {
         //delete secondUser;
-        secondUser = lus = NULL;
+        secondUser = NULL;
     }
 
     if(firstUser == nullptr && secondUser == nullptr)

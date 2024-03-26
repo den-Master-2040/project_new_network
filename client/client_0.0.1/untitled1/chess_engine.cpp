@@ -17,9 +17,9 @@ bool chess_Engine::hod(int figure, int user_hod)
 
     int buff = chess_Engine_map[figure_i][figure_j];
     if(buff < 7)
-        hod_player_1(figure,user_hod);
-    else if (buff >=7)
-        hod_player_2(figure,user_hod);
+        return hod_player_1(figure,user_hod);
+    else
+        return hod_player_2(figure,user_hod);
 }
 
 bool chess_Engine::hod_player_1(int figure, int user_hod)

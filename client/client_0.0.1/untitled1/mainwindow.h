@@ -53,7 +53,7 @@ private slots:
 private:
     std::stack<QWidget *> formsStack;
     QStackedWidget *mainStackedWidget = nullptr;
-    //form_game *fmg;
+
     form_create_group *fcg;
     Ui::MainWindow *ui = nullptr;
 

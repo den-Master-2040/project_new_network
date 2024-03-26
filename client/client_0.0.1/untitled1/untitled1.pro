@@ -21,14 +21,16 @@ SOURCES += \
     form_game.cpp \
     main.cpp \
     mainwindow.cpp \
-    network_client.cpp
+    network_client.cpp \
+    qdynamicbutton.cpp
 
 HEADERS += \
     chess_engine.h \
     form_create_group.h \
     form_game.h \
     mainwindow.h \
-    network_client.h
+    network_client.h \
+    qdynamicbutton.h
 
 FORMS += \
     form_create_group.ui \

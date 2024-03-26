@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
     QCoreApplication a(argc, argv);
 
 
-    Server* server = new Server("127.0.0.1",2323);
+    Server* server = new Server("192.168.1.65",2323);
 
     server->start();
      // Set global log level to debug

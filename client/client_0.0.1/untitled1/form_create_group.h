@@ -3,6 +3,8 @@
 #include <QWidget>
 #include <QTcpSocket>
 #include "network_client.h"
+#include "form_game.h"
+#include <stack>
 namespace Ui {
 class form_create_group;
 }
@@ -33,6 +35,8 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_pushButton_3_clicked();
+
 signals:
     void signalExit();
 
@@ -42,6 +46,8 @@ private:
     QTcpSocket *socket = nullptr;
     QString *dataSocket = nullptr;
     network_client *network_obj;
+    form_game *fmg;
+    std::stack<QWidget *> formsStack;
 };
 
 #endif // FORM_CREATE_GROUP_H

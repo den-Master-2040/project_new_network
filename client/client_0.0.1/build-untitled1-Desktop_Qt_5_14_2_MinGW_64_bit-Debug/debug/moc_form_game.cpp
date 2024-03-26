@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_form_game_t {
-    QByteArrayData data[1];
-    char stringdata0[10];
+    QByteArrayData data[5];
+    char stringdata0[72];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,10 +32,15 @@ struct qt_meta_stringdata_form_game_t {
     )
 static const qt_meta_stringdata_form_game_t qt_meta_stringdata_form_game = {
     {
-QT_MOC_LITERAL(0, 0, 9) // "form_game"
+QT_MOC_LITERAL(0, 0, 9), // "form_game"
+QT_MOC_LITERAL(1, 10, 10), // "signalExit"
+QT_MOC_LITERAL(2, 21, 0), // ""
+QT_MOC_LITERAL(3, 22, 21), // "on_pushButton_clicked"
+QT_MOC_LITERAL(4, 44, 27) // "slotQDynamicsButtonsHandler"
 
     },
-    "form_game"
+    "form_game\0signalExit\0\0on_pushButton_clicked\0"
+    "slotQDynamicsButtonsHandler"
 };
 #undef QT_MOC_LITERAL
 
@@ -45,21 +50,51 @@ static const uint qt_meta_data_form_game[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       0,    0, // methods
+       3,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       0,       // signalCount
+       1,       // signalCount
+
+ // signals: name, argc, parameters, tag, flags
+       1,    0,   29,    2, 0x06 /* Public */,
+
+ // slots: name, argc, parameters, tag, flags
+       3,    0,   30,    2, 0x08 /* Private */,
+       4,    0,   31,    2, 0x08 /* Private */,
+
+ // signals: parameters
+    QMetaType::Void,
+
+ // slots: parameters
+    QMetaType::Void,
+    QMetaType::Void,
 
        0        // eod
 };
 
 void form_game::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    Q_UNUSED(_o);
-    Q_UNUSED(_id);
-    Q_UNUSED(_c);
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        auto *_t = static_cast<form_game *>(_o);
+        Q_UNUSED(_t)
+        switch (_id) {
+        case 0: _t->signalExit(); break;
+        case 1: _t->on_pushButton_clicked(); break;
+        case 2: _t->slotQDynamicsButtonsHandler(); break;
+        default: ;
+        }
+    } else if (_c == QMetaObject::IndexOfMethod) {
+        int *result = reinterpret_cast<int *>(_a[0]);
+        {
+            using _t = void (form_game::*)();
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&form_game::signalExit)) {
+                *result = 0;
+                return;
+            }
+        }
+    }
     Q_UNUSED(_a);
 }
 
@@ -89,7 +124,24 @@ void *form_game::qt_metacast(const char *_clname)
 int form_game::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QWidget::qt_metacall(_c, _id, _a);
+    if (_id < 0)
+        return _id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        if (_id < 3)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 3;
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        if (_id < 3)
+            *reinterpret_cast<int*>(_a[0]) = -1;
+        _id -= 3;
+    }
     return _id;
+}
+
+// SIGNAL 0
+void form_game::signalExit()
+{
+    QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
 }
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE

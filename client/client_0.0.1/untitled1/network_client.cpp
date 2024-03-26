@@ -12,7 +12,7 @@ network_client::network_client(QObject *parent) : QObject(parent)
     //ui->label_3->setStyleSheet("QLabel{\n	background-color: rgb(170, 0, 0);\n\n}");
     //});
     connect(socket, &QTcpSocket::readyRead, this, &network_client::slotReadyRead);
-    socket->connectToHost("127.0.0.1", 2323);
+    socket->connectToHost("89.179.126.139", 2323);
     SendToServer("Login, my login=" + login + " my token=" + token + " ");
 }
 
@@ -62,7 +62,7 @@ void network_client::RequaredRecvMessage(QString message)
             if(message.at(1) == 'g')
             {
                 group lg;
-
+                groups.clear();
                 for(int i = 0; i < message.size(); i++)
                 {
 
