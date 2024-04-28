@@ -49,51 +49,7 @@ bool Server::start()
 
 void Server::incomingConnection(qintptr socketDescriptor)
 {
-    socket = new QTcpSocket();
-    socket->setSocketDescriptor(socketDescriptor);
-
-    client = new user();
-    client->setSocket(socket);
-    client->socketDescriptor = socketDescriptor;
-
-    users.push_back(client);
-
-
-    connect(socket, &QTcpSocket::disconnected, socket, &QTcpSocket::deleteLater);
-
-    connect(client, &user::signalDisconnect, [this](){
-
-
-        QString lg = client->login;
-
-
-
-        users.removeAll(client);
-        delete client;
-
-        if(users.size() > 0)
-        for(int i = 0; i < users.size(); i++)
-        {
-            if(users.at(i)->socket->state() == QTcpSocket::ConnectedState)
-                SendToSocket("IS" + QString::number(users.size()), users.at(i)->socket); //количество человек на сервере, рассылаем всем
-
-        }
-        spdlog::info("Client {0} disconnected ", lg.toStdString());
-    });
-    connect(client, &user::signalCreateGroup,this ,&Server::CreateGroup);
-    connect(client, &user::signalGetDataGroup, this, &Server::SendDataGroup);
-    connect(client, &user::signalConnectToGroup, this, &Server::ConnectToGroup);
-
-    //QTcpSocket *Lsocket = new QTcpSocket(socket);
-    //Sockets.push_back(socket);
-    //mysocketDescriptor.push_back(QPair<QTcpSocket, qintptr>(*socket,socketDescriptor));
-
-
-
-    spdlog::info("Client connected {0}",socketDescriptor);
-    //SendToSocket("Y" + QString::number(socketDescriptor), socket); //Y - your descriptor
-    for(int i = 0; i < users.size(); i++)
-        SendToSocket("IS" + QString::number(users.size()), users.at(i)->socket); //количество человек на сервере, рассылаем всем
+    CreateUser(socketDescriptor);
 }
 
 void Server::SlotReadyRead()
@@ -181,6 +137,34 @@ void Server::ConnectToGroup()
     spdlog::info("Client {0} connected to group ", client->login.toStdString());
 }
 
+void Server::CreateUser(qintptr socketDescriptor)
+{
+    client = new user(socketDescriptor);//создаем объект пользователя. Он сам себе создаст нужный сокет.
+
+    users.push_back(client);
+
+    connect(client, &user::signalDisconnect, [this](){
+
+        //Нам нужно выполнить ряд действий, когда пользователь отключился
+        QString lg = client->login;
+        users.removeAll(client);//удалить его из общей структуры данных пользователей
+        delete client;
+        if(users.size() > 0)
+            for(int i = 0; i < users.size(); i++)
+                if(users.at(i)->socket->state() == QTcpSocket::ConnectedState)
+                    SendToSocket("IS" + QString::number(users.size()), users.at(i)->socket); //количество человек на сервере, рассылаем всем
+        spdlog::info("Client {0} disconnected ", lg.toStdString());
+    });
+    connect(client, &user::signalCreateGroup,this ,&Server::CreateGroup);
+    connect(client, &user::signalGetDataGroup, this, &Server::SendDataGroup);
+    connect(client, &user::signalConnectToGroup, this, &Server::ConnectToGroup);
+    connect(client, &user::signalDisconnect, this, &Server::Disconnected);
+
+    spdlog::info("Client connected {0}",socketDescriptor);
+    for(int i = 0; i < users.size(); i++)
+        SendToSocket("IS" + QString::number(users.size()), users.at(i)->socket); //количество человек на сервере, рассылаем всем
+}
+
 void Server::SendToClient(QString message)
 {
     Data.clear();
@@ -203,7 +187,12 @@ void Server::SendToSocket(QString message, QTcpSocket *socket_sender)
     out << message;
     if(socket_sender != nullptr)
         if(socket_sender->state() == QTcpSocket::ConnectedState)
-    socket_sender->write(Data);
+            socket_sender->write(Data);
+}
+
+Server * Server::getServer()
+{
+    return this;
 }
 
 

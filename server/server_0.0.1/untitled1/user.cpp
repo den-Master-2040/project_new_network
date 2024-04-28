@@ -1,20 +1,19 @@
 #include "user.h"
 #include "QDataStream"
-
-user::user()
+#include "serverglobal.h"
+user::user(quint32 socketDescriptor)
 {
-
-}
-
-void user::setSocket(QTcpSocket *socket_)
-{
-    socket = socket_;
+    socket = new QTcpSocket();
+    socket->setSocketDescriptor(socketDescriptor);
+    t_ping = new QTimer();
+    t_ping->start(200);
+    connect(socket, &QTcpSocket::disconnected, socket, &QTcpSocket::deleteLater);
     connect(socket, &QTcpSocket::readyRead, this, &user::slotReadyRead);
-    //t_ping = new QTimer(this);
-    //connect(t_ping, &QTimer::timeout, this ,&user::isALife);
-    //t_ping->start(500);
-    connect(socket, &QTcpSocket::disconnected, this, &user::isALife);
+    connect(t_ping, &QTimer::timeout, this, &user::isAlive);
+    (REF_SERVER)->Data;
 }
+
+
 
 void user::sendMessage(QString message)
 {
@@ -36,10 +35,12 @@ void user::sendMessage(QString message)
 
 }
 
-int user::isALife()
-{    
-   emit signalDisconnect();
-   return -1;
+void user::isAlive()
+{
+    int state = socket->state();
+    if( state != QAbstractSocket::ConnectedState)
+        emit signalDisconnect();
+
 }
 
 void user::getDataDestinaition()
@@ -69,21 +70,13 @@ void user::slotReadyRead()
         //qDebug() << str;
         qDebug() << "Sended " << socket->socketDescriptor()<< " : " << str;
         switch (str.at(0).unicode()) {
-
-            case 'p':
+            case 'p'://ping
             {
-
-                //ping
-
                 sendMessage("1");
                 break;
             }
-            case 'L':
+            case 'L'://logining
             {
-
-                //logining (authorithation)
-
-                //logining
 
                 int start_login = str.toStdString().find("login") + 6;
                 QString login;
@@ -115,11 +108,8 @@ void user::slotReadyRead()
                 break;
 
             }
-            case 'C':
+            case 'C'://Create group
             {
-
-                //Create group
-
                 int start_name_group = 2;
                 QString name_group;
 
@@ -151,13 +141,13 @@ void user::slotReadyRead()
                 break;
 
             }
-            case 'G':
+            case 'G'://getDataGrouo
             {
                 if(str.at(1) == 'G')
                     emit signalGetDataGroup();
                 break;
             }
-            case 'O':
+            case 'O'://Succesful connect to group
             {
                 if(str.at(1) == 'K')
                 if(str.at(2) == 'C')
@@ -174,14 +164,14 @@ void user::slotReadyRead()
                 }
                 break;
             }
-            case 'T':
+            case 'T'://sendedMsgToAnotherUser
             {
                 //str.remove(0,1);
                 sendedMsgToAnotherUser = str;
                 emit signalsendMessage();
                 break;
             }
-            case 'N':
+            case 'N'://Rename user
             {
 
                 QString new_login = "";
@@ -192,7 +182,7 @@ void user::slotReadyRead()
                 this->login = new_login;
 
             }
-            case 'D':
+            case 'D'://ExitGroup
             {
                 if(str.at(1) == 'G')
                     emit signalExitGroup();
