@@ -17,14 +17,18 @@ public:
 
      void insertUser(user *user);
      QByteArray Data;
-     void SendToSocket(QString message, QTcpSocket *socket_sender);
+
      void deleteUser();//когда юзер вышел
+     void sendMsg();
+private:
+     void SendToSocket(QString message, QTcpSocket *socket_sender);
  signals:
      void signalDestroy();
 
-public slots:
+private slots:
     void slotSendMsgFirtsUser();
     void slotSendMsgSecondUser();
+public slots:
     void Disconnected();
 };
 

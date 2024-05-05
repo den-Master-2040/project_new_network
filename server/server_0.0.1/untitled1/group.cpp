@@ -25,7 +25,7 @@ void group::insertUser(user* user)
         secondUser = user;
         connect(secondUser, &user::signalsendMessage, this, &group::slotSendMsgSecondUser);
         connect(secondUser, &user::signalDisconnect, this, &group::Disconnected);
-        connect(firstUser, &user::signalExitGroup, this, &group::Disconnected);
+        connect(secondUser, &user::signalExitGroup, this, &group::Disconnected);
     }
     else return;//достигнуто максимальное количество игроков
 }
@@ -44,19 +44,6 @@ void group::slotSendMsgSecondUser()
 
 void group::Disconnected()
 {
-    user *lus = (user*)sender();
-
-    if(firstUser == lus)
-    {
-        //delete firstUser;
-        firstUser = NULL;
-    }
-    else
-    {
-        //delete secondUser;
-        secondUser = NULL;
-    }
-
     if(firstUser == nullptr && secondUser == nullptr)
         emit signalDestroy();
 }

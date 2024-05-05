@@ -216,7 +216,7 @@ public:
 
         retranslateUi(form_create_group);
 
-        stackedWidgetGroup->setCurrentIndex(1);
+        stackedWidgetGroup->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(form_create_group);

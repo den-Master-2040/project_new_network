@@ -39,6 +39,9 @@ public:
     void getDataDestinaition();//функция должна будет возвращать данные из бд с достижениями игрока
 
     //сигналы
+    QString getLogin() const;
+    void setLogin(const QString &value);
+
 signals:
     void signalDisconnect();
     void signalEnable();

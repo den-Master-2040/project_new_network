@@ -10,7 +10,16 @@ user::user(quint32 socketDescriptor)
     connect(socket, &QTcpSocket::disconnected, socket, &QTcpSocket::deleteLater);
     connect(socket, &QTcpSocket::readyRead, this, &user::slotReadyRead);
     connect(t_ping, &QTimer::timeout, this, &user::isAlive);
-    (REF_SERVER)->Data;
+}
+
+QString user::getLogin() const
+{
+    return login;
+}
+
+void user::setLogin(const QString &value)
+{
+    login = value;
 }
 
 
@@ -37,8 +46,7 @@ void user::sendMessage(QString message)
 
 void user::isAlive()
 {
-    int state = socket->state();
-    if( state != QAbstractSocket::ConnectedState)
+    if(socket == nullptr || socket->state() != QAbstractSocket::ConnectedState)
         emit signalDisconnect();
 
 }
@@ -67,7 +75,8 @@ void user::slotReadyRead()
         //qDebug() << "Read message for QDataStream...";
         QString str;
         in >> str;
-        //qDebug() << str;
+
+        qDebug() << str;
         qDebug() << "Sended " << socket->socketDescriptor()<< " : " << str;
         switch (str.at(0).unicode()) {
             case 'p'://ping

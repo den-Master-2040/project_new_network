@@ -31,7 +31,8 @@ bool Server::start()
 {
     QString info = "Try to listen. Server ip: " + ipAddress + ", port: " + QString::number(port);
     spdlog::info(info.toStdString());
-    //Try to listen..
+
+    //Пытаемся запустить сервер
     if(this->listen(QHostAddress(ipAddress), port))
     {
         spdlog::info("Server start successfully!");
@@ -62,7 +63,7 @@ void Server::SlotReadyRead()
         //qDebug() << "Read message for QDataStream...";
         QString str;
         in >> str;
-        //qDebug() << "Sended " << socket->socketDescriptor()<< " : " << str;
+        qDebug() << "Sended " << socket->socketDescriptor()<< " : " << str;
         Requared(str, socket);
         //SendToClient(str);
     }
@@ -75,18 +76,17 @@ void Server::SlotReadyRead()
 
 void Server::Disconnected()
 {
-
-    /*ocket = (QTcpSocket*)sender();
-    client = (user*)sender();
-
-
-    //delete users[i];
-
-    spdlog::info("Client {0} disconnected ", client->login.toStdString());
-    for(int i = 0; i < users.size(); i++)
-        SendToSocket("IS" + QString::number(users.size()), users.at(i)->socket); //количество человек на сервере, рассылаем всем*/
-
-
+    user* client = (user*)sender();
+    //Нам нужно выполнить ряд действий, когда пользователь отключился
+    QString lg = client->getLogin();
+    qDebug() << "user Index:" << users.indexOf(client);
+    users.remove(users.indexOf(client));//удалить его из общей структуры данных пользователей
+    delete client;
+    if(users.size() > 0)
+        for(int i = 0; i < users.size(); i++)
+            if(users.at(i)->socket->state() == QTcpSocket::ConnectedState)
+                SendToSocket("IS" + QString::number(users.size()), users.at(i)->socket); //количество человек на сервере, рассылаем всем
+    spdlog::info("Client {0} disconnected ", lg.toStdString());
 }
 
 void Server::CreateGroup()
@@ -98,7 +98,7 @@ void Server::CreateGroup()
     groups.push_back(gr);
     connect(gr, &group::signalDestroy, [this,gr](){
         groups.removeOne(gr);
-        gr->~group();
+        delete gr;
     });
 
 
@@ -122,7 +122,6 @@ void Server::SendDataGroup()
             dataGroup += 'I' + QString::number(i)+ ' ' + 'G' +groups.at(i)->name + ' ' + 'U' +groups.at(i)->firstUser->login + ' ';
     }
     SendToSocket(dataGroup,client->socket);
-    //
 }
 
 void Server::ConnectToGroup()
@@ -139,28 +138,17 @@ void Server::ConnectToGroup()
 
 void Server::CreateUser(qintptr socketDescriptor)
 {
-    client = new user(socketDescriptor);//создаем объект пользователя. Он сам себе создаст нужный сокет.
+    user *client_ = new user(socketDescriptor);//создаем объект пользователя. Он сам себе создаст нужный сокет.
+    client = client_;
 
     users.push_back(client);
-
-    connect(client, &user::signalDisconnect, [this](){
-
-        //Нам нужно выполнить ряд действий, когда пользователь отключился
-        QString lg = client->login;
-        users.removeAll(client);//удалить его из общей структуры данных пользователей
-        delete client;
-        if(users.size() > 0)
-            for(int i = 0; i < users.size(); i++)
-                if(users.at(i)->socket->state() == QTcpSocket::ConnectedState)
-                    SendToSocket("IS" + QString::number(users.size()), users.at(i)->socket); //количество человек на сервере, рассылаем всем
-        spdlog::info("Client {0} disconnected ", lg.toStdString());
-    });
     connect(client, &user::signalCreateGroup,this ,&Server::CreateGroup);
     connect(client, &user::signalGetDataGroup, this, &Server::SendDataGroup);
     connect(client, &user::signalConnectToGroup, this, &Server::ConnectToGroup);
     connect(client, &user::signalDisconnect, this, &Server::Disconnected);
-
+    client = nullptr;
     spdlog::info("Client connected {0}",socketDescriptor);
+
     for(int i = 0; i < users.size(); i++)
         SendToSocket("IS" + QString::number(users.size()), users.at(i)->socket); //количество человек на сервере, рассылаем всем
 }
@@ -238,6 +226,7 @@ void Server::Requared(QString message, QTcpSocket *socket_sender)
         case 'I':
         {
             spdlog::info("User disconnect");
+            break;
         }
         case 'C':
         {
