@@ -1,6 +1,9 @@
 #include <QCoreApplication>
 #include <server.h>
+#include <serverglobal.h>
 #define SPDLOG_COMPILED_LIB 0
+
+
 #include "spdlog/spdlog.h"
 int main(int argc, char *argv[])
 {
@@ -8,7 +11,9 @@ int main(int argc, char *argv[])
     QCoreApplication a(argc, argv);
 
 
-    Server* server = new Server("192.168.1.65",2323);
+    ServerGlobal* serverGl = new ServerGlobal();
+    Server * server = serverGl->getServer();
+
 
     server->start();
      // Set global log level to debug

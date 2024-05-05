@@ -11,7 +11,7 @@ class user : public QObject
 {
     Q_OBJECT
 public:
-    user();
+    user(quint32 socketDescriptor);
 
     //поля
     QString login;
@@ -33,9 +33,8 @@ public:
     QTimer *t_ping = nullptr;
 
     //методы для общего пользования
-    void setSocket(QTcpSocket *socket_);
     void sendMessage(QString message);
-    int isALife();
+    void isAlive();
     void getSocket();
     void getDataDestinaition();//функция должна будет возвращать данные из бд с достижениями игрока
 

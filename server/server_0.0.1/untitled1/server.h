@@ -5,6 +5,8 @@
 #include "user.h"
 #include "QTimer"
 #include "group.h"
+
+
 class Server : public QTcpServer
 {
 
@@ -18,6 +20,8 @@ public:
     bool start();
     void Requared(QString message, QTcpSocket *socket_sender);
     void SendToSocket(QString message,QTcpSocket *socket_sender);
+
+    Server *getServer();
 
 private:
     QVector <QTcpSocket*> Sockets;
@@ -33,6 +37,7 @@ public slots:
     void CreateGroup();
     void SendDataGroup();
     void ConnectToGroup();
+    void CreateUser(qintptr socketDescriptor);
 };
 
 #endif // SERVER_H
