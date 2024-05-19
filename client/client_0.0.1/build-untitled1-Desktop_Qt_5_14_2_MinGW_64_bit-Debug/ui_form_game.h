@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QWidget>
@@ -22,6 +23,7 @@ class Ui_form_game
 public:
     QPushButton *pushButton;
     QLabel *label;
+    QGraphicsView *graphicsView;
 
     void setupUi(QWidget *form_game)
     {
@@ -30,11 +32,14 @@ public:
         form_game->resize(771, 611);
         pushButton = new QPushButton(form_game);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(9, 570, 111, 41));
+        pushButton->setGeometry(QRect(10, 576, 111, 31));
         label = new QLabel(form_game);
         label->setObjectName(QString::fromUtf8("label"));
         label->setGeometry(QRect(600, 30, 161, 31));
         label->setAlignment(Qt::AlignCenter);
+        graphicsView = new QGraphicsView(form_game);
+        graphicsView->setObjectName(QString::fromUtf8("graphicsView"));
+        graphicsView->setGeometry(QRect(10, 30, 535, 535));
 
         retranslateUi(form_game);
 

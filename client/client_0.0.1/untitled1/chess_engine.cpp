@@ -12,8 +12,8 @@ chess_Engine::chess_Engine()
 
 bool chess_Engine::hod(int figure, int user_hod)
 {
-    int figure_j = figure / 10;
-    int figure_i = figure % 10;
+    int figure_i = figure / 10;
+    int figure_j = figure % 10;
 
     int buff = chess_Engine_map[figure_i][figure_j];
     if(buff < 7)
@@ -25,10 +25,10 @@ bool chess_Engine::hod(int figure, int user_hod)
 bool chess_Engine::hod_player_1(int figure, int user_hod)
 {
     //получаем координаты
-    int figure_j = figure / 10;
-    int figure_i = figure % 10;
-    int user_hod_j = user_hod /10;
-    int user_hod_i = user_hod % 10;
+    int figure_i = figure / 10;
+    int figure_j = figure % 10;
+    int user_hod_i = user_hod /10;
+    int user_hod_j = user_hod % 10;
     int buff = chess_Engine_map[user_hod_i][user_hod_j];
     /*  ПЕШКА   */
     if(chess_Engine_map[figure_i][figure_j] == 1)                //если игрок выбрал пешку за белых
@@ -60,10 +60,10 @@ bool chess_Engine::hod_player_1(int figure, int user_hod)
 bool chess_Engine::hod_player_2(int figure, int user_hod)
 {
     //получаем координаты
-    int figure_j = figure / 10;
-    int figure_i = figure % 10;
-    int user_hod_j = user_hod /10;
-    int user_hod_i = user_hod % 10;
+    int figure_i = figure / 10;
+    int figure_j = figure % 10;
+    int user_hod_i = user_hod /10;
+    int user_hod_j = user_hod % 10;
     int buff = chess_Engine_map[user_hod_i][user_hod_j];
     /*  ПЕШКА   */
     if(chess_Engine_map[figure_i][figure_j] == 7)                //если игрок выбрал пешку за черных

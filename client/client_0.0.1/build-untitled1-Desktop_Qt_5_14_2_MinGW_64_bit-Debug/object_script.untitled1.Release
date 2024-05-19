@@ -3,10 +3,12 @@ release/form_create_group.o
 release/form_game.o
 release/main.o
 release/mainwindow.o
+release/moveitem.o
 release/network_client.o
 release/qdynamicbutton.o
 release/moc_form_create_group.o
 release/moc_form_game.o
 release/moc_mainwindow.o
+release/moc_moveitem.o
 release/moc_network_client.o
 release/moc_qdynamicbutton.o

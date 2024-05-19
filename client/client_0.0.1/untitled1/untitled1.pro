@@ -21,6 +21,7 @@ SOURCES += \
     form_game.cpp \
     main.cpp \
     mainwindow.cpp \
+    moveitem.cpp \
     network_client.cpp \
     qdynamicbutton.cpp
 
@@ -29,6 +30,7 @@ HEADERS += \
     form_create_group.h \
     form_game.h \
     mainwindow.h \
+    moveitem.h \
     network_client.h \
     qdynamicbutton.h
 

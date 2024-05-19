@@ -30,6 +30,7 @@ form_create_group::form_create_group(QWidget *parent, network_client *nt) :
     connect(fmg, &form_game::signalExit, [this](){
         ui->stackedWidgetGroup->setCurrentIndex(1);
     });
+
 }
 
 form_create_group::~form_create_group()

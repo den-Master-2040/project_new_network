@@ -5,11 +5,17 @@ user::user(quint32 socketDescriptor)
 {
     socket = new QTcpSocket();
     socket->setSocketDescriptor(socketDescriptor);
-    t_ping = new QTimer();
-    t_ping->start(200);
+    //t_ping = new QTimer();
+    //t_ping->start(200);
     connect(socket, &QTcpSocket::disconnected, socket, &QTcpSocket::deleteLater);
+    connect(socket, &QTcpSocket::disconnected, this, &user::signalDisconnect);
     connect(socket, &QTcpSocket::readyRead, this, &user::slotReadyRead);
     connect(t_ping, &QTimer::timeout, this, &user::isAlive);
+}
+
+user::~user()
+{
+    delete t_ping;
 }
 
 QString user::getLogin() const
@@ -46,6 +52,8 @@ void user::sendMessage(QString message)
 
 void user::isAlive()
 {
+    //Нахера опрашивать постоянно сокет, если можно напрямую подрубить коннект?
+    //удалить в будущем!
     if(socket == nullptr || socket->state() != QAbstractSocket::ConnectedState)
         emit signalDisconnect();
 
@@ -77,7 +85,7 @@ void user::slotReadyRead()
         in >> str;
 
         qDebug() << str;
-        qDebug() << "Sended " << socket->socketDescriptor()<< " : " << str;
+        qDebug() << "Sended slotReadyReadUser" << socket->socketDescriptor()<< " : " << str;
         switch (str.at(0).unicode()) {
             case 'p'://ping
             {

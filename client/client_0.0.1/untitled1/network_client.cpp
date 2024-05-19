@@ -24,6 +24,7 @@ void network_client::SendToServer(QString str)
     out << str;
 
     qDebug() << socket->state();
+    qDebug() << "SendMsg : " << Data;
     socket->write(Data);
     qDebug() << socket->state();
 }

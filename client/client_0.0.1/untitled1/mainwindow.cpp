@@ -37,6 +37,7 @@ MainWindow::MainWindow(QWidget *parent,network_client *nt)
     //viewDataGroup();
     ui->label_5->setVisible(false);
     t_ping->start(1000);
+
 }
 
 MainWindow::~MainWindow()
@@ -96,7 +97,6 @@ void MainWindow::updateSizeUser()
 
 void MainWindow::viewDataGroup()
 {
-
 
     if(network_obj->groups.size() == 0)
     {

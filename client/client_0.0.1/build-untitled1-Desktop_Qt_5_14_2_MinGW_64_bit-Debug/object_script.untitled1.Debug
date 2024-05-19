@@ -3,10 +3,12 @@ debug/form_create_group.o
 debug/form_game.o
 debug/main.o
 debug/mainwindow.o
+debug/moveitem.o
 debug/network_client.o
 debug/qdynamicbutton.o
 debug/moc_form_create_group.o
 debug/moc_form_game.o
 debug/moc_mainwindow.o
+debug/moc_moveitem.o
 debug/moc_network_client.o
 debug/moc_qdynamicbutton.o

@@ -63,7 +63,7 @@ void Server::SlotReadyRead()
         //qDebug() << "Read message for QDataStream...";
         QString str;
         in >> str;
-        qDebug() << "Sended " << socket->socketDescriptor()<< " : " << str;
+        qDebug() << "Sended SlotReadyRead Server:" << socket->socketDescriptor()<< " : " << str;
         Requared(str, socket);
         //SendToClient(str);
     }
@@ -176,6 +176,7 @@ void Server::SendToSocket(QString message, QTcpSocket *socket_sender)
     if(socket_sender != nullptr)
         if(socket_sender->state() == QTcpSocket::ConnectedState)
             socket_sender->write(Data);
+    qDebug() << "message: " << message << ", socket: " << socket_sender->socketDescriptor();
 }
 
 Server * Server::getServer()

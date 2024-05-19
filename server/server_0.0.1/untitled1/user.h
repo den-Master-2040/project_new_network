@@ -13,6 +13,8 @@ class user : public QObject
 public:
     user(quint32 socketDescriptor);
 
+    ~user();
+
     //поля
     QString login;
     QString token;

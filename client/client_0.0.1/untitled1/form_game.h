@@ -5,6 +5,8 @@
 #include "network_client.h"
 #include <QVBoxLayout>
 #include "qdynamicbutton.h"
+#include "moveitem.h"
+
 namespace Ui {
 class form_game;
 }
@@ -26,13 +28,14 @@ public:
     int MERGE_BUTTON = 2;
     int color_backgroind_counter = 0;
 
-    std::string color_white_map = "white";
-    std::string color_black_map = "gray";
+
     chess_Engine m_chess;                    //логика шахмат
 
     QVector<QDynamicButton*> buttons;
     void update_chess_map();
     void update_chess_array(int arr[8][8]);
+
+    QVector <MoveItem*> chessMap;
 signals:
     void signalExit();
 private slots:
@@ -41,6 +44,7 @@ private slots:
 private:
     network_client *network_obj;
     Ui::form_game *ui;
+    QGraphicsScene *scene;
 };
 
 #endif // FORM_GAME_H

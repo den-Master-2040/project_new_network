@@ -55,10 +55,12 @@ SOURCES       = ..\untitled1\chess_engine.cpp \
 		..\untitled1\form_game.cpp \
 		..\untitled1\main.cpp \
 		..\untitled1\mainwindow.cpp \
+		..\untitled1\moveitem.cpp \
 		..\untitled1\network_client.cpp \
 		..\untitled1\qdynamicbutton.cpp release\moc_form_create_group.cpp \
 		release\moc_form_game.cpp \
 		release\moc_mainwindow.cpp \
+		release\moc_moveitem.cpp \
 		release\moc_network_client.cpp \
 		release\moc_qdynamicbutton.cpp
 OBJECTS       = release/chess_engine.o \
@@ -66,11 +68,13 @@ OBJECTS       = release/chess_engine.o \
 		release/form_game.o \
 		release/main.o \
 		release/mainwindow.o \
+		release/moveitem.o \
 		release/network_client.o \
 		release/qdynamicbutton.o \
 		release/moc_form_create_group.o \
 		release/moc_form_game.o \
 		release/moc_mainwindow.o \
+		release/moc_moveitem.o \
 		release/moc_network_client.o \
 		release/moc_qdynamicbutton.o
 
@@ -78,12 +82,14 @@ DIST          =  ..\untitled1\chess_engine.h \
 		..\untitled1\form_create_group.h \
 		..\untitled1\form_game.h \
 		..\untitled1\mainwindow.h \
+		..\untitled1\moveitem.h \
 		..\untitled1\network_client.h \
 		..\untitled1\qdynamicbutton.h ..\untitled1\chess_engine.cpp \
 		..\untitled1\form_create_group.cpp \
 		..\untitled1\form_game.cpp \
 		..\untitled1\main.cpp \
 		..\untitled1\mainwindow.cpp \
+		..\untitled1\moveitem.cpp \
 		..\untitled1\network_client.cpp \
 		..\untitled1\qdynamicbutton.cpp
 QMAKE_TARGET  = untitled1
@@ -105,10 +111,10 @@ qmake: FORCE
 qmake_all: FORCE
 
 dist:
-	$(ZIP) untitled1.zip $(SOURCES) $(DIST) ..\untitled1\untitled1.pro C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\spec_pre.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\qdevice.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\device_config.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\common\sanitize.conf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\common\gcc-base.conf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\common\g++-base.conf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\common\angle.conf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\win32\windows_vulkan_sdk.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\common\windows-vulkan.conf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\common\g++-win32.conf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\common\windows-desktop.conf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\qconfig.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3danimation.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3danimation_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dcore.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dcore_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dextras.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dextras_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dinput.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dinput_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dlogic.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dlogic_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquick.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquick_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickanimation.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickanimation_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickextras.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickextras_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickinput.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickinput_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickrender.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickrender_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickscene2d.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickscene2d_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3drender.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3drender_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_accessibility_support_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axbase.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axbase_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axcontainer.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axcontainer_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axserver.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axserver_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_bluetooth.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_bluetooth_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_bodymovin_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_bootstrap_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_charts.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_charts_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_concurrent.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_concurrent_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_core.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_core_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_datavisualization.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_datavisualization_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_dbus.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_dbus_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_designer.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_designer_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_designercomponents_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_edid_support_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_egl_support_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_fb_support_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_fontdatabase_support_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_gamepad.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_gamepad_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_gui.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_gui_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_help.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_help_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_location.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_location_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_multimedia.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_multimedia_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_multimediawidgets.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_network.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_network_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_networkauth.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_networkauth_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_nfc.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_nfc_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_opengl.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_opengl_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_openglextensions.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_openglextensions_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_packetprotocol_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_platformcompositor_support_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_positioning.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_positioning_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_positioningquick.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_positioningquick_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_printsupport.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_printsupport_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_purchasing.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_purchasing_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qml.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qml_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmldebug_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmldevtools_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmlmodels.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmlmodels_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmltest.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmltest_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmlworkerscript.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmlworkerscript_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick3d.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick3d_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick3dassetimport.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick3dassetimport_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick3drender.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick3drender_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick3druntimerender.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick3druntimerender_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick3dutils.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick3dutils_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickcontrols2.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickparticles_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickshapes_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quicktemplates2.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickwidgets.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickwidgets_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_remoteobjects.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_remoteobjects_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_repparser.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_repparser_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_script.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_script_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_scripttools.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_scripttools_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_scxml.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_scxml_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_sensors.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_sensors_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_serialbus.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_serialbus_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_serialport.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_serialport_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_sql.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_sql_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_svg.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_svg_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_testlib.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_testlib_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_texttospeech.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_texttospeech_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_theme_support_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_uiplugin.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_uitools.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_uitools_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_virtualkeyboard.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_virtualkeyboard_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_vulkan_support_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_webchannel.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_webchannel_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_websockets.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_websockets_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_widgets.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_widgets_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_windowsuiautomation_support_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_winextras.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_winextras_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_xml.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_xml_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_xmlpatterns.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_zlib_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\qt_functions.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\qt_config.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\win32-g++\qmake.conf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\spec_post.prf .qmake.stash C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\exclusive_builds.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\toolchain.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\default_pre.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\win32\default_pre.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\resolve_config.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\exclusive_builds_post.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\default_post.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\build_pass.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\qml_debug.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\precompile_header.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\warn_on.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\qt.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\resources_functions.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\resources.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\moc.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\win32\opengl.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\uic.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\qmake_use.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\file_copies.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\win32\windows.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\testcase_targets.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\exceptions.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\yacc.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\lex.prf ..\untitled1\untitled1.pro C:\Program\Qt\5.14.2\mingw73_64\lib\Qt5Widgets.prl C:\Program\Qt\5.14.2\mingw73_64\lib\Qt5Gui.prl C:\Program\Qt\5.14.2\mingw73_64\lib\Qt5Network.prl C:\Program\Qt\5.14.2\mingw73_64\lib\Qt5Core.prl C:\Program\Qt\5.14.2\mingw73_64\lib\qtmain.prl    C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\data\dummy.cpp ..\untitled1\chess_engine.h ..\untitled1\form_create_group.h ..\untitled1\form_game.h ..\untitled1\mainwindow.h ..\untitled1\network_client.h ..\untitled1\qdynamicbutton.h  ..\untitled1\chess_engine.cpp ..\untitled1\form_create_group.cpp ..\untitled1\form_game.cpp ..\untitled1\main.cpp ..\untitled1\mainwindow.cpp ..\untitled1\network_client.cpp ..\untitled1\qdynamicbutton.cpp ..\untitled1\form_create_group.ui ..\untitled1\form_game.ui ..\untitled1\mainwindow.ui    
+	$(ZIP) untitled1.zip $(SOURCES) $(DIST) ..\untitled1\untitled1.pro C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\spec_pre.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\qdevice.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\device_config.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\common\sanitize.conf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\common\gcc-base.conf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\common\g++-base.conf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\common\angle.conf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\win32\windows_vulkan_sdk.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\common\windows-vulkan.conf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\common\g++-win32.conf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\common\windows-desktop.conf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\qconfig.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3danimation.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3danimation_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dcore.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dcore_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dextras.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dextras_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dinput.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dinput_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dlogic.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dlogic_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquick.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquick_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickanimation.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickanimation_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickextras.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickextras_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickinput.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickinput_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickrender.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickrender_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickscene2d.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickscene2d_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3drender.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3drender_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_accessibility_support_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axbase.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axbase_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axcontainer.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axcontainer_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axserver.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axserver_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_bluetooth.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_bluetooth_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_bodymovin_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_bootstrap_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_charts.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_charts_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_concurrent.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_concurrent_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_core.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_core_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_datavisualization.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_datavisualization_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_dbus.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_dbus_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_designer.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_designer_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_designercomponents_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_edid_support_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_egl_support_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_fb_support_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_fontdatabase_support_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_gamepad.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_gamepad_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_gui.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_gui_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_help.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_help_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_location.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_location_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_multimedia.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_multimedia_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_multimediawidgets.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_network.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_network_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_networkauth.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_networkauth_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_nfc.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_nfc_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_opengl.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_opengl_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_openglextensions.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_openglextensions_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_packetprotocol_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_platformcompositor_support_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_positioning.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_positioning_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_positioningquick.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_positioningquick_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_printsupport.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_printsupport_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_purchasing.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_purchasing_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qml.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qml_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmldebug_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmldevtools_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmlmodels.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmlmodels_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmltest.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmltest_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmlworkerscript.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmlworkerscript_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick3d.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick3d_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick3dassetimport.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick3dassetimport_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick3drender.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick3drender_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick3druntimerender.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick3druntimerender_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick3dutils.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick3dutils_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickcontrols2.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickparticles_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickshapes_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quicktemplates2.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickwidgets.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickwidgets_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_remoteobjects.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_remoteobjects_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_repparser.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_repparser_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_script.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_script_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_scripttools.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_scripttools_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_scxml.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_scxml_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_sensors.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_sensors_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_serialbus.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_serialbus_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_serialport.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_serialport_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_sql.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_sql_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_svg.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_svg_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_testlib.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_testlib_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_texttospeech.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_texttospeech_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_theme_support_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_uiplugin.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_uitools.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_uitools_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_virtualkeyboard.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_virtualkeyboard_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_vulkan_support_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_webchannel.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_webchannel_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_websockets.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_websockets_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_widgets.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_widgets_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_windowsuiautomation_support_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_winextras.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_winextras_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_xml.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_xml_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_xmlpatterns.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\modules\qt_lib_zlib_private.pri C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\qt_functions.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\qt_config.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\win32-g++\qmake.conf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\spec_post.prf .qmake.stash C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\exclusive_builds.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\toolchain.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\default_pre.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\win32\default_pre.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\resolve_config.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\exclusive_builds_post.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\default_post.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\build_pass.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\qml_debug.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\precompile_header.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\warn_on.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\qt.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\resources_functions.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\resources.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\moc.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\win32\opengl.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\uic.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\qmake_use.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\file_copies.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\win32\windows.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\testcase_targets.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\exceptions.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\yacc.prf C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\lex.prf ..\untitled1\untitled1.pro C:\Program\Qt\5.14.2\mingw73_64\lib\Qt5Widgets.prl C:\Program\Qt\5.14.2\mingw73_64\lib\Qt5Gui.prl C:\Program\Qt\5.14.2\mingw73_64\lib\Qt5Network.prl C:\Program\Qt\5.14.2\mingw73_64\lib\Qt5Core.prl C:\Program\Qt\5.14.2\mingw73_64\lib\qtmain.prl    C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\data\dummy.cpp ..\untitled1\chess_engine.h ..\untitled1\form_create_group.h ..\untitled1\form_game.h ..\untitled1\mainwindow.h ..\untitled1\moveitem.h ..\untitled1\network_client.h ..\untitled1\qdynamicbutton.h  ..\untitled1\chess_engine.cpp ..\untitled1\form_create_group.cpp ..\untitled1\form_game.cpp ..\untitled1\main.cpp ..\untitled1\mainwindow.cpp ..\untitled1\moveitem.cpp ..\untitled1\network_client.cpp ..\untitled1\qdynamicbutton.cpp ..\untitled1\form_create_group.ui ..\untitled1\form_game.ui ..\untitled1\mainwindow.ui    
 
 clean: compiler_clean 
-	-$(DEL_FILE) release\chess_engine.o release\form_create_group.o release\form_game.o release\main.o release\mainwindow.o release\network_client.o release\qdynamicbutton.o release\moc_form_create_group.o release\moc_form_game.o release\moc_mainwindow.o release\moc_network_client.o release\moc_qdynamicbutton.o
+	-$(DEL_FILE) release\chess_engine.o release\form_create_group.o release\form_game.o release\main.o release\mainwindow.o release\moveitem.o release\network_client.o release\qdynamicbutton.o release\moc_form_create_group.o release\moc_form_game.o release\moc_mainwindow.o release\moc_moveitem.o release\moc_network_client.o release\moc_qdynamicbutton.o
 
 distclean: clean 
 	-$(DEL_FILE) .qmake.stash
@@ -133,9 +139,9 @@ compiler_moc_predefs_clean:
 release/moc_predefs.h: C:/Program/Qt/5.14.2/mingw73_64/mkspecs/features/data/dummy.cpp
 	g++ -fno-keep-inline-dllexport -O2 -std=gnu++11 -Wall -Wextra -Wextra -dM -E -o release\moc_predefs.h C:\Program\Qt\5.14.2\mingw73_64\mkspecs\features\data\dummy.cpp
 
-compiler_moc_header_make_all: release/moc_form_create_group.cpp release/moc_form_game.cpp release/moc_mainwindow.cpp release/moc_network_client.cpp release/moc_qdynamicbutton.cpp
+compiler_moc_header_make_all: release/moc_form_create_group.cpp release/moc_form_game.cpp release/moc_mainwindow.cpp release/moc_moveitem.cpp release/moc_network_client.cpp release/moc_qdynamicbutton.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) release\moc_form_create_group.cpp release\moc_form_game.cpp release\moc_mainwindow.cpp release\moc_network_client.cpp release\moc_qdynamicbutton.cpp
+	-$(DEL_FILE) release\moc_form_create_group.cpp release\moc_form_game.cpp release\moc_mainwindow.cpp release\moc_moveitem.cpp release\moc_network_client.cpp release\moc_qdynamicbutton.cpp
 release/moc_form_create_group.cpp: ../untitled1/form_create_group.h \
 		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/QWidget \
 		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/qwidget.h \
@@ -263,6 +269,17 @@ release/moc_form_create_group.cpp: ../untitled1/form_create_group.h \
 		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/qpushbutton.h \
 		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/qabstractbutton.h \
 		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qicon.h \
+		../untitled1/moveitem.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsItem \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicsitem.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/QPainter \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qpainter.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qtextoption.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qpen.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsSceneMouseEvent \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicssceneevent.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/QDebug \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/QCursor \
 		release/moc_predefs.h \
 		C:/Program/Qt/5.14.2/mingw73_64/bin/moc.exe
 	C:\Program\Qt\5.14.2\mingw73_64\bin\moc.exe $(DEFINES) --include C:/Users/DANIL/Desktop/project_new_network/client/client_0.0.1/build-untitled1-Desktop_Qt_5_14_2_MinGW_64_bit-Debug/release/moc_predefs.h -IC:/Program/Qt/5.14.2/mingw73_64/mkspecs/win32-g++ -IC:/Users/DANIL/Desktop/project_new_network/client/client_0.0.1/untitled1 -IC:/Program/Qt/5.14.2/mingw73_64/include -IC:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets -IC:/Program/Qt/5.14.2/mingw73_64/include/QtGui -IC:/Program/Qt/5.14.2/mingw73_64/include/QtANGLE -IC:/Program/Qt/5.14.2/mingw73_64/include/QtNetwork -IC:/Program/Qt/5.14.2/mingw73_64/include/QtCore -I. -IC:/Program/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -IC:/Program/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -IC:/Program/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -IC:/Program/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -IC:/Program/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -IC:/Program/Qt/Tools/mingw730_64/x86_64-w64-mingw32/include ..\untitled1\form_create_group.h -o release\moc_form_create_group.cpp
@@ -393,6 +410,17 @@ release/moc_form_game.cpp: ../untitled1/form_game.h \
 		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/qpushbutton.h \
 		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/qabstractbutton.h \
 		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qicon.h \
+		../untitled1/moveitem.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsItem \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicsitem.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/QPainter \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qpainter.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qtextoption.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qpen.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsSceneMouseEvent \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicssceneevent.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/QDebug \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/QCursor \
 		release/moc_predefs.h \
 		C:/Program/Qt/5.14.2/mingw73_64/bin/moc.exe
 	C:\Program\Qt\5.14.2\mingw73_64\bin\moc.exe $(DEFINES) --include C:/Users/DANIL/Desktop/project_new_network/client/client_0.0.1/build-untitled1-Desktop_Qt_5_14_2_MinGW_64_bit-Debug/release/moc_predefs.h -IC:/Program/Qt/5.14.2/mingw73_64/mkspecs/win32-g++ -IC:/Users/DANIL/Desktop/project_new_network/client/client_0.0.1/untitled1 -IC:/Program/Qt/5.14.2/mingw73_64/include -IC:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets -IC:/Program/Qt/5.14.2/mingw73_64/include/QtGui -IC:/Program/Qt/5.14.2/mingw73_64/include/QtANGLE -IC:/Program/Qt/5.14.2/mingw73_64/include/QtNetwork -IC:/Program/Qt/5.14.2/mingw73_64/include/QtCore -I. -IC:/Program/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -IC:/Program/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -IC:/Program/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -IC:/Program/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -IC:/Program/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -IC:/Program/Qt/Tools/mingw730_64/x86_64-w64-mingw32/include ..\untitled1\form_game.h -o release\moc_form_game.cpp
@@ -530,10 +558,130 @@ release/moc_mainwindow.cpp: ../untitled1/mainwindow.h \
 		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/QPushButton \
 		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/qpushbutton.h \
 		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/qabstractbutton.h \
+		../untitled1/moveitem.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsItem \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicsitem.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/QPainter \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qpainter.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qtextoption.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qpen.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsSceneMouseEvent \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicssceneevent.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/QDebug \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/QCursor \
 		../untitled1/form_create_group.h \
 		release/moc_predefs.h \
 		C:/Program/Qt/5.14.2/mingw73_64/bin/moc.exe
 	C:\Program\Qt\5.14.2\mingw73_64\bin\moc.exe $(DEFINES) --include C:/Users/DANIL/Desktop/project_new_network/client/client_0.0.1/build-untitled1-Desktop_Qt_5_14_2_MinGW_64_bit-Debug/release/moc_predefs.h -IC:/Program/Qt/5.14.2/mingw73_64/mkspecs/win32-g++ -IC:/Users/DANIL/Desktop/project_new_network/client/client_0.0.1/untitled1 -IC:/Program/Qt/5.14.2/mingw73_64/include -IC:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets -IC:/Program/Qt/5.14.2/mingw73_64/include/QtGui -IC:/Program/Qt/5.14.2/mingw73_64/include/QtANGLE -IC:/Program/Qt/5.14.2/mingw73_64/include/QtNetwork -IC:/Program/Qt/5.14.2/mingw73_64/include/QtCore -I. -IC:/Program/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -IC:/Program/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -IC:/Program/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -IC:/Program/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -IC:/Program/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -IC:/Program/Qt/Tools/mingw730_64/x86_64-w64-mingw32/include ..\untitled1\mainwindow.h -o release\moc_mainwindow.cpp
+
+release/moc_moveitem.cpp: ../untitled1/moveitem.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/QObject \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qobject.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qobjectdefs.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qnamespace.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qglobal.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qconfig-bootstrapped.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qconfig.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qtcore-config.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qsystemdetection.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qprocessordetection.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qcompilerdetection.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qtypeinfo.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qsysinfo.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qlogging.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qflags.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qatomic.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qbasicatomic.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qatomic_bootstrap.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qgenericatomic.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qatomic_cxx11.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qatomic_msvc.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qglobalstatic.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qmutex.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qnumeric.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qversiontagging.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qobjectdefs_impl.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qstring.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qchar.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qbytearray.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qrefcount.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qarraydata.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qstringliteral.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qstringalgorithms.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qstringview.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qstringbuilder.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qlist.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qalgorithms.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qiterator.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qhashfunctions.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qpair.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qvector.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qcontainertools_impl.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qpoint.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qbytearraylist.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qstringlist.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qregexp.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qstringmatcher.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qcoreevent.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qscopedpointer.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qmetatype.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qvarlengtharray.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qcontainerfwd.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qobject_impl.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsItem \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicsitem.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/qtwidgetsglobal.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qtguiglobal.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qtgui-config.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/qtwidgets-config.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qvariant.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qmap.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qdebug.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qhash.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qtextstream.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qiodevice.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qlocale.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qshareddata.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qset.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qcontiguouscache.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qsharedpointer.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qsharedpointer_impl.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qrect.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qmargins.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qsize.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qpainterpath.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qmatrix.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qpolygon.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qregion.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qwindowdefs.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qwindowdefs_win.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qdatastream.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qline.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qpixmap.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qpaintdevice.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qcolor.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qrgb.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qrgba64.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qimage.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qpixelformat.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qtransform.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/QPainter \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qpainter.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qtextoption.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qpen.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qbrush.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qfontinfo.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qfont.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qfontmetrics.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsSceneMouseEvent \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicssceneevent.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/QDebug \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/QCursor \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qcursor.h \
+		../untitled1/chess_engine.h \
+		release/moc_predefs.h \
+		C:/Program/Qt/5.14.2/mingw73_64/bin/moc.exe
+	C:\Program\Qt\5.14.2\mingw73_64\bin\moc.exe $(DEFINES) --include C:/Users/DANIL/Desktop/project_new_network/client/client_0.0.1/build-untitled1-Desktop_Qt_5_14_2_MinGW_64_bit-Debug/release/moc_predefs.h -IC:/Program/Qt/5.14.2/mingw73_64/mkspecs/win32-g++ -IC:/Users/DANIL/Desktop/project_new_network/client/client_0.0.1/untitled1 -IC:/Program/Qt/5.14.2/mingw73_64/include -IC:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets -IC:/Program/Qt/5.14.2/mingw73_64/include/QtGui -IC:/Program/Qt/5.14.2/mingw73_64/include/QtANGLE -IC:/Program/Qt/5.14.2/mingw73_64/include/QtNetwork -IC:/Program/Qt/5.14.2/mingw73_64/include/QtCore -I. -IC:/Program/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -IC:/Program/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -IC:/Program/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -IC:/Program/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -IC:/Program/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -IC:/Program/Qt/Tools/mingw730_64/x86_64-w64-mingw32/include ..\untitled1\moveitem.h -o release\moc_moveitem.cpp
 
 release/moc_network_client.cpp: ../untitled1/network_client.h \
 		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/QObject \
@@ -886,6 +1034,17 @@ release/form_create_group.o: ../untitled1/form_create_group.cpp ../untitled1/for
 		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/qpushbutton.h \
 		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/qabstractbutton.h \
 		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qicon.h \
+		../untitled1/moveitem.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsItem \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicsitem.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/QPainter \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qpainter.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qtextoption.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qpen.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsSceneMouseEvent \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicssceneevent.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/QDebug \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/QCursor \
 		ui_form_create_group.h \
 		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/QTime \
 		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qdatetime.h
@@ -1017,8 +1176,18 @@ release/form_game.o: ../untitled1/form_game.cpp ../untitled1/form_game.h \
 		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/qpushbutton.h \
 		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/qabstractbutton.h \
 		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qicon.h \
-		ui_form_game.h \
-		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/QDebug
+		../untitled1/moveitem.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsItem \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicsitem.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/QPainter \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qpainter.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qtextoption.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qpen.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsSceneMouseEvent \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicssceneevent.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/QDebug \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/QCursor \
+		ui_form_game.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\form_game.o ..\untitled1\form_game.cpp
 
 release/main.o: ../untitled1/main.cpp ../untitled1/mainwindow.h \
@@ -1154,6 +1323,17 @@ release/main.o: ../untitled1/main.cpp ../untitled1/mainwindow.h \
 		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/QPushButton \
 		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/qpushbutton.h \
 		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/qabstractbutton.h \
+		../untitled1/moveitem.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsItem \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicsitem.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/QPainter \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qpainter.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qtextoption.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qpen.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsSceneMouseEvent \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicssceneevent.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/QDebug \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/QCursor \
 		../untitled1/form_create_group.h \
 		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/QApplication \
 		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/qapplication.h \
@@ -1297,11 +1477,129 @@ release/mainwindow.o: ../untitled1/mainwindow.cpp ../untitled1/mainwindow.h \
 		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/QPushButton \
 		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/qpushbutton.h \
 		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/qabstractbutton.h \
+		../untitled1/moveitem.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsItem \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicsitem.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/QPainter \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qpainter.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qtextoption.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qpen.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsSceneMouseEvent \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicssceneevent.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/QDebug \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/QCursor \
 		../untitled1/form_create_group.h \
 		ui_mainwindow.h \
 		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/QProcess \
 		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qprocess.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\mainwindow.o ..\untitled1\mainwindow.cpp
+
+release/moveitem.o: ../untitled1/moveitem.cpp ../untitled1/moveitem.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/QObject \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qobject.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qobjectdefs.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qnamespace.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qglobal.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qconfig-bootstrapped.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qconfig.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qtcore-config.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qsystemdetection.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qprocessordetection.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qcompilerdetection.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qtypeinfo.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qsysinfo.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qlogging.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qflags.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qatomic.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qbasicatomic.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qatomic_bootstrap.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qgenericatomic.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qatomic_cxx11.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qatomic_msvc.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qglobalstatic.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qmutex.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qnumeric.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qversiontagging.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qobjectdefs_impl.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qstring.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qchar.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qbytearray.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qrefcount.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qarraydata.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qstringliteral.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qstringalgorithms.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qstringview.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qstringbuilder.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qlist.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qalgorithms.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qiterator.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qhashfunctions.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qpair.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qvector.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qcontainertools_impl.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qpoint.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qbytearraylist.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qstringlist.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qregexp.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qstringmatcher.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qcoreevent.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qscopedpointer.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qmetatype.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qvarlengtharray.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qcontainerfwd.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qobject_impl.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsItem \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicsitem.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/qtwidgetsglobal.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qtguiglobal.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qtgui-config.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/qtwidgets-config.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qvariant.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qmap.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qdebug.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qhash.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qtextstream.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qiodevice.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qlocale.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qshareddata.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qset.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qcontiguouscache.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qsharedpointer.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qsharedpointer_impl.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qrect.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qmargins.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qsize.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qpainterpath.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qmatrix.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qpolygon.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qregion.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qwindowdefs.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qwindowdefs_win.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qdatastream.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/qline.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qpixmap.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qpaintdevice.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qcolor.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qrgb.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qrgba64.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qimage.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qpixelformat.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qtransform.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/QPainter \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qpainter.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qtextoption.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qpen.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qbrush.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qfontinfo.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qfont.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qfontmetrics.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/QGraphicsSceneMouseEvent \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtWidgets/qgraphicssceneevent.h \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/QDebug \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/QCursor \
+		C:/Program/Qt/5.14.2/mingw73_64/include/QtGui/qcursor.h \
+		../untitled1/chess_engine.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\moveitem.o ..\untitled1\moveitem.cpp
 
 release/network_client.o: ../untitled1/network_client.cpp ../untitled1/network_client.h \
 		C:/Program/Qt/5.14.2/mingw73_64/include/QtCore/QObject \
@@ -1499,6 +1797,9 @@ release/moc_form_game.o: release/moc_form_game.cpp
 
 release/moc_mainwindow.o: release/moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\moc_mainwindow.o release\moc_mainwindow.cpp
+
+release/moc_moveitem.o: release/moc_moveitem.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\moc_moveitem.o release\moc_moveitem.cpp
 
 release/moc_network_client.o: release/moc_network_client.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\moc_network_client.o release\moc_network_client.cpp
