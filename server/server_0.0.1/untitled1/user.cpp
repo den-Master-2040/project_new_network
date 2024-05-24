@@ -162,7 +162,12 @@ void user::slotReadyRead()
             {
                 if(str.at(1) == 'G')
                     emit signalGetDataGroup();
+                if(str.at(1) == 'O')
+                {
+                    REF_SERVER->getServer()->groups.at(group)->SendAll("GO");
                 break;
+                }
+
             }
             case 'O'://Succesful connect to group
             {
@@ -188,6 +193,13 @@ void user::slotReadyRead()
                 emit signalsendMessage();
                 break;
             }
+            case 'H'://sendedMsgToAnotherUser
+            {
+                //hod
+                sendedMsgToAnotherUser = str;
+                emit signalsendMessage();
+                break;
+            }
             case 'N'://Rename user
             {
 
@@ -204,7 +216,7 @@ void user::slotReadyRead()
                 if(str.at(1) == 'G')
                     emit signalExitGroup();
             }
-            }
+        }
 
     }
 }

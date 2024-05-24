@@ -22,11 +22,11 @@ public:
     void SendToSocket(QString message,QTcpSocket *socket_sender);
 
     Server *getServer();
-
+    QVector <group*> groups;
 private:
     QVector <QTcpSocket*> Sockets;
     QVector <user*> users;
-    QVector <group*> groups;
+
     //QVector <QPair<QTcpSocket, qintptr>> mysocketDescriptor;
     QString ipAddress;
     int port;

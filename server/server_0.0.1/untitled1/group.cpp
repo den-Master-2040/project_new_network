@@ -43,7 +43,12 @@ void group::slotSendMsgSecondUser()
 }
 
 void group::Disconnected()
-{
+{    
+    if(secondUser == (user*)sender())
+        secondUser = nullptr;
+    if(firstUser == (user*)sender())
+        firstUser = nullptr;
+
     if(firstUser == nullptr && secondUser == nullptr)
         emit signalDestroy();
 }
@@ -56,4 +61,12 @@ void group::SendToSocket(QString message, QTcpSocket *socket_sender)
     out.setVersion(QDataStream::Qt_5_9);
     out << message;
     socket_sender->write(Data);
+}
+
+void group::SendAll(QString message)
+{
+    if(firstUser !=nullptr)
+    SendToSocket(message, firstUser->socket);
+    if(secondUser !=nullptr)
+    SendToSocket(message, secondUser->socket);
 }

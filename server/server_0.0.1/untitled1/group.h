@@ -20,8 +20,10 @@ public:
 
      void deleteUser();//когда юзер вышел
      void sendMsg();
-private:
      void SendToSocket(QString message, QTcpSocket *socket_sender);
+     void SendAll(QString message);
+private:
+
  signals:
      void signalDestroy();
 

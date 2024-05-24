@@ -10,9 +10,6 @@ form_game::form_game(QWidget *parent, network_client *nt) :
     network_obj = nt;
 
     ui->setupUi(this);
-    // Косметическая подготовка приложения
-    //this->resize(1000,1000);          // Устанавливаем размеры окна приложения
-    //this->setFixedSize(1000,1000);
 
     scene = new QGraphicsScene(this);   // Инициализируем графическую сцену
     scene->setItemIndexMethod(QGraphicsScene::NoIndex); // настраиваем индексацию элементов

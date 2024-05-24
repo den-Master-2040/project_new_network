@@ -77,6 +77,26 @@ void Server::SlotReadyRead()
 void Server::Disconnected()
 {
     user* client = (user*)sender();
+
+    if(client->group != -1){
+    group *gr = groups.at(client->group);
+
+    if(gr->firstUser == client && gr->secondUser !=nullptr)
+    {
+        qDebug() << "SendToSocket(DCT,secondUser->socket)";
+        SendToSocket("DCT",gr->secondUser->socket);
+        gr->firstUser = gr->secondUser;
+        gr->secondUser = nullptr;
+    }
+    else
+    {
+        if(gr->firstUser != nullptr)
+        {
+            qDebug() << "SendToSocket(DCT,firstUser->socket)";
+            SendToSocket("DCT",gr->firstUser->socket);
+        }
+    }
+    }
     //Нам нужно выполнить ряд действий, когда пользователь отключился
     QString lg = client->getLogin();
     qDebug() << "user Index:" << users.indexOf(client);
@@ -96,6 +116,7 @@ void Server::CreateGroup()
     gr->name = client->name_group;
     gr->password = client->pass_group;
     groups.push_back(gr);
+    client->group = groups.size()-1;
     connect(gr, &group::signalDestroy, [this,gr](){
         groups.removeOne(gr);
         delete gr;
@@ -118,8 +139,9 @@ void Server::SendDataGroup()
 
     for(int i = 0; i < groups.size();i++)
     {
-        if(groups.at(0)->secondUser == nullptr) //собираем только группы тех, где один игрок
-            dataGroup += 'I' + QString::number(i)+ ' ' + 'G' +groups.at(i)->name + ' ' + 'U' +groups.at(i)->firstUser->login + ' ';
+        if((groups.at(0)->secondUser == nullptr && groups.at(0)->firstUser != nullptr)
+         ||(groups.at(0)->firstUser == nullptr && groups.at(0)->secondUser != nullptr) ) //собираем только группы тех, где один игрок
+            dataGroup += "I" + QString::number(i)+ ' ' + "G" +groups.at(i)->name + " U" +groups.at(i)->firstUser->login + " ";
     }
     SendToSocket(dataGroup,client->socket);
 }
