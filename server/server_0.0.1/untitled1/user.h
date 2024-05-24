@@ -6,6 +6,7 @@
 #include <QtCore>
 #include "QTcpSocket"
 #include "QTimer"
+
 //#include "group.h"
 class user : public QObject
 {
@@ -16,27 +17,25 @@ public:
     ~user();
 
     //поля
-    QString login;
-    QString token;
+    QString login = "";
+    QString token= "";
     int socketDescriptor;
     QTcpSocket *socket;
     QByteArray Data; //для отправки сообщений
 
     //информация только создания для групп
-    QString msg;
-    QString name_group;
-    QString pass_group;
+    QString msg= "";
+    QString name_group= "";
+    QString pass_group= "";
 
-    QString sendedMsgToAnotherUser;
+    QString sendedMsgToAnotherUser= "";
 
     bool group_created = false;
     int group = -1;
     //объекты
-    QTimer *t_ping = nullptr;
 
     //методы для общего пользования
     void sendMessage(QString message);
-    void isAlive();
     void getSocket();
     void getDataDestinaition();//функция должна будет возвращать данные из бд с достижениями игрока
 

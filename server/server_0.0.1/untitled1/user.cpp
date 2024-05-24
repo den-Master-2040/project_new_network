@@ -5,17 +5,15 @@ user::user(quint32 socketDescriptor)
 {
     socket = new QTcpSocket();
     socket->setSocketDescriptor(socketDescriptor);
-    //t_ping = new QTimer();
-    //t_ping->start(200);
-    connect(socket, &QTcpSocket::disconnected, socket, &QTcpSocket::deleteLater);
+
     connect(socket, &QTcpSocket::disconnected, this, &user::signalDisconnect);
     connect(socket, &QTcpSocket::readyRead, this, &user::slotReadyRead);
-    connect(t_ping, &QTimer::timeout, this, &user::isAlive);
+    connect(socket, &QTcpSocket::disconnected, socket, &QTcpSocket::deleteLater);
 }
 
 user::~user()
 {
-    delete t_ping;
+
 }
 
 QString user::getLogin() const
@@ -46,18 +44,14 @@ void user::sendMessage(QString message)
     QDataStream out (&Data, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_5_9);
     out << message;
-    socket->write(Data);
+    if(socket != nullptr)
+        if(socket->state() == QTcpSocket::ConnectedState)
+            socket->write(Data);
+    qDebug() << "sendto " << socket->socketDescriptor() << "msg: " << Data;
 
 }
 
-void user::isAlive()
-{
-    //Нахера опрашивать постоянно сокет, если можно напрямую подрубить коннект?
-    //удалить в будущем!
-    if(socket == nullptr || socket->state() != QAbstractSocket::ConnectedState)
-        emit signalDisconnect();
 
-}
 
 void user::getDataDestinaition()
 {
@@ -84,7 +78,7 @@ void user::slotReadyRead()
         QString str;
         in >> str;
 
-        qDebug() << str;
+
         qDebug() << "Sended slotReadyReadUser" << socket->socketDescriptor()<< " : " << str;
         switch (str.at(0).unicode()) {
             case 'p'://ping
@@ -165,8 +159,9 @@ void user::slotReadyRead()
                 if(str.at(1) == 'O')
                 {
                     REF_SERVER->getServer()->groups.at(group)->SendAll("GO");
-                break;
+
                 }
+                break;
 
             }
             case 'O'://Succesful connect to group
@@ -209,12 +204,13 @@ void user::slotReadyRead()
                 new_login = str;
                 spdlog::info("Rename user! username old {0} new {1}", login.toStdString(), new_login.toStdString());
                 this->login = new_login;
-
+                break;
             }
             case 'D'://ExitGroup
             {
                 if(str.at(1) == 'G')
                     emit signalExitGroup();
+                break;
             }
         }
 
