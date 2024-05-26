@@ -78,6 +78,7 @@ void group::SendToSocket(QString message, QTcpSocket *socket_sender)
     if(socket_sender != nullptr)
         if(socket_sender->state() == QTcpSocket::ConnectedState)
     socket_sender->write(Data);
+    qDebug() << "sendedGroup" << socket_sender->socketDescriptor() << "data:" << Data;
 }
 
 //используется только для отправки сигнала GO который начинает игру
@@ -87,7 +88,13 @@ void group::SendAll(QString message)
     if(firstUser == nullptr || secondUser == nullptr) return;
 
     if(firstUser !=nullptr)
-    SendToSocket(message, firstUser->socket);
+    {
+        SendToSocket(message + "W", firstUser->socket);
+
+    }
+
     if(secondUser !=nullptr)
-    SendToSocket(message, secondUser->socket);
+    {
+        SendToSocket(message + "B", secondUser->socket);
+    }
 }

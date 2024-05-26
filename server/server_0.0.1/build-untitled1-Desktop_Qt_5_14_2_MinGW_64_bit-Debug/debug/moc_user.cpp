@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_user_t {
-    QByteArrayData data[10];
-    char stringdata0[142];
+    QByteArrayData data[11];
+    char stringdata0[163];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -41,13 +41,15 @@ QT_MOC_LITERAL(5, 54, 17), // "signalCreateGroup"
 QT_MOC_LITERAL(6, 72, 18), // "signalGetDataGroup"
 QT_MOC_LITERAL(7, 91, 20), // "signalConnectToGroup"
 QT_MOC_LITERAL(8, 112, 15), // "signalExitGroup"
-QT_MOC_LITERAL(9, 128, 13) // "slotReadyRead"
+QT_MOC_LITERAL(9, 128, 20), // "signalConnectMMgroup"
+QT_MOC_LITERAL(10, 149, 13) // "slotReadyRead"
 
     },
     "user\0signalDisconnect\0\0signalEnable\0"
     "signalsendMessage\0signalCreateGroup\0"
     "signalGetDataGroup\0signalConnectToGroup\0"
-    "signalExitGroup\0slotReadyRead"
+    "signalExitGroup\0signalConnectMMgroup\0"
+    "slotReadyRead"
 };
 #undef QT_MOC_LITERAL
 
@@ -57,26 +59,28 @@ static const uint qt_meta_data_user[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       8,   14, // methods
+       9,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       7,       // signalCount
+       8,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,   54,    2, 0x06 /* Public */,
-       3,    0,   55,    2, 0x06 /* Public */,
-       4,    0,   56,    2, 0x06 /* Public */,
-       5,    0,   57,    2, 0x06 /* Public */,
-       6,    0,   58,    2, 0x06 /* Public */,
-       7,    0,   59,    2, 0x06 /* Public */,
-       8,    0,   60,    2, 0x06 /* Public */,
+       1,    0,   59,    2, 0x06 /* Public */,
+       3,    0,   60,    2, 0x06 /* Public */,
+       4,    0,   61,    2, 0x06 /* Public */,
+       5,    0,   62,    2, 0x06 /* Public */,
+       6,    0,   63,    2, 0x06 /* Public */,
+       7,    0,   64,    2, 0x06 /* Public */,
+       8,    0,   65,    2, 0x06 /* Public */,
+       9,    0,   66,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       9,    0,   61,    2, 0x0a /* Public */,
+      10,    0,   67,    2, 0x0a /* Public */,
 
  // signals: parameters
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -104,7 +108,8 @@ void user::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void *
         case 4: _t->signalGetDataGroup(); break;
         case 5: _t->signalConnectToGroup(); break;
         case 6: _t->signalExitGroup(); break;
-        case 7: _t->slotReadyRead(); break;
+        case 7: _t->signalConnectMMgroup(); break;
+        case 8: _t->slotReadyRead(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -158,6 +163,13 @@ void user::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void *
                 return;
             }
         }
+        {
+            using _t = void (user::*)();
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&user::signalConnectMMgroup)) {
+                *result = 7;
+                return;
+            }
+        }
     }
     Q_UNUSED(_a);
 }
@@ -191,13 +203,13 @@ int user::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 8)
+        if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 8;
+        _id -= 9;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 8)
+        if (_id < 9)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 8;
+        _id -= 9;
     }
     return _id;
 }
@@ -242,6 +254,12 @@ void user::signalConnectToGroup()
 void user::signalExitGroup()
 {
     QMetaObject::activate(this, &staticMetaObject, 6, nullptr);
+}
+
+// SIGNAL 7
+void user::signalConnectMMgroup()
+{
+    QMetaObject::activate(this, &staticMetaObject, 7, nullptr);
 }
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE

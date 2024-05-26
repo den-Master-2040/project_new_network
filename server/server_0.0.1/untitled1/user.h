@@ -53,6 +53,8 @@ signals:
     void signalConnectToGroup();
     void signalExitGroup();
 
+    void signalConnectMMgroup();
+
 public slots:
     void slotReadyRead();
 };

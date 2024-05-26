@@ -8,7 +8,7 @@ Server::Server()
     spdlog::trace("Constructor Server()");
 
     //Please, set Ip address and port!
-    ipAddress = "127.0.0.1";
+    ipAddress = "89.179.126.139";
     port = 2323;
     QString info = "Server default ip: " + ipAddress + ", port: " + QString::number(port);
     spdlog::info(info.toStdString());
@@ -145,9 +145,14 @@ void Server::ConnectToGroup()
 
     groups.at(client->group)->insertUser(client);
     user *secondUser = groups.at(client->group)->secondUser;
-    SendToSocket("CU " + secondUser->login,groups.at(client->group)->firstUser->socket);
 
-    SendToSocket("CU " + groups.at(client->group)->firstUser->login,secondUser->socket);
+    if(groups.at(client->group)->firstUser != nullptr)
+        SendToSocket("CU " + secondUser->login + " " + groups.at(client->group)->name,
+                     groups.at(client->group)->firstUser->socket);
+
+    if(secondUser != nullptr)
+        SendToSocket("CU " + groups.at(client->group)->firstUser->login + " "
+                     + groups.at(client->group)->name,secondUser->socket);
     spdlog::info("Client {0} connected to group ", client->login.toStdString());
 }
 

@@ -52,7 +52,6 @@ void user::sendMessage(QString message)
 }
 
 
-
 void user::getDataDestinaition()
 {
     //TODO:
@@ -66,6 +65,11 @@ void user::getDataDestinaition()
      * Итоговый рейтинг
      * История матчей? (именно с кем был прошлый матч - игрок, время)
     */
+}
+
+int randomize(int start, int end)
+{
+    return rand() % (end - start + 1) + start;
 }
 
 void user::slotReadyRead()
@@ -210,6 +214,22 @@ void user::slotReadyRead()
             {
                 if(str.at(1) == 'G')
                     emit signalExitGroup();
+                break;
+            }
+            case 'F'://fastgame
+            {
+                if(str.at(1) == 'G')
+                {
+
+                    int size = REF_SERVER->getServer()->groups.size();
+
+                    if(size > 0)
+                    {
+                        int i = randomize(0, size)-1;
+                        group = i;
+                        emit signalConnectToGroup();
+                    }
+                }
                 break;
             }
         }
