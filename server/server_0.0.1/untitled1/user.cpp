@@ -119,6 +119,7 @@ void user::slotReadyRead()
                     else break;
                 }
                 this->token = token;
+
                 spdlog::info("Connect user! user login {0}, token {1}", login.toStdString(), token.toStdString());
                 break;
 
@@ -174,14 +175,31 @@ void user::slotReadyRead()
                 if(str.at(2) == 'C')
                 {
                     QString idGroup;
-                    for(int i = 4; i < str.size(); i++)
+                    int i = 4;
+                    for( ;i < str.size(); i++)
                     {
                         if(str[i] != ' ')
                             idGroup += str.at(i);
+                        else break;
                     }
                     group = idGroup.toInt();
 
-                    emit signalConnectToGroup();
+                    if(REF_SERVER->getServer()->groups.at(group)->password !="")
+                    {
+                        //если у группы есть пароль - проверяем чо прислал юзер
+                        QString pass;
+                        for(i++; i < str.size(); i++)
+                        {
+                            if(str[i] != ' ')
+                                pass += str.at(i);
+
+                        }
+                        qDebug() << "idgroup: " << idGroup << " pass: " << pass;
+                        if(pass == REF_SERVER->getServer()->groups.at(group)->password)
+                            emit signalConnectToGroup();
+
+                    }else //иначе без разбору заходим
+                        emit signalConnectToGroup();
                 }
                 break;
             }
@@ -201,14 +219,26 @@ void user::slotReadyRead()
             }
             case 'N'://Rename user
             {
+                if(str.at(1) == 'R')
+                {
+                    QString new_login = "";
 
-                QString new_login = "";
+                    str.remove(0,2);
+                    new_login = str;
+                    spdlog::info("Rename user! username old {0} new {1}", login.toStdString(), new_login.toStdString());
+                    this->login = new_login;
+                    break;
+                }
+                if(str.at(1) == 'P')
+                {
+                    QString new_pass = "";
 
-                str.remove(0,2);
-                new_login = str;
-                spdlog::info("Rename user! username old {0} new {1}", login.toStdString(), new_login.toStdString());
-                this->login = new_login;
-                break;
+                    str.remove(0,2);
+                    new_pass = str;
+                    spdlog::info("Repass user! pass old {0} new {1}", login.toStdString(), new_pass.toStdString());
+                    this->token = new_pass;
+                    break;
+                }
             }
             case 'D'://ExitGroup
             {
@@ -221,16 +251,16 @@ void user::slotReadyRead()
                 if(str.at(1) == 'G')
                 {
 
-                    int size = REF_SERVER->getServer()->groups.size();
+                    //int size = REF_SERVER->getServer()->groups.size();
 
-                    if(size > 0)
-                    {
-                        int i = randomize(0, size)-1;
-                        group = i;
-                        emit signalConnectToGroup();
-                        break;
-                    }
-                    qDebug() << "size group 0, find for users";
+                    //if(size > 0)
+                    //{
+                    //    int i = randomize(0, size)-1;
+                    //    group = i;
+                    //    emit signalConnectToGroup();
+                    //    break;
+                    //}
+                    //qDebug() << "size group 0, find for users";
 
                     findFastGame = true;
                     emit signalFindUsers();
