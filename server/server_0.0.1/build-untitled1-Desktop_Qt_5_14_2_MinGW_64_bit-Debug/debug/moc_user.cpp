@@ -23,7 +23,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_user_t {
     QByteArrayData data[11];
-    char stringdata0[163];
+    char stringdata0[158];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -41,14 +41,14 @@ QT_MOC_LITERAL(5, 54, 17), // "signalCreateGroup"
 QT_MOC_LITERAL(6, 72, 18), // "signalGetDataGroup"
 QT_MOC_LITERAL(7, 91, 20), // "signalConnectToGroup"
 QT_MOC_LITERAL(8, 112, 15), // "signalExitGroup"
-QT_MOC_LITERAL(9, 128, 20), // "signalConnectMMgroup"
-QT_MOC_LITERAL(10, 149, 13) // "slotReadyRead"
+QT_MOC_LITERAL(9, 128, 15), // "signalFindUsers"
+QT_MOC_LITERAL(10, 144, 13) // "slotReadyRead"
 
     },
     "user\0signalDisconnect\0\0signalEnable\0"
     "signalsendMessage\0signalCreateGroup\0"
     "signalGetDataGroup\0signalConnectToGroup\0"
-    "signalExitGroup\0signalConnectMMgroup\0"
+    "signalExitGroup\0signalFindUsers\0"
     "slotReadyRead"
 };
 #undef QT_MOC_LITERAL
@@ -108,7 +108,7 @@ void user::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void *
         case 4: _t->signalGetDataGroup(); break;
         case 5: _t->signalConnectToGroup(); break;
         case 6: _t->signalExitGroup(); break;
-        case 7: _t->signalConnectMMgroup(); break;
+        case 7: _t->signalFindUsers(); break;
         case 8: _t->slotReadyRead(); break;
         default: ;
         }
@@ -165,7 +165,7 @@ void user::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void *
         }
         {
             using _t = void (user::*)();
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&user::signalConnectMMgroup)) {
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&user::signalFindUsers)) {
                 *result = 7;
                 return;
             }
@@ -257,7 +257,7 @@ void user::signalExitGroup()
 }
 
 // SIGNAL 7
-void user::signalConnectMMgroup()
+void user::signalFindUsers()
 {
     QMetaObject::activate(this, &staticMetaObject, 7, nullptr);
 }

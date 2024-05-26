@@ -30,6 +30,7 @@ public:
 
     QString sendedMsgToAnotherUser= "";
 
+    bool findFastGame = false;
     bool group_created = false;
     int group = -1;
     //объекты
@@ -53,7 +54,7 @@ signals:
     void signalConnectToGroup();
     void signalExitGroup();
 
-    void signalConnectMMgroup();
+    void signalFindUsers();
 
 public slots:
     void slotReadyRead();

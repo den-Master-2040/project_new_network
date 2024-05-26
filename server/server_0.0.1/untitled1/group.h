@@ -13,7 +13,6 @@ public:
      user* firstUser = nullptr;
      user* secondUser = nullptr;
 
-     int status = -1;
 
      void insertUser(user *user);
      QByteArray Data;

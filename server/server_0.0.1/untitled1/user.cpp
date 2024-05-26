@@ -228,7 +228,15 @@ void user::slotReadyRead()
                         int i = randomize(0, size)-1;
                         group = i;
                         emit signalConnectToGroup();
+                        break;
                     }
+                    qDebug() << "size group 0, find for users";
+
+                    findFastGame = true;
+                    emit signalFindUsers();
+
+
+
                 }
                 break;
             }

@@ -21,11 +21,13 @@ public:
     void Requared(QString message, QTcpSocket *socket_sender);
     void SendToSocket(QString message,QTcpSocket *socket_sender);
 
+
     Server *getServer();
     QVector <group*> groups;
+    QVector <user*> users;
 private:
     QVector <QTcpSocket*> Sockets;
-    QVector <user*> users;
+
 
     //QVector <QPair<QTcpSocket, qintptr>> mysocketDescriptor;
     QString ipAddress;
@@ -38,6 +40,7 @@ public slots:
     void SendDataGroup();
     void ConnectToGroup();
     void CreateUser(qintptr socketDescriptor);
+    void FindUserMM();
 };
 
 #endif // SERVER_H

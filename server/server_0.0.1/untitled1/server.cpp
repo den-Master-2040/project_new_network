@@ -166,11 +166,32 @@ void Server::CreateUser(qintptr socketDescriptor)
     connect(client, &user::signalGetDataGroup, this, &Server::SendDataGroup);
     connect(client, &user::signalConnectToGroup, this, &Server::ConnectToGroup);
     connect(client, &user::signalDisconnect, this, &Server::Disconnected);
+    connect(client, &user::signalFindUsers, this, &Server::FindUserMM);
     client = nullptr;
     spdlog::info("Client connected {0}",socketDescriptor);
 
     for(int i = 0; i < users.size(); i++)
         SendToSocket("IS" + QString::number(users.size()), users.at(i)->socket); //количество человек на сервере, рассылаем всем
+}
+
+void Server::FindUserMM()
+{
+    client = (user*)sender();
+    user * secondclient = nullptr;
+    for(auto user : users)
+    {
+        if(user->findFastGame && user!=client){
+            secondclient = user;break;}
+    }
+    if(secondclient == nullptr) return; //я пока хз что делать в таком случае
+
+    group * gr = new group();
+    gr->insertUser(client);
+    gr->insertUser(secondclient);
+    gr->name = "fastGame";
+    gr->password = "";
+    if(gr->firstUser !=nullptr && gr->secondUser != nullptr)
+        gr->SendAll("GO");
 }
 
 void Server::SendToClient(QString message)
