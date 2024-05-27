@@ -5,7 +5,7 @@
 #include "user.h"
 #include "QTimer"
 #include "group.h"
-
+#include <QSslSocket>
 
 class Server : public QTcpServer
 {
@@ -13,7 +13,7 @@ class Server : public QTcpServer
 public:
     Server();
     Server(QString ipAddress_ = "89.179.126.139", int port_ = 2525);
-    QTcpSocket *socket;
+    QSslSocket *socket;
     user *client;
     QByteArray Data;
     void SendToClient(QString message);
@@ -26,7 +26,7 @@ public:
     QVector <group*> groups;
     QVector <user*> users;
 private:
-    QVector <QTcpSocket*> Sockets;
+    QVector <QSslSocket*> Sockets;
 
 
     //QVector <QPair<QTcpSocket, qintptr>> mysocketDescriptor;

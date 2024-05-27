@@ -56,7 +56,7 @@ void Server::incomingConnection(qintptr socketDescriptor)
 void Server::SlotReadyRead()
 {
 
-    socket = (QTcpSocket*)sender();
+    socket = (QSslSocket*)sender();
     QDataStream in(socket);
     in.setVersion(QDataStream::Qt_5_9);
     if(in.status() == QDataStream::Ok)
