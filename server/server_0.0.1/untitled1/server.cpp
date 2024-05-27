@@ -1,14 +1,14 @@
 #include "server.h"
 #include "QDataStream"
 #include "QThread"
-
+#include <QSslSocket>
 Server::Server()
 {
     spdlog::set_level(spdlog::level::trace);
     spdlog::trace("Constructor Server()");
 
     //Please, set Ip address and port!
-    ipAddress = "89.179.126.139";
+    ipAddress = "127.0.0.1";
     port = 2323;
     QString info = "Server default ip: " + ipAddress + ", port: " + QString::number(port);
     spdlog::info(info.toStdString());
@@ -50,6 +50,7 @@ bool Server::start()
 
 void Server::incomingConnection(qintptr socketDescriptor)
 {
+
     CreateUser(socketDescriptor);
 }
 
@@ -65,7 +66,7 @@ void Server::SlotReadyRead()
         QString str;
         in >> str;
         qDebug() << "Sended SlotReadyRead Server:" << socket->socketDescriptor()<< " : " << str;
-        Requared(str, socket);
+        //Requared(str, socket);
         //SendToClient(str);
     }
     else
@@ -87,7 +88,7 @@ void Server::Disconnected()
     delete client;
     if(users.size() > 0)
         for(int i = 0; i < users.size(); i++)
-            if(users.at(i)->socket->state() == QTcpSocket::ConnectedState)
+            if(users.at(i)->socket->state() == QSslSocket::ConnectedState)
                 SendToSocket("IS" + QString::number(users.size()), users.at(i)->socket); //количество человек на сервере, рассылаем всем
     spdlog::info("Client {0} disconnected ", lg.toStdString());
 }
@@ -159,26 +160,57 @@ void Server::ConnectToGroup()
     spdlog::info("Client {0} connected to group ", client->login.toStdString());
 }
 
+void Server::ready()
+{
+    qDebug() << "READY!";
+}
+
 void Server::CreateUser(qintptr socketDescriptor)
 {
-    user *client_ = new user(socketDescriptor);//создаем объект пользователя. Он сам себе создаст нужный сокет.
-    client = client_;
+    //user *client_ = nullptr;
+    socket = new QSslSocket;
+    socket->setPrivateKey("C:/server.key", QSsl::Rsa);
+    socket->setLocalCertificate("C:/server.crt");
+    connect(socket, &QSslSocket::encrypted, this, &Server::ready);
+    connect(socket, &QSslSocket::readyRead, this, &Server::SlotReadyRead );
+    if (socket->setSocketDescriptor(socketDescriptor)) {
 
-    users.push_back(client);
-    connect(client, &user::signalCreateGroup,this ,&Server::CreateGroup);
-    connect(client, &user::signalGetDataGroup, this, &Server::SendDataGroup);
-    connect(client, &user::signalConnectToGroup, this, &Server::ConnectToGroup);
-    connect(client, &user::signalDisconnect, this, &Server::Disconnected);
-    connect(client, &user::signalFindUsers, this, &Server::FindUserMM);
+        qDebug() << "createuser1";
 
-    QThread *th = new QThread();
-    client_->moveToThread(th);
-    th->start();
-    client = nullptr;
-    spdlog::info("Client connected {0}",socketDescriptor);
 
-    for(int i = 0; i < users.size(); i++)
-        SendToSocket("IS" + QString::number(users.size()), users.at(i)->socket); //количество человек на сервере, рассылаем всем
+
+        qDebug() << "createuser2";
+
+        addPendingConnection(socket);
+        socket->startServerEncryption();
+        qDebug() << "createuser3";
+        //client_ = new user(socket);//создаем объект пользователя. Он сам себе создаст нужный сокет.
+
+    } else {
+        qDebug() << "deletesocket4";
+        //delete serverSocket;
+    }
+
+
+
+
+
+    qDebug() << "deletesocket4";
+    //users.push_back(client);
+    //connect(client, &user::signalCreateGroup,this ,&Server::CreateGroup);
+    //connect(client, &user::signalGetDataGroup, this, &Server::SendDataGroup);
+    //connect(client, &user::signalConnectToGroup, this, &Server::ConnectToGroup);
+    //connect(client, &user::signalDisconnect, this, &Server::Disconnected);
+    //connect(client, &user::signalFindUsers, this, &Server::FindUserMM);
+
+    //QThread *th = new QThread();
+    //client_->moveToThread(th);
+    //th->start();
+    //client = nullptr;
+    //spdlog::info("Client connected {0}",socketDescriptor);
+
+    //for(int i = 0; i < users.size(); i++)
+        //SendToSocket("IS" + QString::number(users.size()), users.at(i)->socket); //количество человек на сервере, рассылаем всем
 }
 
 void Server::FindUserMM()
@@ -215,14 +247,14 @@ void Server::SendToClient(QString message)
         Sockets[i]->write(Data);
     }
 }
-void Server::SendToSocket(QString message, QTcpSocket *socket_sender)
+void Server::SendToSocket(QString message, QSslSocket *socket_sender)
 {
     Data.clear();
     QDataStream out (&Data, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_5_9);
     out << message;
     if(socket_sender != nullptr)
-        if(socket_sender->state() == QTcpSocket::ConnectedState)
+        if(socket_sender->state() == QSslSocket::ConnectedState)
             socket_sender->write(Data);
     qDebug() << "message: " << message << ", socket: " << socket_sender->socketDescriptor();
 }
@@ -233,7 +265,7 @@ Server * Server::getServer()
 }
 
 
-void Server::Requared(QString message, QTcpSocket *socket_sender)
+void Server::Requared(QString message, QSslSocket *socket_sender)
 {
     switch (message.at(0).unicode()) {
         case 'L':

@@ -4,7 +4,7 @@
 #include "spdlog/spdlog.h"
 #include <QObject>
 #include <QtCore>
-#include "QTcpSocket"
+#include "QSslSocket"
 #include "QTimer"
 #include <QQueue>
 //#include "group.h"
@@ -13,6 +13,7 @@ class user : public QObject
     Q_OBJECT
 public:
     user(quint32 socketDescriptor);
+    user(QSslSocket * socket);
 
     ~user();
 
@@ -20,7 +21,7 @@ public:
     QString login = "";
     QString token= "";
     int socketDescriptor;
-    QTcpSocket *socket;
+    QSslSocket *socket;
     QByteArray Data; //для отправки сообщений
 
     //информация только создания для групп

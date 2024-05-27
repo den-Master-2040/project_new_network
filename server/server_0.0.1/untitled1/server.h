@@ -1,11 +1,11 @@
-#ifndef SERVER_H
+﻿#ifndef SERVER_H
 #define SERVER_H
 #include <QTcpServer>
-#include <QTcpSocket>
+#include <QSslSocket>
 #include "user.h"
 #include "QTimer"
 #include "group.h"
-#include <QSslSocket>
+
 
 class Server : public QTcpServer
 {
@@ -18,8 +18,8 @@ public:
     QByteArray Data;
     void SendToClient(QString message);
     bool start();
-    void Requared(QString message, QTcpSocket *socket_sender);
-    void SendToSocket(QString message,QTcpSocket *socket_sender);
+    void Requared(QString message, QSslSocket *socket_sender);
+    void SendToSocket(QString message,QSslSocket *socket_sender);
 
 
     Server *getServer();
@@ -41,6 +41,7 @@ public slots:
     void ConnectToGroup();
     void CreateUser(qintptr socketDescriptor);
     void FindUserMM();
+    void ready();
 };
 
 #endif // SERVER_H

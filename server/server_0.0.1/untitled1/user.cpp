@@ -5,12 +5,12 @@
 #include <QTextCodec>
 user::user(quint32 socketDescriptor)
 {
-    socket = new QTcpSocket();
+    socket = new QSslSocket();
     socket->setSocketDescriptor(socketDescriptor);
 
-    connect(socket, &QTcpSocket::disconnected, this, &user::signalDisconnect);
-    //connect(socket, &QTcpSocket::readyRead, this, &user::slotReadyRead);
-    connect(socket, &QTcpSocket::disconnected, socket, &QTcpSocket::deleteLater);
+    connect(socket, &QSslSocket::disconnected, this, &user::signalDisconnect);
+    //connect(socket, &QSslSocket::readyRead, this, &user::slotReadyRead);
+    connect(socket, &QSslSocket::disconnected, socket, &QSslSocket::deleteLater);
 
     t_ringBuff = new QTimer();
     connect(t_ringBuff, &QTimer::timeout, this, &user::slotReadyRead);
@@ -20,6 +20,22 @@ user::user(quint32 socketDescriptor)
     connect(t_readBuff, &QTimer::timeout, this, &user::slotReadBuff);
     t_readBuff->start(25);
 
+}
+
+user::user(QSslSocket *socket)
+{
+    this->socket = socket;
+    connect(socket, &QSslSocket::disconnected, this, &user::signalDisconnect);
+    connect(socket, &QSslSocket::readyRead, this, &user::slotReadyRead);
+    connect(socket, &QSslSocket::disconnected, socket, &QSslSocket::deleteLater);
+
+    //t_ringBuff = new QTimer();
+    //connect(t_ringBuff, &QTimer::timeout, this, &user::slotReadyRead);
+    //t_ringBuff->start(1000);
+
+    //t_readBuff = new QTimer();
+    //connect(t_readBuff, &QTimer::timeout, this, &user::slotReadBuff);
+    //t_readBuff->start(1000);
 }
 
 user::~user()
@@ -56,7 +72,7 @@ void user::sendMessage(QString message)
     out.setVersion(QDataStream::Qt_5_9);
     out << message;
     if(socket != nullptr)
-        if(socket->state() == QTcpSocket::ConnectedState)
+        if(socket->state() == QSslSocket::ConnectedState)
             socket->write(Data);
     qDebug() << "sendto " << socket->socketDescriptor() << "msg: " << Data;
 
@@ -313,7 +329,7 @@ void user::slotReadyRead()
             //qDebug() << "Read message for QDataStream...";
             QString str;
             in >> str;
-
+            qDebug() << "str" << str;
             if(str != "")
                 buffer.push_back(str);
         }

@@ -486,12 +486,19 @@ debug/moc_group.cpp: ../untitled1/group.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qwineventnotifier.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qxmlstream.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qtcoreversion.h \
-		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/QTcpSocket \
-		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qtcpsocket.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/QSslSocket \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qsslsocket.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qtnetworkglobal.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qtnetwork-config.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qtcpsocket.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qabstractsocket.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qsslerror.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qsslcertificate.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qssl.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QFlags \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QTimer \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QQueue \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/QTcpSocket \
 		debug/moc_predefs.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/bin/moc.exe
 	C:\Qt\Qt5.14.2\5.14.2\mingw73_64\bin\moc.exe $(DEFINES) --include C:/Users/DANIL/Desktop/project_new_network/server/server_0.0.1/build-untitled1-Desktop_Qt_5_14_2_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/win32-g++ -IC:/Users/DANIL/Desktop/project_new_network/server/server_0.0.1/untitled1 -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore -I. -IC:/program/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -IC:/program/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -IC:/program/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -IC:/program/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -IC:/program/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -IC:/program/Qt/Tools/mingw730_64/x86_64-w64-mingw32/include ..\untitled1\group.h -o debug\moc_group.cpp
@@ -735,12 +742,18 @@ debug/moc_user.cpp: ../untitled1/user.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qwineventnotifier.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qxmlstream.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qtcoreversion.h \
-		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/QTcpSocket \
-		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qtcpsocket.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/QSslSocket \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qsslsocket.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qtnetworkglobal.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qtnetwork-config.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qtcpsocket.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qabstractsocket.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qsslerror.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qsslcertificate.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qssl.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QFlags \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QTimer \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QQueue \
 		debug/moc_predefs.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/bin/moc.exe
 	C:\Qt\Qt5.14.2\5.14.2\mingw73_64\bin\moc.exe $(DEFINES) --include C:/Users/DANIL/Desktop/project_new_network/server/server_0.0.1/build-untitled1-Desktop_Qt_5_14_2_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/win32-g++ -IC:/Users/DANIL/Desktop/project_new_network/server/server_0.0.1/untitled1 -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork -IC:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore -I. -IC:/program/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -IC:/program/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -IC:/program/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -IC:/program/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -IC:/program/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -IC:/program/Qt/Tools/mingw730_64/x86_64-w64-mingw32/include ..\untitled1\user.h -o debug\moc_user.cpp
@@ -833,8 +846,15 @@ debug/serverglobal.o: ../untitled1/serverglobal.cpp ../untitled1/serverglobal.h 
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qsharedpointer.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qsharedpointer_impl.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qhostaddress.h \
-		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/QTcpSocket \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/QSslSocket \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qsslsocket.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qtcpsocket.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qsslerror.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qsslcertificate.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcryptographichash.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qdatetime.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qssl.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QFlags \
 		../untitled1/user.h \
 		../untitled1/spdlog/spdlog.h \
 		../untitled1/spdlog/common.h \
@@ -899,7 +919,6 @@ debug/serverglobal.o: ../untitled1/serverglobal.cpp ../untitled1/serverglobal.h 
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcalendar.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcborarray.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcborvalue.h \
-		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qdatetime.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcborcommon.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qregularexpression.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qurl.h \
@@ -913,7 +932,6 @@ debug/serverglobal.o: ../untitled1/serverglobal.cpp ../untitled1/serverglobal.h 
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcommandlineparser.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcoreapplication.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qconcatenatetablesproxymodel.h \
-		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcryptographichash.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qdatastream.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qdeadlinetimer.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qelapsedtimer.h \
@@ -1011,7 +1029,9 @@ debug/serverglobal.o: ../untitled1/serverglobal.cpp ../untitled1/serverglobal.h 
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qxmlstream.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qtcoreversion.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QTimer \
-		../untitled1/group.h
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QQueue \
+		../untitled1/group.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/QTcpSocket
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\serverglobal.o ..\untitled1\serverglobal.cpp
 
 debug/async.o: ../untitled1/spdlog/async.cpp ../untitled1/spdlog/async.h \
@@ -1538,12 +1558,19 @@ debug/group.o: ../untitled1/group.cpp ../untitled1/group.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qwineventnotifier.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qxmlstream.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qtcoreversion.h \
-		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/QTcpSocket \
-		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qtcpsocket.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/QSslSocket \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qsslsocket.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qtnetworkglobal.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qtnetwork-config.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qtcpsocket.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qabstractsocket.h \
-		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QTimer
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qsslerror.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qsslcertificate.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qssl.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QFlags \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QTimer \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QQueue \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/QTcpSocket
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\group.o ..\untitled1\group.cpp
 
 debug/main.o: ../untitled1/main.cpp C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QCoreApplication \
@@ -1620,8 +1647,15 @@ debug/main.o: ../untitled1/main.cpp C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtC
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qsharedpointer.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qsharedpointer_impl.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qhostaddress.h \
-		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/QTcpSocket \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/QSslSocket \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qsslsocket.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qtcpsocket.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qsslerror.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qsslcertificate.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcryptographichash.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qdatetime.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qssl.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QFlags \
 		../untitled1/user.h \
 		../untitled1/spdlog/spdlog.h \
 		../untitled1/spdlog/common.h \
@@ -1685,7 +1719,6 @@ debug/main.o: ../untitled1/main.cpp C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtC
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcalendar.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcborarray.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcborvalue.h \
-		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qdatetime.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcborcommon.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qregularexpression.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qurl.h \
@@ -1698,7 +1731,6 @@ debug/main.o: ../untitled1/main.cpp C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtC
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcommandlineoption.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcommandlineparser.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qconcatenatetablesproxymodel.h \
-		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcryptographichash.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qdatastream.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qdeadlinetimer.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qelapsedtimer.h \
@@ -1796,7 +1828,9 @@ debug/main.o: ../untitled1/main.cpp C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtC
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qxmlstream.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qtcoreversion.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QTimer \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QQueue \
 		../untitled1/group.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/QTcpSocket \
 		../untitled1/serverglobal.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\main.o ..\untitled1\main.cpp
 
@@ -1871,8 +1905,15 @@ debug/server.o: ../untitled1/server.cpp ../untitled1/server.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qsharedpointer.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qsharedpointer_impl.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qhostaddress.h \
-		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/QTcpSocket \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/QSslSocket \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qsslsocket.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qtcpsocket.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qsslerror.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qsslcertificate.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcryptographichash.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qdatetime.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qssl.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QFlags \
 		../untitled1/user.h \
 		../untitled1/spdlog/spdlog.h \
 		../untitled1/spdlog/common.h \
@@ -1937,7 +1978,6 @@ debug/server.o: ../untitled1/server.cpp ../untitled1/server.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcalendar.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcborarray.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcborvalue.h \
-		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qdatetime.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcborcommon.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qregularexpression.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qurl.h \
@@ -1951,7 +1991,6 @@ debug/server.o: ../untitled1/server.cpp ../untitled1/server.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcommandlineparser.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcoreapplication.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qconcatenatetablesproxymodel.h \
-		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcryptographichash.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qdatastream.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qdeadlinetimer.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qelapsedtimer.h \
@@ -2049,8 +2088,11 @@ debug/server.o: ../untitled1/server.cpp ../untitled1/server.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qxmlstream.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qtcoreversion.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QTimer \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QQueue \
 		../untitled1/group.h \
-		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QDataStream
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/QTcpSocket \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QDataStream \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QThread
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\server.o ..\untitled1\server.cpp
 
 debug/user.o: ../untitled1/user.cpp ../untitled1/user.h \
@@ -2292,19 +2334,27 @@ debug/user.o: ../untitled1/user.cpp ../untitled1/user.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qwineventnotifier.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qxmlstream.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qtcoreversion.h \
-		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/QTcpSocket \
-		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qtcpsocket.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/QSslSocket \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qsslsocket.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qtnetworkglobal.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qtnetwork-config.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qtcpsocket.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qabstractsocket.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qsslerror.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qsslcertificate.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qssl.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QFlags \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QTimer \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QQueue \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QDataStream \
 		../untitled1/serverglobal.h \
 		../untitled1/server.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/QTcpServer \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qtcpserver.h \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/qhostaddress.h \
-		../untitled1/group.h
+		../untitled1/group.h \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtNetwork/QTcpSocket \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QTextCodec
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\user.o ..\untitled1\user.cpp
 
 debug/moc_group.o: debug/moc_group.cpp 
