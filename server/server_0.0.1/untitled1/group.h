@@ -31,6 +31,7 @@ private slots:
     void slotSendMsgSecondUser();
 public slots:
     void Disconnected();
+    void slotGo();
 };
 
 

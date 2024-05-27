@@ -6,7 +6,7 @@
 #include <QtCore>
 #include "QTcpSocket"
 #include "QTimer"
-
+#include <QQueue>
 //#include "group.h"
 class user : public QObject
 {
@@ -39,10 +39,16 @@ public:
     void sendMessage(QString message);
     void getSocket();
     void getDataDestinaition();//функция должна будет возвращать данные из бд с достижениями игрока
+    void RequaredMsg(QString str);
+    int findStartMsg(QByteArray byte);
 
     //сигналы
     QString getLogin() const;
     void setLogin(const QString &value);
+
+    QQueue <QString> buffer;
+    QTimer *t_ringBuff = nullptr;
+    QTimer *t_readBuff = nullptr;
 
 signals:
     void signalDisconnect();
@@ -53,11 +59,12 @@ signals:
     void signalGetDataGroup();
     void signalConnectToGroup();
     void signalExitGroup();
-
+    void signalGo();
     void signalFindUsers();
 
 public slots:
     void slotReadyRead();
+    void slotReadBuff();
 };
 
 #endif // USER_H

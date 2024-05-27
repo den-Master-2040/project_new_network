@@ -12,12 +12,14 @@ group::~group()
 
 void group::insertUser(user* user)
 {
+    //user->moveToThread(thread());
     if(firstUser==nullptr)
     {
         firstUser = user;
         connect(firstUser, &user::signalsendMessage, this, &group::slotSendMsgFirtsUser);
         connect(firstUser, &user::signalDisconnect, this, &group::Disconnected);
         connect(firstUser, &user::signalExitGroup, this, &group::Disconnected);
+        connect(firstUser, &user::signalGo, this, &group::slotGo);
 
     }
     else if(secondUser==nullptr)
@@ -26,6 +28,8 @@ void group::insertUser(user* user)
         connect(secondUser, &user::signalsendMessage, this, &group::slotSendMsgSecondUser);
         connect(secondUser, &user::signalDisconnect, this, &group::Disconnected);
         connect(secondUser, &user::signalExitGroup, this, &group::Disconnected);
+        connect(secondUser, &user::signalGo, this, &group::slotGo);
+
     }
     else return;//достигнуто максимальное количество игроков
 }
@@ -51,7 +55,10 @@ void group::Disconnected()
         qDebug() << "group::Disconnected secondUser";
         qDebug() << "SendToSocket(DCT,firstUser->socket)";
         if(firstUser != nullptr)
-        SendToSocket("DCT",firstUser->socket);
+        {
+            SendToSocket("DCT",firstUser->socket);
+            firstUser->findFastGame = false;
+        }
         secondUser = nullptr;
     }
     if(firstUser == (user*)sender() || firstUser == nullptr)
@@ -59,13 +66,22 @@ void group::Disconnected()
         qDebug() << "group::Disconnected firstUser";
         qDebug() << "SendToSocket(DCT,secondUser->socket)";
         if(secondUser != nullptr)
-        SendToSocket("DCT",secondUser->socket);
+        {
+            firstUser->findFastGame = false;
+            SendToSocket("DCT",secondUser->socket);
+        }
         firstUser = nullptr;
     }
 
 
     if(firstUser == nullptr && secondUser == nullptr)
         emit signalDestroy();
+}
+
+void group::slotGo()
+{
+    qDebug() << "slotGo";
+    SendAll("GO");
 }
 
 

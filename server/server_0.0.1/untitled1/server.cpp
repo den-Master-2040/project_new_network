@@ -1,7 +1,7 @@
 #include "server.h"
 #include "QDataStream"
-//#include "spdlog/spdlog.h"
-//#include "user.h"
+#include "QThread"
+
 Server::Server()
 {
     spdlog::set_level(spdlog::level::trace);
@@ -55,6 +55,7 @@ void Server::incomingConnection(qintptr socketDescriptor)
 
 void Server::SlotReadyRead()
 {
+
     socket = (QTcpSocket*)sender();
     QDataStream in(socket);
     in.setVersion(QDataStream::Qt_5_9);
@@ -69,7 +70,7 @@ void Server::SlotReadyRead()
     }
     else
     {
-        //qDebug() << "fail to read message for QDataStream!";
+        //qDebug() << "fail to read message for ыQDataStream!";
     }
 
 }
@@ -104,8 +105,10 @@ void Server::CreateGroup()
         delete gr;
     });
 
-
     gr->insertUser(client);
+
+
+
     spdlog::info("Client {0} create group!", client->login.toStdString());
     SendToSocket("Ok", client->socket);
 }
@@ -167,6 +170,10 @@ void Server::CreateUser(qintptr socketDescriptor)
     connect(client, &user::signalConnectToGroup, this, &Server::ConnectToGroup);
     connect(client, &user::signalDisconnect, this, &Server::Disconnected);
     connect(client, &user::signalFindUsers, this, &Server::FindUserMM);
+
+    QThread *th = new QThread();
+    client_->moveToThread(th);
+    th->start();
     client = nullptr;
     spdlog::info("Client connected {0}",socketDescriptor);
 

@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_user_t {
-    QByteArrayData data[11];
-    char stringdata0[158];
+    QByteArrayData data[13];
+    char stringdata0[180];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -41,15 +41,17 @@ QT_MOC_LITERAL(5, 54, 17), // "signalCreateGroup"
 QT_MOC_LITERAL(6, 72, 18), // "signalGetDataGroup"
 QT_MOC_LITERAL(7, 91, 20), // "signalConnectToGroup"
 QT_MOC_LITERAL(8, 112, 15), // "signalExitGroup"
-QT_MOC_LITERAL(9, 128, 15), // "signalFindUsers"
-QT_MOC_LITERAL(10, 144, 13) // "slotReadyRead"
+QT_MOC_LITERAL(9, 128, 8), // "signalGo"
+QT_MOC_LITERAL(10, 137, 15), // "signalFindUsers"
+QT_MOC_LITERAL(11, 153, 13), // "slotReadyRead"
+QT_MOC_LITERAL(12, 167, 12) // "slotReadBuff"
 
     },
     "user\0signalDisconnect\0\0signalEnable\0"
     "signalsendMessage\0signalCreateGroup\0"
     "signalGetDataGroup\0signalConnectToGroup\0"
-    "signalExitGroup\0signalFindUsers\0"
-    "slotReadyRead"
+    "signalExitGroup\0signalGo\0signalFindUsers\0"
+    "slotReadyRead\0slotReadBuff"
 };
 #undef QT_MOC_LITERAL
 
@@ -59,25 +61,27 @@ static const uint qt_meta_data_user[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       9,   14, // methods
+      11,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       8,       // signalCount
+       9,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,   59,    2, 0x06 /* Public */,
-       3,    0,   60,    2, 0x06 /* Public */,
-       4,    0,   61,    2, 0x06 /* Public */,
-       5,    0,   62,    2, 0x06 /* Public */,
-       6,    0,   63,    2, 0x06 /* Public */,
-       7,    0,   64,    2, 0x06 /* Public */,
-       8,    0,   65,    2, 0x06 /* Public */,
-       9,    0,   66,    2, 0x06 /* Public */,
+       1,    0,   69,    2, 0x06 /* Public */,
+       3,    0,   70,    2, 0x06 /* Public */,
+       4,    0,   71,    2, 0x06 /* Public */,
+       5,    0,   72,    2, 0x06 /* Public */,
+       6,    0,   73,    2, 0x06 /* Public */,
+       7,    0,   74,    2, 0x06 /* Public */,
+       8,    0,   75,    2, 0x06 /* Public */,
+       9,    0,   76,    2, 0x06 /* Public */,
+      10,    0,   77,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-      10,    0,   67,    2, 0x0a /* Public */,
+      11,    0,   78,    2, 0x0a /* Public */,
+      12,    0,   79,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void,
@@ -88,8 +92,10 @@ static const uint qt_meta_data_user[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void,
 
  // slots: parameters
+    QMetaType::Void,
     QMetaType::Void,
 
        0        // eod
@@ -108,8 +114,10 @@ void user::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void *
         case 4: _t->signalGetDataGroup(); break;
         case 5: _t->signalConnectToGroup(); break;
         case 6: _t->signalExitGroup(); break;
-        case 7: _t->signalFindUsers(); break;
-        case 8: _t->slotReadyRead(); break;
+        case 7: _t->signalGo(); break;
+        case 8: _t->signalFindUsers(); break;
+        case 9: _t->slotReadyRead(); break;
+        case 10: _t->slotReadBuff(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -165,8 +173,15 @@ void user::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void *
         }
         {
             using _t = void (user::*)();
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&user::signalFindUsers)) {
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&user::signalGo)) {
                 *result = 7;
+                return;
+            }
+        }
+        {
+            using _t = void (user::*)();
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&user::signalFindUsers)) {
+                *result = 8;
                 return;
             }
         }
@@ -203,13 +218,13 @@ int user::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 9)
+        if (_id < 11)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 9;
+        _id -= 11;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 9)
+        if (_id < 11)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 9;
+        _id -= 11;
     }
     return _id;
 }
@@ -257,9 +272,15 @@ void user::signalExitGroup()
 }
 
 // SIGNAL 7
-void user::signalFindUsers()
+void user::signalGo()
 {
     QMetaObject::activate(this, &staticMetaObject, 7, nullptr);
+}
+
+// SIGNAL 8
+void user::signalFindUsers()
+{
+    QMetaObject::activate(this, &staticMetaObject, 8, nullptr);
 }
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE
