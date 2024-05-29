@@ -21,6 +21,6 @@ Server *ServerGlobal::getServer()
 
 Server *ServerGlobal::createServer()
 {
-    server = new Server("127.0.0.1",2323);
+    server = new Server("192.168.1.65",2323);
     return  server;
 }

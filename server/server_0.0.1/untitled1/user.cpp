@@ -29,13 +29,13 @@ user::user(QSslSocket *socket)
     connect(socket, &QSslSocket::readyRead, this, &user::slotReadyRead);
     connect(socket, &QSslSocket::disconnected, socket, &QSslSocket::deleteLater);
 
-    //t_ringBuff = new QTimer();
-    //connect(t_ringBuff, &QTimer::timeout, this, &user::slotReadyRead);
-    //t_ringBuff->start(1000);
+    t_ringBuff = new QTimer();
+    connect(t_ringBuff, &QTimer::timeout, this, &user::slotReadyRead);
+    t_ringBuff->start(25);
 
-    //t_readBuff = new QTimer();
-    //connect(t_readBuff, &QTimer::timeout, this, &user::slotReadBuff);
-    //t_readBuff->start(1000);
+    t_readBuff = new QTimer();
+    connect(t_readBuff, &QTimer::timeout, this, &user::slotReadBuff);
+    t_readBuff->start(25);
 }
 
 user::~user()
@@ -329,7 +329,7 @@ void user::slotReadyRead()
             //qDebug() << "Read message for QDataStream...";
             QString str;
             in >> str;
-            qDebug() << "str" << str;
+
             if(str != "")
                 buffer.push_back(str);
         }

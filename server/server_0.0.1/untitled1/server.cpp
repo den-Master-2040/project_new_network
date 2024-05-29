@@ -163,54 +163,43 @@ void Server::ConnectToGroup()
 void Server::ready()
 {
     qDebug() << "READY!";
+    QSslSocket *socket = (QSslSocket*)sender();
+    user *client = new user(socket);
+    users.push_back(client);
+    connect(client, &user::signalCreateGroup,this ,&Server::CreateGroup);
+    connect(client, &user::signalGetDataGroup, this, &Server::SendDataGroup);
+    connect(client, &user::signalConnectToGroup, this, &Server::ConnectToGroup);
+    connect(client, &user::signalDisconnect, this, &Server::Disconnected);
+    connect(client, &user::signalFindUsers, this, &Server::FindUserMM);
+
+    QThread *th = new QThread();
+    client->moveToThread(th);
+    th->start();
+    client = nullptr;
+    spdlog::info("Client connected {0}",socket->socketDescriptor());
+
+    for(int i = 0; i < users.size(); i++)
+        SendToSocket("IS" + QString::number(users.size()), users.at(i)->socket); //количество человек на сервере, рассылаем всем
 }
 
 void Server::CreateUser(qintptr socketDescriptor)
 {
-    //user *client_ = nullptr;
+
     socket = new QSslSocket;
+    //socket->ignoreSslErrors();
     socket->setPrivateKey("C:/server.key", QSsl::Rsa);
     socket->setLocalCertificate("C:/server.crt");
     connect(socket, &QSslSocket::encrypted, this, &Server::ready);
-    connect(socket, &QSslSocket::readyRead, this, &Server::SlotReadyRead );
+
     if (socket->setSocketDescriptor(socketDescriptor)) {
 
         qDebug() << "createuser1";
-
-
-
-        qDebug() << "createuser2";
-
         addPendingConnection(socket);
         socket->startServerEncryption();
-        qDebug() << "createuser3";
-        //client_ = new user(socket);//создаем объект пользователя. Он сам себе создаст нужный сокет.
 
     } else {
-        qDebug() << "deletesocket4";
-        //delete serverSocket;
+
     }
-
-
-
-
-
-    qDebug() << "deletesocket4";
-    //users.push_back(client);
-    //connect(client, &user::signalCreateGroup,this ,&Server::CreateGroup);
-    //connect(client, &user::signalGetDataGroup, this, &Server::SendDataGroup);
-    //connect(client, &user::signalConnectToGroup, this, &Server::ConnectToGroup);
-    //connect(client, &user::signalDisconnect, this, &Server::Disconnected);
-    //connect(client, &user::signalFindUsers, this, &Server::FindUserMM);
-
-    //QThread *th = new QThread();
-    //client_->moveToThread(th);
-    //th->start();
-    //client = nullptr;
-    //spdlog::info("Client connected {0}",socketDescriptor);
-
-    //for(int i = 0; i < users.size(); i++)
-        //SendToSocket("IS" + QString::number(users.size()), users.at(i)->socket); //количество человек на сервере, рассылаем всем
 }
 
 void Server::FindUserMM()

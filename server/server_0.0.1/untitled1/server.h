@@ -25,6 +25,7 @@ public:
     Server *getServer();
     QVector <group*> groups;
     QVector <user*> users;
+    int socket_desc;
 private:
     QVector <QSslSocket*> Sockets;
 
