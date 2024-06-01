@@ -9,6 +9,8 @@ release/stdout_sinks.o
 release/group.o
 release/main.o
 release/server.o
+release/sqlworker.o
 release/user.o
 release/moc_group.o
+release/moc_sqlworker.o
 release/moc_user.o

@@ -32,6 +32,8 @@ bool Server::start()
     QString info = "Try to listen. Server ip: " + ipAddress + ", port: " + QString::number(port);
     spdlog::info(info.toStdString());
 
+    db = new sqlWorker();
+
     //Пытаемся запустить сервер
     if(this->listen(QHostAddress(ipAddress), port))
     {
@@ -50,7 +52,6 @@ bool Server::start()
 
 void Server::incomingConnection(qintptr socketDescriptor)
 {
-
     CreateUser(socketDescriptor);
 }
 
@@ -171,7 +172,7 @@ void Server::ready()
     connect(client, &user::signalConnectToGroup, this, &Server::ConnectToGroup);
     connect(client, &user::signalDisconnect, this, &Server::Disconnected);
     connect(client, &user::signalFindUsers, this, &Server::FindUserMM);
-
+    client->db = db;
     QThread *th = new QThread();
     client->moveToThread(th);
     th->start();
@@ -206,20 +207,51 @@ void Server::FindUserMM()
 {
     client = (user*)sender();
     user * secondclient = nullptr;
-    for(auto user : users)
+
+    bool hardMM = false;// флаг более грубого поиска
+    bool isFound = false;
+    for(;!isFound;)
     {
-        if(user->findFastGame && user!=client){
-            secondclient = user;break;}
+
+        for(auto user : users)
+        {
+            //_sleep(1200);
+            if(user->findFastGame && user!=client)
+            {
+
+                if(!requaredLvl(user->lvl, client->lvl))//если уровень игры неприемлемый
+                       if(users.size() > 6 )  //и игроков больше 6
+                           if(!hardMM) // флаг более грубого поиска
+                                continue;//пропускаем и ищем более подходящего пользователя
+
+                secondclient = user;
+                isFound = true;
+                break;
+            }
+        }
+        if(hardMM)
+            return;//это уже второй проход и мы никого не нашли
+
+        hardMM = true;//если мы никого не нашли, пробуем поискать ещё
+
     }
-    if(secondclient == nullptr) return; //я пока хз что делать в таком случае
+
+    if(secondclient == nullptr) return;
 
     group * gr = new group();
     gr->insertUser(client);
     gr->insertUser(secondclient);
     gr->name = "fastGame";
     gr->password = "";
+
+
+
     if(gr->firstUser !=nullptr && gr->secondUser != nullptr)
-        gr->SendAll("GO");
+    {
+        client->sendMessage("MMW " + secondclient->login + " " + gr->name);
+        secondclient->sendMessage("MMB " + client->login + " " + gr->name);
+        //gr->SendAll("GO");
+    }
 }
 
 void Server::SendToClient(QString message)
@@ -246,6 +278,41 @@ void Server::SendToSocket(QString message, QSslSocket *socket_sender)
         if(socket_sender->state() == QSslSocket::ConnectedState)
             socket_sender->write(Data);
     qDebug() << "message: " << message << ", socket: " << socket_sender->socketDescriptor();
+}
+
+bool Server::requaredLvl(int user1, int user2)
+{
+
+    float coeff = 0;//коэффициент разницы между игроками
+
+    if(user1 < 10 && user2 < 10)
+    {
+        if(user1 > user2)
+        {
+            coeff = user1/user2;
+        }
+        else
+        {
+            coeff = user2/user1;
+        }
+        return !(coeff > 2.5);
+    }
+
+
+    if(user1 > user2)
+    {
+        coeff = user1/user2;
+    }
+    else
+    {
+        coeff = user2/user1;
+    }
+
+    if(user1 > 25 && user2 >25)
+    {
+        return !(coeff > 1.20);
+    }
+
 }
 
 Server * Server::getServer()

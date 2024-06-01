@@ -272,6 +272,7 @@ Makefile: ../untitled1/untitled1.pro C:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/wi
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/lex.prf \
 		../untitled1/untitled1.pro \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5Network.prl \
+		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5Sql.prl \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5Core.prl \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/build_pass.prf
 	$(QMAKE) -o Makefile ..\untitled1\untitled1.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
@@ -477,6 +478,7 @@ C:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/yacc.prf:
 C:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/lex.prf:
 ../untitled1/untitled1.pro:
 C:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5Network.prl:
+C:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5Sql.prl:
 C:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5Core.prl:
 C:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/build_pass.prf:
 qmake: FORCE

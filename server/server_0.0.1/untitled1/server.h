@@ -5,7 +5,7 @@
 #include "user.h"
 #include "QTimer"
 #include "group.h"
-
+#include "sqlworker.h"
 
 class Server : public QTcpServer
 {
@@ -21,11 +21,13 @@ public:
     void Requared(QString message, QSslSocket *socket_sender);
     void SendToSocket(QString message,QSslSocket *socket_sender);
 
+    bool requaredLvl(int user1, int user2);
 
     Server *getServer();
     QVector <group*> groups;
     QVector <user*> users;
     int socket_desc;
+    sqlWorker *db = nullptr;
 private:
     QVector <QSslSocket*> Sockets;
 

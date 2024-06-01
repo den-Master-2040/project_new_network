@@ -7,6 +7,7 @@
 #include "QSslSocket"
 #include "QTimer"
 #include <QQueue>
+#include "sqlworker.h"
 //#include "group.h"
 class user : public QObject
 {
@@ -34,6 +35,9 @@ public:
     bool findFastGame = false;
     bool group_created = false;
     int group = -1;
+
+    int lvl= 0;
+    sqlWorker *db = nullptr;
     //объекты
 
     //методы для общего пользования
@@ -42,6 +46,8 @@ public:
     void getDataDestinaition();//функция должна будет возвращать данные из бд с достижениями игрока
     void RequaredMsg(QString str);
     int findStartMsg(QByteArray byte);
+
+    int updateLvl(int win, int def, int countGame);
 
     //сигналы
     QString getLogin() const;

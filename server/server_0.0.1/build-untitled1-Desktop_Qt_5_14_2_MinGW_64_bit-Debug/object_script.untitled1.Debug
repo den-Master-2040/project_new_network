@@ -9,6 +9,8 @@ debug/stdout_sinks.o
 debug/group.o
 debug/main.o
 debug/server.o
+debug/sqlworker.o
 debug/user.o
 debug/moc_group.o
+debug/moc_sqlworker.o
 debug/moc_user.o

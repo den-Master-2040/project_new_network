@@ -1,5 +1,5 @@
 QT -= gui
-QT += core network
+QT += core network sql
 CONFIG += c++11 console
 CONFIG -= app_bundle
 
@@ -25,8 +25,10 @@ SOURCES += \
         spdlog/stdout_sinks.cpp \
         group.cpp \
         main.cpp \
-        server.cpp \        
+        server.cpp \
+        sqlworker.cpp \
         user.cpp
+
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -140,6 +142,7 @@ HEADERS += \
     spdlog/stopwatch.h \
     spdlog/tweakme.h \
     spdlog/version.h \
+    sqlworker.h \
     user.h
 
 DISTFILES += \
