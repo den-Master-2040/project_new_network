@@ -21,6 +21,10 @@ public:
      void sendMsg();
      void SendToSocket(QString message, QTcpSocket *socket_sender);
      void SendAll(QString message);
+
+     void insertViewers(user *user);
+     QVector <user*> viewers;
+     void sendViewers(QString str);
 private:
 
  signals:

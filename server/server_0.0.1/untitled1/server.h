@@ -45,6 +45,8 @@ public slots:
     void CreateUser(qintptr socketDescriptor);
     void FindUserMM();
     void ready();
+    void connectViewer();
+    void disconnectViewer();
 };
 
 #endif // SERVER_H

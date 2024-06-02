@@ -68,7 +68,8 @@ signals:
     void signalExitGroup();
     void signalGo();
     void signalFindUsers();
-
+    void connectViewers();
+    void disconnectViewers();
 public slots:
     void slotReadyRead();
     void slotReadBuff();

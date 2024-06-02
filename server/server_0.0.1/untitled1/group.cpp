@@ -39,6 +39,7 @@ void group::slotSendMsgFirtsUser()
     if(secondUser!=nullptr)
     SendToSocket(firstUser->sendedMsgToAnotherUser, secondUser->socket);
     //Отправка во второй контроллер(+ возможно в будущем всем зрителям)
+    sendViewers( firstUser->sendedMsgToAnotherUser);
 }
 
 void group::slotSendMsgSecondUser()
@@ -46,6 +47,7 @@ void group::slotSendMsgSecondUser()
     if(firstUser!=nullptr)
     SendToSocket(secondUser->sendedMsgToAnotherUser, firstUser->socket);
     //Отправка во первый контроллер(+ возможно в будущем всем зрителям)
+    sendViewers( secondUser->sendedMsgToAnotherUser);
 }
 
 void group::Disconnected()
@@ -53,9 +55,10 @@ void group::Disconnected()
     if(secondUser == (user*)sender() || secondUser == nullptr)
     {
         qDebug() << "group::Disconnected secondUser";
-        qDebug() << "SendToSocket(DCT,firstUser->socket)";
+
         if(firstUser != nullptr)
         {
+            qDebug() << "SendToSocket(DCT,firstUser->socket)";
             SendToSocket("DCT",firstUser->socket);
             firstUser->findFastGame = false;
         }
@@ -64,9 +67,10 @@ void group::Disconnected()
     if(firstUser == (user*)sender() || firstUser == nullptr)
     {
         qDebug() << "group::Disconnected firstUser";
-        qDebug() << "SendToSocket(DCT,secondUser->socket)";
+
         if(secondUser != nullptr)
         {
+            qDebug() << "SendToSocket(DCT,secondUser->socket)";
             firstUser->findFastGame = false;
             SendToSocket("DCT",secondUser->socket);
         }
@@ -82,6 +86,8 @@ void group::slotGo()
 {
     qDebug() << "slotGo";
     SendAll("GO");
+
+    sendViewers("GOV");
 }
 
 
@@ -112,5 +118,31 @@ void group::SendAll(QString message)
     if(secondUser !=nullptr)
     {
         SendToSocket(message + "B", secondUser->socket);
+    }
+}
+
+void group::insertViewers(user *user)
+{
+    viewers.append(user);
+    if(secondUser!=nullptr && firstUser !=nullptr)
+        sendViewers("CV " + secondUser->login + " " + firstUser->login + " " + name);
+    if(secondUser==nullptr && firstUser !=nullptr)
+        sendViewers("CV none " + firstUser->login + " " + name);
+    if(secondUser!=nullptr && firstUser ==nullptr)
+        sendViewers("CV " + secondUser->login + " none " + name);
+}
+
+void group::sendViewers(QString str)
+{
+    Data.clear();
+    QDataStream out (&Data, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_5_9);
+    out << str;
+    for(auto socket_sender : viewers)
+    {
+        if(socket_sender!=nullptr && socket_sender->socket != nullptr)
+            if(socket_sender->socket->state() == QTcpSocket::ConnectedState)
+        socket_sender->socket->write(Data);
+        qDebug() << "sendedViewers" << socket_sender->socket->socketDescriptor() << "data:" << Data;
     }
 }

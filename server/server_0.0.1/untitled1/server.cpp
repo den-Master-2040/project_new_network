@@ -127,8 +127,9 @@ void Server::SendDataGroup()
     for(int i = 0; i < groups.size();i++)
     {
         if((groups.at(i)->secondUser == nullptr && groups.at(i)->firstUser != nullptr)
-         ||(groups.at(i)->firstUser == nullptr && groups.at(i)->secondUser != nullptr) )
-        {//собираем только группы тех, где один игрок
+         ||(groups.at(i)->firstUser == nullptr && groups.at(i)->secondUser != nullptr)||
+                (groups.at(i)->firstUser != nullptr && groups.at(i)->secondUser != nullptr))
+        {//собираем только группы тех, где один или 2 игрока
             dataGroup = dataGroup + "I";
             dataGroup = dataGroup + QString::number(i);
             dataGroup = dataGroup + " G";
@@ -139,6 +140,8 @@ void Server::SendDataGroup()
             else if(groups.at(i)->secondUser!=nullptr)
                 dataGroup = dataGroup + groups.at(i)->secondUser->login;
             dataGroup = dataGroup + " ";
+            if(groups.at(i)->firstUser != nullptr && groups.at(i)->secondUser != nullptr)
+                dataGroup +="2";
         }
     }
     SendToSocket(dataGroup,client->socket);
@@ -158,6 +161,8 @@ void Server::ConnectToGroup()
     if(secondUser != nullptr)
         SendToSocket("CU " + groups.at(client->group)->firstUser->login + " "
                      + groups.at(client->group)->name,secondUser->socket);
+
+
     spdlog::info("Client {0} connected to group ", client->login.toStdString());
 }
 
@@ -172,6 +177,8 @@ void Server::ready()
     connect(client, &user::signalConnectToGroup, this, &Server::ConnectToGroup);
     connect(client, &user::signalDisconnect, this, &Server::Disconnected);
     connect(client, &user::signalFindUsers, this, &Server::FindUserMM);
+    connect(client, &user::connectViewers, this, &Server::connectViewer);
+    connect(client, &user::disconnectViewers, this, &Server::disconnectViewer);
     client->db = db;
     QThread *th = new QThread();
     client->moveToThread(th);
@@ -181,6 +188,26 @@ void Server::ready()
 
     for(int i = 0; i < users.size(); i++)
         SendToSocket("IS" + QString::number(users.size()), users.at(i)->socket); //количество человек на сервере, рассылаем всем
+}
+
+void Server::connectViewer()
+{
+    client = (user*)sender();
+
+    groups.at(client->group)->insertViewers(client);
+
+
+
+    spdlog::info("Viewer {0} connected to group ", client->login.toStdString());
+}
+
+void Server::disconnectViewer()
+{
+    client = (user*)sender();
+
+    groups.at(client->group)->viewers.removeOne(client);
+
+    spdlog::info("Viewer {0} disconnected to group ", client->login.toStdString());
 }
 
 void Server::CreateUser(qintptr socketDescriptor)

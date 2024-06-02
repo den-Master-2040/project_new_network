@@ -407,7 +407,7 @@ void user::RequaredMsg(QString str)
                 db->setRecord(indexdb,record);
             }
         }
-        case 'R':
+        case 'R'://registrate
         {
             if(str.at(1) == 'E' || str.at(2) == 'G')
             {
@@ -447,7 +447,7 @@ void user::RequaredMsg(QString str)
 
             }
         }
-        case 'I':
+        case 'I'://sendUserDataStatistick
         {
             if(str.at(1) == 'I')
             {
@@ -471,8 +471,41 @@ void user::RequaredMsg(QString str)
                 + " " + record.value("countDraw").toString();
                 sendMessage("UD " + data);
 
+
+            }
+            break;
+        }
+        case 'V':
+        {
+            if(str.at(1) == 'D')
+            {
+                //отключаемся из группы в качестве зрителя
+                emit disconnectViewers();
+                break;
+            }
+
+
+            //подключаемся в группу в качестве зрителя
+            QString idGroup;
+            int i = 2;
+            for( ;i < str.size(); i++)
+            {
+                if(str[i] != ' ')
+                    idGroup += str.at(i);
+                else break;
+            }
+            group = idGroup.toInt();
+            emit connectViewers();
+
+        }
+        case 'S':
+        {
+            if(msg.at(1) == 'T')
+            {
+                REF_SERVER->groups.at(group)->gameIsStarted =false;
             }
         }
+
     }
 }
 
