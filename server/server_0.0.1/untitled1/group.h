@@ -13,7 +13,7 @@ public:
      user* firstUser = nullptr;
      user* secondUser = nullptr;
 
-
+    bool gameIsStarted = false;
      void insertUser(user *user);
      QByteArray Data;
 

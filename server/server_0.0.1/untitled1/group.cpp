@@ -88,6 +88,7 @@ void group::slotGo()
     SendAll("GO");
 
     sendViewers("GOV");
+    gameIsStarted = true;
 }
 
 
