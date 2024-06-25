@@ -18,9 +18,9 @@ public:
 
     int findMyIndex(QString login);
     bool insertNewUser(QString login, QString pass);
-
-private:
     QSqlDatabase db;
+private:
+
 signals:
 
 };

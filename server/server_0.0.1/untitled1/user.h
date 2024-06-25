@@ -20,43 +20,38 @@ public:
 
     //поля
     QString login = "";
-    QString token= "";
-    int socketDescriptor;
+    QString token= "";    
     QSslSocket *socket;
-    QByteArray Data; //для отправки сообщений
+    int lvl= 0;
+    bool findFastGame = false; //флаг быстрой игры
+    int group = -1;            //индекс группы, в которой находится пользователь
+
 
     //информация только создания для групп
     QString msg= "";
     QString name_group= "";
     QString pass_group= "";
+    QString sendedMsgToAnotherUser= ""; //сообщение для другого пользователя
 
-    QString sendedMsgToAnotherUser= "";
-
-    bool findFastGame = false;
-    bool group_created = false;
-    int group = -1;
-
-    int lvl= 0;
-    sqlWorker *db = nullptr;
+    
+    
+    sqlWorker *db = nullptr; //указатель на объект работы с бд
     //объекты
 
     //методы для общего пользования
-    void sendMessage(QString message);
-    void getSocket();
-    void getDataDestinaition();//функция должна будет возвращать данные из бд с достижениями игрока
+    void sendMessage(QString message);    
     void RequaredMsg(QString str);
-    int findStartMsg(QByteArray byte);
-
-    int updateLvl(int win, int def, int countGame);
-
-    //сигналы
+    int updateLvl(int win, int def, int countGame);    
     QString getLogin() const;
     void setLogin(const QString &value);
+    void setBlocked(bool value);
 
+    //для сбора данных
     QQueue <QString> buffer;
     QTimer *t_ringBuff = nullptr;
     QTimer *t_readBuff = nullptr;
-
+    
+//сигналы
 signals:
     void signalDisconnect();
     void signalEnable();
@@ -70,6 +65,8 @@ signals:
     void signalFindUsers();
     void connectViewers();
     void disconnectViewers();
+
+//слоты
 public slots:
     void slotReadyRead();
     void slotReadBuff();

@@ -7,7 +7,7 @@ group::group()
 
 group::~group()
 {
-    qDebug() << "~group";
+    //qDebug() << "~group";
 }
 
 void group::insertUser(user* user)
@@ -16,6 +16,7 @@ void group::insertUser(user* user)
     if(firstUser==nullptr)
     {
         firstUser = user;
+        user->sendedMsgToAnotherUser = "";
         connect(firstUser, &user::signalsendMessage, this, &group::slotSendMsgFirtsUser);
         connect(firstUser, &user::signalDisconnect, this, &group::Disconnected);
         connect(firstUser, &user::signalExitGroup, this, &group::Disconnected);
@@ -25,40 +26,46 @@ void group::insertUser(user* user)
     else if(secondUser==nullptr)
     {
         secondUser = user;
+        user->sendedMsgToAnotherUser = "";
         connect(secondUser, &user::signalsendMessage, this, &group::slotSendMsgSecondUser);
         connect(secondUser, &user::signalDisconnect, this, &group::Disconnected);
         connect(secondUser, &user::signalExitGroup, this, &group::Disconnected);
         connect(secondUser, &user::signalGo, this, &group::slotGo);
 
+
+
     }
     else return;//достигнуто максимальное количество игроков
+
 }
 
 void group::slotSendMsgFirtsUser()
 {
-    if(secondUser!=nullptr)
-    SendToSocket(firstUser->sendedMsgToAnotherUser, secondUser->socket);
+    if(firstUser!=nullptr)
+        SendToSocket(firstUser->sendedMsgToAnotherUser, secondUser->socket);
     //Отправка во второй контроллер(+ возможно в будущем всем зрителям)
-    sendViewers( firstUser->sendedMsgToAnotherUser);
+    if(firstUser!=nullptr && viewers.size() > 0)
+        sendViewers( firstUser->sendedMsgToAnotherUser);
 }
 
 void group::slotSendMsgSecondUser()
 {
-    if(firstUser!=nullptr)
-    SendToSocket(secondUser->sendedMsgToAnotherUser, firstUser->socket);
-    //Отправка во первый контроллер(+ возможно в будущем всем зрителям)
-    sendViewers( secondUser->sendedMsgToAnotherUser);
+    if(secondUser!=nullptr)
+        SendToSocket(secondUser->sendedMsgToAnotherUser, firstUser->socket);
+
+    if(secondUser!=nullptr && viewers.size() > 0)
+        sendViewers( secondUser->sendedMsgToAnotherUser);
 }
 
 void group::Disconnected()
 {    
     if(secondUser == (user*)sender() || secondUser == nullptr)
     {
-        qDebug() << "group::Disconnected secondUser";
+        //qDebug() << "group::Disconnected secondUser";
 
         if(firstUser != nullptr)
         {
-            qDebug() << "SendToSocket(DCT,firstUser->socket)";
+            //qDebug() << "SendToSocket(DCT,firstUser->socket)";
             SendToSocket("DCT",firstUser->socket);
             firstUser->findFastGame = false;
         }
@@ -66,20 +73,24 @@ void group::Disconnected()
     }
     if(firstUser == (user*)sender() || firstUser == nullptr)
     {
-        qDebug() << "group::Disconnected firstUser";
+        //qDebug() << "group::Disconnected firstUser";
 
         if(secondUser != nullptr)
         {
-            qDebug() << "SendToSocket(DCT,secondUser->socket)";
-            firstUser->findFastGame = false;
+            //qDebug() << "SendToSocket(DCT,secondUser->socket)";
+            if(firstUser != nullptr)
+            secondUser->findFastGame = false;
             SendToSocket("DCT",secondUser->socket);
         }
         firstUser = nullptr;
     }
+    //qDebug() << "(firstUser == nullptr)" << (firstUser == nullptr);
+    //qDebug() << "(secondUser == nullptr)" << (secondUser == nullptr);
 
-
-    if(firstUser == nullptr && secondUser == nullptr)
-        emit signalDestroy();
+    if(firstUser == nullptr && secondUser == nullptr){
+        //emit signalDestroy();
+        this->destroyed();
+    }
 }
 
 void group::slotGo()
@@ -94,6 +105,7 @@ void group::slotGo()
 
 void group::SendToSocket(QString message, QTcpSocket *socket_sender)
 {
+    QByteArray Data;
     Data.clear();
     QDataStream out (&Data, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_5_9);
@@ -135,6 +147,7 @@ void group::insertViewers(user *user)
 
 void group::sendViewers(QString str)
 {
+    QByteArray Data;
     Data.clear();
     QDataStream out (&Data, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_5_9);

@@ -1,3 +1,4 @@
+debug/menu.o
 debug/serverglobal.o
 debug/async.o
 debug/bundled_fmtlib_format.o
@@ -12,5 +13,6 @@ debug/server.o
 debug/sqlworker.o
 debug/user.o
 debug/moc_group.o
+debug/moc_menu.o
 debug/moc_sqlworker.o
 debug/moc_user.o

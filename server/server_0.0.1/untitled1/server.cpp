@@ -11,26 +11,25 @@ Server::Server()
     ipAddress = "127.0.0.1";
     port = 2323;
     QString info = "Server default ip: " + ipAddress + ", port: " + QString::number(port);
-    spdlog::info(info.toStdString());
-
+    if (viewmode) if (viewmode) spdlog::info(info.toStdString());
 
 }
 Server::Server(QString ipAddress_, int port_)
-    :ipAddress(ipAddress_), port(port_)
+
 {
     spdlog::set_level(spdlog::level::trace);
     spdlog::trace("Constructor Server()");
 
     //Please, set Ip address and port!
 
-    QString info = "Server ip: " + ipAddress + ", port: " + QString::number(port);
-    spdlog::info(info.toStdString());
+    //QString info = "Server ip: " + ipAddress + ", port: " + QString::number(port);
+    //if (viewmode) spdlog::info(info.toStdString());
 }
 
-bool Server::start()
+void Server::start()
 {
     QString info = "Try to listen. Server ip: " + ipAddress + ", port: " + QString::number(port);
-    spdlog::info(info.toStdString());
+    if (viewmode) spdlog::info(info.toStdString());
 
     db = new sqlWorker();
 
@@ -38,14 +37,14 @@ bool Server::start()
     if(this->listen(QHostAddress(ipAddress), port))
     {
         spdlog::info("Server start successfully!");
-        return 0;
+        return;
     }
     else
     {
-        //надо бы прикратить работу приложения после этого..
+
         spdlog::error("Can't start to listen server! Probably incorrect IP address or port is occupied by another process");
         spdlog::critical("Server start faild!");
-        return -1;
+        return;
     }
 
 }
@@ -63,16 +62,16 @@ void Server::SlotReadyRead()
     in.setVersion(QDataStream::Qt_5_9);
     if(in.status() == QDataStream::Ok)
     {
-        //qDebug() << "Read message for QDataStream...";
+        ////qDebug() << "Read message for QDataStream...";
         QString str;
         in >> str;
-        qDebug() << "Sended SlotReadyRead Server:" << socket->socketDescriptor()<< " : " << str;
+        //qDebug() << "Sended SlotReadyRead Server:" << socket->socketDescriptor()<< " : " << str;
         //Requared(str, socket);
         //SendToClient(str);
     }
     else
     {
-        //qDebug() << "fail to read message for ыQDataStream!";
+        ////qDebug() << "fail to read message for ыQDataStream!";
     }
 
 }
@@ -84,14 +83,16 @@ void Server::Disconnected()
 
     //Нам нужно выполнить ряд действий, когда пользователь отключился
     QString lg = client->getLogin();
-    qDebug() << "user Index:" << users.indexOf(client);
+    if (lg == "") lg = "none";
+
+    //qDebug() << "user Index:" << users.indexOf(client);
     users.remove(users.indexOf(client));//удалить его из общей структуры данных пользователей
     delete client;
     if(users.size() > 0)
         for(int i = 0; i < users.size(); i++)
             if(users.at(i)->socket->state() == QSslSocket::ConnectedState)
                 SendToSocket("IS" + QString::number(users.size()), users.at(i)->socket); //количество человек на сервере, рассылаем всем
-    spdlog::info("Client {0} disconnected ", lg.toStdString());
+    if (viewmode) spdlog::info("Client {0} disconnected ", lg.toStdString());
 }
 
 void Server::CreateGroup()
@@ -111,7 +112,7 @@ void Server::CreateGroup()
 
 
 
-    spdlog::info("Client {0} create group!", client->login.toStdString());
+    if (viewmode) spdlog::info("Client {0} create group!", client->login.toStdString());
     SendToSocket("Ok", client->socket);
 }
 
@@ -127,8 +128,7 @@ void Server::SendDataGroup()
     for(int i = 0; i < groups.size();i++)
     {
         if((groups.at(i)->secondUser == nullptr && groups.at(i)->firstUser != nullptr)
-         ||(groups.at(i)->firstUser == nullptr && groups.at(i)->secondUser != nullptr)||
-                (groups.at(i)->firstUser != nullptr && groups.at(i)->secondUser != nullptr))
+         ||(groups.at(i)->firstUser == nullptr && groups.at(i)->secondUser != nullptr))
         {//собираем только группы тех, где один или 2 игрока
             dataGroup = dataGroup + "I";
             dataGroup = dataGroup + QString::number(i);
@@ -163,12 +163,12 @@ void Server::ConnectToGroup()
                      + groups.at(client->group)->name,secondUser->socket);
 
 
-    spdlog::info("Client {0} connected to group ", client->login.toStdString());
+    if (viewmode) spdlog::info("Client {0} connected to group ", client->login.toStdString());
 }
 
 void Server::ready()
 {
-    qDebug() << "READY!";
+    //qDebug() << "READY!";
     QSslSocket *socket = (QSslSocket*)sender();
     user *client = new user(socket);
     users.push_back(client);
@@ -184,7 +184,7 @@ void Server::ready()
     client->moveToThread(th);
     th->start();
     client = nullptr;
-    spdlog::info("Client connected {0}",socket->socketDescriptor());
+    if (viewmode) spdlog::info("Client connected {0}",socket->socketDescriptor());
 
     for(int i = 0; i < users.size(); i++)
         SendToSocket("IS" + QString::number(users.size()), users.at(i)->socket); //количество человек на сервере, рассылаем всем
@@ -198,7 +198,7 @@ void Server::connectViewer()
 
 
 
-    spdlog::info("Viewer {0} connected to group ", client->login.toStdString());
+    if (viewmode) spdlog::info("Viewer {0} connected to group ", client->login.toStdString());
 }
 
 void Server::disconnectViewer()
@@ -207,7 +207,7 @@ void Server::disconnectViewer()
 
     groups.at(client->group)->viewers.removeOne(client);
 
-    spdlog::info("Viewer {0} disconnected to group ", client->login.toStdString());
+    if (viewmode) spdlog::info("Viewer {0} disconnected to group ", client->login.toStdString());
 }
 
 void Server::CreateUser(qintptr socketDescriptor)
@@ -221,8 +221,8 @@ void Server::CreateUser(qintptr socketDescriptor)
 
     if (socket->setSocketDescriptor(socketDescriptor)) {
 
-        qDebug() << "createuser1";
-        addPendingConnection(socket);
+        //qDebug() << "createuser1";
+        //addPendingConnection(socket);
         socket->startServerEncryption();
 
     } else {
@@ -242,7 +242,6 @@ void Server::FindUserMM()
 
         for(auto user : users)
         {
-            //_sleep(1200);
             if(user->findFastGame && user!=client)
             {
 
@@ -289,7 +288,7 @@ void Server::SendToClient(QString message)
     out << message;
     //Requared(message);
     //socket->write(Data);
-    //qDebug() << "Send to client" << message;
+    ////qDebug() << "Send to client" << message;
     for(int i = 0; i < Sockets.size(); i++)
     {
         Sockets[i]->write(Data);
@@ -304,13 +303,16 @@ void Server::SendToSocket(QString message, QSslSocket *socket_sender)
     if(socket_sender != nullptr)
         if(socket_sender->state() == QSslSocket::ConnectedState)
             socket_sender->write(Data);
-    qDebug() << "message: " << message << ", socket: " << socket_sender->socketDescriptor();
+    //qDebug() << "message: " << message << ", socket: " << socket_sender->socketDescriptor();
 }
 
 bool Server::requaredLvl(int user1, int user2)
 {
 
     float coeff = 0;//коэффициент разницы между игроками
+
+    user1 == 0 ? user1 = 1 : user1 = user1;
+    user2 == 0 ? user2 = 1 : user2 = user2;
 
     if(user1 < 10 && user2 < 10)
     {
@@ -348,79 +350,4 @@ Server * Server::getServer()
 }
 
 
-void Server::Requared(QString message, QSslSocket *socket_sender)
-{
-    switch (message.at(0).unicode()) {
-        case 'L':
-        {
-            //logining
-            int start_login = message.toStdString().find("login") + 6;
-            QString login;
 
-            for(int i = start_login; i < message.size(); i++)
-            {
-                if(message[i] != ' ')
-                {
-                    login += message[i];
-                }
-                else break;
-            }
-            //типо проверка логина
-
-            //ищем токен
-            int start_token = message.toStdString().find("token") + 6;
-            QString token;
-            for(int i = start_token; i < message.size(); i++)
-            {
-                if(message[i] != ' ')
-                {
-                    token += message[i];
-                }
-                else break;
-            }
-            spdlog::info("Connect user! user login {0}, token {1}", login.toStdString(), token.toStdString());
-            break;
-
-        }
-        case 'p':
-        {
-            SendToSocket("1", socket_sender);
-            break;
-        }
-        case 'I':
-        {
-            spdlog::info("User disconnect");
-            break;
-        }
-        case 'C':
-        {
-            //logining
-            int start_name_group = 2;
-            QString name_group;
-            int i = start_name_group;
-            for(; i < message.size(); i++)
-            {
-                if(message[i] != ' ')
-                {
-                    name_group += message[i];
-                }
-                else break;
-            }
-            //типо проверка логина
-
-            //ищем токен
-            int start_pass = i+1;
-            QString pass;
-            for( i = start_pass; i < message.size(); i++)
-            {
-                if(message[i] != ' ')
-                {
-                    pass += message[i];
-                }
-                else break;
-            }
-            spdlog::info("Create group! name group {0}, pass {1}", name_group.toStdString(), pass.toStdString());
-            break;
-        }
-    }
-}

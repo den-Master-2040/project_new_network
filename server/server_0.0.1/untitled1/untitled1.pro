@@ -15,6 +15,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        menu.cpp \
         serverglobal.cpp \
         spdlog/async.cpp \
         spdlog/bundled_fmtlib_format.cpp \
@@ -37,6 +38,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     group.h \
+    menu.h \
     server.h \
     serverglobal.h \
     spdlog/async.h \

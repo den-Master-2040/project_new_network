@@ -53,11 +53,21 @@ void user::setLogin(const QString &value)
     login = value;
 }
 
+void user::setBlocked(bool value)
+{
+    int indexdb = db->findMyIndex(login);
+    if(indexdb == -1)return;
+    QSqlRecord record = db->selectIndex(indexdb);
+    record.setValue("login", value);
+    db->setRecord(indexdb, record);
+}
+
 
 
 void user::sendMessage(QString message)
 {
 
+    QByteArray Data; 
     /*Data.clear();
     QDataStream out (&Data, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_5_9);
@@ -74,35 +84,17 @@ void user::sendMessage(QString message)
     if(socket != nullptr)
         if(socket->state() == QSslSocket::ConnectedState)
             socket->write(Data);
-    qDebug() << "sendto " << socket->socketDescriptor() << "msg: " << Data;
+    //qDebug() << "sendto " << socket->socketDescriptor() << "msg: " << Data;
 
 }
 
 
-void user::getDataDestinaition()
-{
-    //TODO:
-    //должно возвращаться :
-    /*
-     * Количество:
-     * - сыгранных игр
-     * - Побед
-     * - Поражений
-     * - Ничьих
-     * Итоговый рейтинг
-     * История матчей? (именно с кем был прошлый матч - игрок, время)
-    */
-}
 
 void user::RequaredMsg(QString str)
 {
-    qDebug() << "Sended slotReadyReadUser" << socket->socketDescriptor()<< " : " << str;
+    //qDebug() << "Sended slotReadyReadUser" << socket->socketDescriptor()<< " : " << str;
     switch (str.at(0).unicode()) {
-        case 'p'://ping
-        {
-            sendMessage("1");
-            break;
-        }
+
         case 'L'://logining
         {
 
@@ -118,8 +110,6 @@ void user::RequaredMsg(QString str)
                 else break;
             }
 
-            //типо проверка логина
-
 
             //ищем токен
             int start_token = str.toStdString().find("token") + 6;
@@ -134,21 +124,21 @@ void user::RequaredMsg(QString str)
             }
 
             int indexdb = db->findMyIndex(login);
-            qDebug() << "indexdb: " << indexdb;
+            //qDebug() << "indexdb: " << indexdb;
             if(indexdb == -1)
             {
-                spdlog::info("not connect user! false token or login");
+                //spdlog::info("not connect user! false token or login");
                 sendMessage("NL");
                 return;
             }
 
             QSqlRecord record = db->selectIndex(indexdb);
-            qDebug() << "loginb: " << record.value("login");
-            qDebug() << "passdb: " << record.value("password");
+            //qDebug() << "loginb: " << record.value("login");
+            //qDebug() << "passdb: " << record.value("password");
 
-            if(login != record.value("login") || token != record.value("password"))
+            if(login != record.value("login") || token != record.value("password") || record.value("isblocked") == 1)
             {
-                spdlog::info("not connect user! false token or login");
+                //spdlog::info("not connect user! false token or login");
                 sendMessage("NL");
                 return;
             }
@@ -157,7 +147,7 @@ void user::RequaredMsg(QString str)
             this->token = token;
 
             sendMessage("SL");
-            spdlog::info("Connect user! user login {0}, token {1}", login.toStdString(), token.toStdString());
+            //spdlog::info("Connect user! user login {0}, token {1}", login.toStdString(), token.toStdString());
             break;
 
         }
@@ -231,7 +221,7 @@ void user::RequaredMsg(QString str)
                             pass += str.at(i);
 
                     }
-                    qDebug() << "idgroup: " << idGroup << " pass: " << pass;
+                    //qDebug() << "idgroup: " << idGroup << " pass: " << pass;
                     if(pass == REF_SERVER->getServer()->groups.at(group)->password)
                         emit signalConnectToGroup();
 
@@ -245,6 +235,7 @@ void user::RequaredMsg(QString str)
             //str.remove(0,1);
             sendedMsgToAnotherUser = str;
             emit signalsendMessage();
+            //sendedMsgToAnotherUser = "";
             break;
         }
         case 'H'://sendedMsgToAnotherUser
@@ -252,39 +243,40 @@ void user::RequaredMsg(QString str)
             //hod
             sendedMsgToAnotherUser = str;
             emit signalsendMessage();
+            //sendedMsgToAnotherUser = "";
             break;
         }
         case 'N'://Rename user
         {
             if(str.at(1) == 'R')
             {
-                int indexdb = db->findMyIndex(login);
-                qDebug() << "indexdb: " << indexdb;
-                qDebug() << "login: " << login;
+                int indexdb = db->findMyIndex(this->login);
+                //qDebug() << "indexdb: " << indexdb;
+                //qDebug() << "login: " << login;
                 QString new_login = "";
 
                 str.remove(0,2);
                 new_login = str;
-                spdlog::info("Rename user! username old {0} new {1}", login.toStdString(), new_login.toStdString());
+                //spdlog::info("Rename user! username old {0} new {1}", login.toStdString(), new_login.toStdString());
                 this->login = new_login;
 
 
                 QSqlRecord record = db->selectIndex(indexdb);
-                record.setValue("login", login);
-                qDebug() << "indexdb: " << indexdb;
-                qDebug() << "login: " << login;
-                qDebug() << db->setRecord(indexdb,record);
+                record.setValue("login", login);                
+                //qDebug() << "indexdb: " << indexdb;
+                //qDebug() << "login: " << login;
+                //qDebug() << db->setRecord(indexdb,record);
                 break;
             }
             if(str.at(1) == 'P')
             {
                 int indexdb = db->findMyIndex(login);
-                qDebug() << "indexdb: " << indexdb;
+                //qDebug() << "indexdb: " << indexdb;
                 QString new_pass = "";
 
                 str.remove(0,2);
                 new_pass = str;
-                spdlog::info("Repass user! pass old {0} new {1}", token.toStdString(), new_pass.toStdString());
+                //spdlog::info("Repass user! pass old {0} new {1}", token.toStdString(), new_pass.toStdString());
                 this->token = new_pass;
 
 
@@ -317,7 +309,7 @@ void user::RequaredMsg(QString str)
                 //    emit signalConnectToGroup();
                 //    break;
                 //}
-                //qDebug() << "size group 0, find for users";
+                ////qDebug() << "size group 0, find for users";
 
                 findFastGame = true;
                 emit signalFindUsers();
@@ -393,7 +385,7 @@ void user::RequaredMsg(QString str)
                 }
 
                 int indexdb = db->findMyIndex(login);
-                qDebug() << "indexdb: " << indexdb;
+                //qDebug() << "indexdb: " << indexdb;
 
                 QSqlRecord record = db->selectIndex(indexdb);
 
@@ -434,12 +426,12 @@ void user::RequaredMsg(QString str)
                 }
 
                 int indexdb = db->findMyIndex(login);
-                qDebug() << "indexdb: " << indexdb;
+                //qDebug() << "indexdb: " << indexdb;
                 QSqlRecord record = db->selectIndex(indexdb);
                 record.setValue("login", login);
                 record.setValue("password", token);
 
-                qDebug() <<"insertNewUser" ;
+                //qDebug() <<"insertNewUser" ;
                 if(db->insertNewUser(login,token))
                 {
                     sendMessage("SL");
@@ -452,7 +444,7 @@ void user::RequaredMsg(QString str)
             if(str.at(1) == 'I')
             {
                 int indexdb = db->findMyIndex(login);
-                qDebug() << "indexdb: " << indexdb;
+                //qDebug() << "indexdb: " << indexdb;
                 QSqlRecord record = db->selectIndex(indexdb);
 
                 record.setValue("levelUser",
@@ -509,29 +501,7 @@ void user::RequaredMsg(QString str)
     }
 }
 
-int user::findStartMsg(QByteArray byte)
-{
-    for(int i = 0; i < byte.size(); i++)
-    {
-        switch (byte.at(i)) {
-            case 'p'://ping
-            case 'L':
-            case 'C':
-            case 'G'://getDataGrouo
-            case 'O'://Succesful connect to group
-            case 'T'://sendedMsgToAnotherUser
-            case 'H'://sendedMsgToAnotherUser
-            case 'N'://Rename user
-            case 'D'://ExitGroup
-            case 'F':
-                return i;
-            default:
-                continue;
 
-        }
-        return -1;
-    }
-}
 
 int user::updateLvl(int win, int def, int countGame)
 {
@@ -556,7 +526,7 @@ void user::slotReadyRead()
         in.setVersion(QDataStream::Qt_5_9);
         if(in.status() == QDataStream::Ok)
         {
-            //qDebug() << "Read message for QDataStream...";
+            ////qDebug() << "Read message for QDataStream...";
             QString str;
             in >> str;
 
@@ -575,7 +545,7 @@ void user::slotReadBuff()
 
     if(!buffer.isEmpty())
         buffer.pop_front();
-    //qDebug() << "byteBefore" << *byte;
+    ////qDebug() << "byteBefore" << *byte;
 
     int start = str.indexOf(0x02);
 
@@ -583,12 +553,12 @@ void user::slotReadBuff()
 
     int end = str.indexOf(0x03);
     str.remove(end,str.size()-end+1);
-    //qDebug() << "byteAfter" << *byte;
-    //qDebug() << "bufferSize = " << buffer.size();
+    ////qDebug() << "byteAfter" << *byte;
+    ////qDebug() << "bufferSize = " << buffer.size();
 
 
 
-    qDebug() << "byteStr:" << str;
+    //qDebug() << "byteStr:" << str;
     if(str.size() > 1)
         RequaredMsg(str);
 }

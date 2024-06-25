@@ -13,9 +13,9 @@ public:
      user* firstUser = nullptr;
      user* secondUser = nullptr;
 
-    bool gameIsStarted = false;
+     bool gameIsStarted = false;
      void insertUser(user *user);
-     QByteArray Data;
+
 
      void deleteUser();//когда юзер вышел
      void sendMsg();

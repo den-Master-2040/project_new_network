@@ -1,3 +1,4 @@
+release/menu.o
 release/serverglobal.o
 release/async.o
 release/bundled_fmtlib_format.o
@@ -12,5 +13,6 @@ release/server.o
 release/sqlworker.o
 release/user.o
 release/moc_group.o
+release/moc_menu.o
 release/moc_sqlworker.o
 release/moc_user.o

@@ -6,7 +6,7 @@ sqlWorker::sqlWorker(QObject *parent) : QObject(parent)
 
     db.setHostName("127.0.0.1");
 
-    db.setDatabaseName("C:/Users/DANIL/Desktop/SQLLite/users.db");
+    db.setDatabaseName("C:/Users/DANIL/Desktop/users.db");
 
 
     db.setUserName("root");
@@ -16,6 +16,7 @@ sqlWorker::sqlWorker(QObject *parent) : QObject(parent)
 
 QSqlRecord sqlWorker::selectIndex(int i)
 {
+    g_lock.lock();
     db.open();
     QSqlTableModel model(nullptr,db);
 
@@ -23,22 +24,26 @@ QSqlRecord sqlWorker::selectIndex(int i)
 
     model.select();
     db.close();
+    g_lock.unlock();
     return model.record(i);
 }
 
 bool sqlWorker::setRecord(int row, QSqlRecord record)
 {
+    g_lock.lock();
     db.open();
     QSqlTableModel model(nullptr,db);
     model.setTable("user");
     model.select();
     bool res = model.setRecord(row,record);
     db.close();
+    g_lock.unlock();
     return res;
 }
 
 int sqlWorker::findMyIndex(QString login)
 {
+    g_lock.lock();
     db.open();
     QSqlTableModel model(nullptr,db);
 
@@ -53,11 +58,13 @@ int sqlWorker::findMyIndex(QString login)
     }
 
     db.close();
+    g_lock.unlock();
     return -1;
 }
 
 bool sqlWorker::insertNewUser(QString login, QString pass)
 {
+    g_lock.lock();
     db.open();
     QSqlTableModel model(nullptr,db);
 
@@ -72,5 +79,6 @@ bool sqlWorker::insertNewUser(QString login, QString pass)
 
     bool result = model.insertRecord(0,name);
     db.close();
+    g_lock.unlock();
     return result;
 }
