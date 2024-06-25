@@ -6,6 +6,7 @@
 #include <QSqlRecord>
 #include <QSqlTableModel>
 #include <QDebug>
+#include <mutex>
 class sqlWorker : public QObject
 {
     Q_OBJECT
@@ -20,7 +21,7 @@ public:
     bool insertNewUser(QString login, QString pass);
     QSqlDatabase db;
 private:
-
+    std::mutex g_lock;
 signals:
 
 };
